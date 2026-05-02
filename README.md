@@ -1,15 +1,91 @@
 # model
 
-대청호 조류경보 예측을 위한 **모델 학습 노트북**입니다.
+대청댐 조류경보 예측 AI 프로젝트의 **모델링 코드 전용 레포지토리**입니다.
 
-## 파일 구성
+이 레포지토리는 전처리팀이 만든 최종 모델 입력 테이블을 받아서 Gradient Boosting 기반 모델을 학습, 평가, 저장, 추론하는 코드만 포함합니다.
+
+## 핵심 파일
 
 ```text
-model_training.ipynb   # 모델 학습 코드 전체
+model_training.ipynb   # 모델 학습/평가/저장/추론 노트북
 requirements.txt       # 실행 패키지
 ```
 
-데이터와 학습 산출물은 레포에 올리지 않습니다.
+## 입력 데이터 가정
+
+노트북은 아래 최종 모델 입력 테이블이 이미 준비되어 있다고 가정합니다.
+
+```text
+data/processed/model_input/algae_model_input.csv
+```
+
+이 테이블에는 다음 작업이 모두 완료되어 있어야 합니다.
+
+- 수질·기상·댐 운영 데이터 정리 및 병합
+- 결측치/이상치 처리
+- lag feature 생성
+- rolling feature 생성
+- 누적 강수량 feature 생성
+- 변화량 feature 생성
+- 계절성 feature 생성
+- hydro-topology feature 생성
+- target label 생성
+
+따라서 이 레포지토리에서는 전처리나 feature engineering 코드를 작성하지 않습니다.
+
+## 포함하는 코드
+
+- 최종 모델 입력 테이블 로드
+- feature column / target column 분리
+- 시간 기준 train / validation split
+- Gradient Boosting 회귀 모델 학습
+- Gradient Boosting 분류 모델 학습
+- 모델 평가 지표 계산
+- 모델 저장 및 로드
+- 추론 함수
+- 조류경보 운영 보조 로직
+- SHAP 또는 feature importance 기반 설명 함수
+
+## 포함하지 않는 코드
+
+- 원천 데이터 전처리
+- 데이터 병합
+- 결측치/이상치 처리
+- target 생성
+- lag / rolling / 누적강수 / 변화량 / 계절성 feature 생성
+- hydro-topology feature 생성
+- Granger Causality / VAR 분석
+- UI, API, DB, Docker, 배포 코드
+
+## 모델 방향
+
+최종 예측 모델은 Gradient Boosting 계열을 기본으로 합니다.
+
+우선순위:
+
+1. LightGBM
+2. XGBoost
+3. HistGradientBoosting
+
+LightGBM 또는 XGBoost가 설치되어 있지 않으면 sklearn의 `HistGradientBoosting`을 fallback으로 사용합니다.
+
+## 예측 출력
+
+1. 회귀 출력
+   - 7일 뒤 또는 다음 채수일 유해남조류 세포수 예측
+   - target이 `log10(cells + 1)`로 만들어진 경우에만 원 단위로 복원
+
+2. 분류 출력
+   - 관심 이상 확률 예측
+   - 예: `P(유해남조류 세포수 >= 1,000)`
+
+3. 운영 보조 출력
+   - 직전 실측 세포수, 예측 세포수, 위험 확률을 함께 고려해 `관심 단계 후보` 표시
+   - 공식 조류경보 발령을 자동 결정하는 코드가 아니라 관리자의 사전 점검을 돕는 보조 로직입니다.
+
+4. 설명 출력
+   - SHAP summary table 또는 feature importance table
+   - 날짜·지점별 위험 예측에 영향을 준 상위 feature 확인용
 
 ## 실행 방법
 
@@ -18,40 +94,19 @@ python -m pip install -r requirements.txt
 jupyter notebook model_training.ipynb
 ```
 
-노트북 상단의 데이터 경로만 본인 환경에 맞게 수정하면 됩니다.
+노트북 상단의 config에서 실제 전처리 산출물에 맞게 아래 값을 수정합니다.
 
-기본 입력 데이터:
+- `MODEL_INPUT_PATH`
+- `DATE_COLUMN`
+- `SITE_COLUMN`
+- `REGRESSION_TARGET`
+- `CLASSIFICATION_TARGET`
+- `DROP_COLUMNS`
+- `PROBABILITY_THRESHOLD`
+- `ALERT_CELL_THRESHOLD`
 
-- K-water 수질/조류 CSV
-- K-water 댐 운영 CSV
-- KMA ASOS CSV
-- 금강 홍수통제소 대청댐 수문 CSV
+## 주의사항
 
-## 모델 개요
-
-수질·수문·기상 데이터를 채수일 기준으로 통합하고, 도메인 지식 기반 파생변수를 생성한 뒤 Gradient Boosting 계열 모델로 다음 채수일의 유해남조류 세포수와 관심 이상 확률을 예측합니다.
-
-주요 파생 피처:
-
-- `tsi_chla`, `tsi_transparency`, `tsi_proxy_mean`
-- `net_flow`
-- `residence_proxy`
-- `level_change_3d`, `level_change_7d`
-- 강우·일조·풍속 rolling feature
-- `graph_decay_signal`
-
-주의: 현재 데이터에 TP가 없으므로 TSI는 완전한 Carlson TSI가 아니라 `Chl-a`와 `투명도` 기반 proxy입니다.
-
-## 산출물
-
-노트북 실행 시 아래 폴더에 결과가 생성됩니다.
-
-```text
-outputs/model_pipeline/
-  models/
-  tables/
-    master_table.csv
-    feature_list.csv
-    metrics.csv
-    predictions.csv
-```
+- 실제 성능 수치와 SHAP 결과는 데이터를 실행한 뒤 확인해야 합니다.
+- 이 레포지토리에서는 임의의 성능 결과나 p-value를 작성하지 않습니다.
+- Granger Causality / VAR는 최종 모델이 아니며, 요청이 있을 때 별도 사전 분석 모듈로만 작성합니다.
