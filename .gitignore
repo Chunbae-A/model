@@ -7,11 +7,11 @@ venv/
 env/
 
 # Data and generated artifacts are intentionally excluded.
-data/
-models/
-outputs/
-reports/
-artifacts/
-*.joblib
-*.pkl
-*.keras
+# data/
+# models/
+# outputs/
+# reports/
+# artifacts/
+# *.joblib
+# *.pkl
+# *.keras
