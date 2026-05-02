@@ -79,13 +79,28 @@ split,meta,yes,학습/검증 구분
 
 최종 예측 모델은 Gradient Boosting 계열을 기본으로 합니다.
 
-우선순위:
+비교 후보:
 
 1. LightGBM
 2. XGBoost
 3. HistGradientBoosting
 
-LightGBM 또는 XGBoost가 설치되어 있지 않으면 sklearn의 `HistGradientBoosting`을 fallback으로 사용합니다.
+노트북은 세 후보 모델을 가능한 범위에서 모두 학습하고, validation 성능표를 만든 뒤 회귀/분류 각각의 best model을 선택합니다.
+
+- 회귀 모델 선택 기준 기본값: `RMSE` 최소
+- 분류 모델 선택 기준 기본값: `Recall` 최대
+
+LightGBM 또는 XGBoost가 설치되어 있지 않으면 해당 후보만 건너뛰고, sklearn의 `HistGradientBoosting`은 기본 후보로 사용합니다.
+
+저장 대상:
+
+- 후보 모델별 validation 성능표
+- 후보 회귀 모델 전체
+- 후보 분류 모델 전체
+- 회귀 best model alias
+- 분류 best model alias
+- 후보 모델별 feature importance table
+- 후보 모델별 SHAP summary table 생성 함수
 
 ## 예측 출력
 
@@ -102,8 +117,8 @@ LightGBM 또는 XGBoost가 설치되어 있지 않으면 sklearn의 `HistGradien
    - 공식 조류경보 발령을 자동 결정하는 코드가 아니라 관리자의 사전 점검을 돕는 보조 로직입니다.
 
 4. 설명 출력
-   - SHAP summary table 또는 feature importance table
-   - 날짜·지점별 위험 예측에 영향을 준 상위 feature 확인용
+   - 후보 모델별 SHAP summary table 또는 feature importance table
+   - 날짜·지점별 위험 예측에 영향을 준 상위 feature를 모델별로 비교
 
 ## 실행 방법
 
