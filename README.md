@@ -148,7 +148,13 @@ Tree workflow의 best classification model인 XGBoost와 Non-tree workflow의 be
 | tree / XGBoost | `cyano_cells`, `sin_season`, `turbidity`, `acc_temp_7d`, `water_temp` |
 | non_tree / Logistic Regression | `outflow_7d_sum_robust`, `rain_7d_sum_x_robust`, `log_target`, `level_change_7d_robust`, `alert_encoded` |
 
-Tree 모델은 현재 조류량·수질·계절 조건을 강하게 보고, Non-tree 모델은 수문 변화량·누적 강우/방류·현재 조류 상태를 강하게 봅니다. 두 모델이 서로 다른 관점의 신호를 사용하므로, 운영 보고에서는 두 해석을 함께 제시하는 것이 좋습니다.
+SHAP 시각화는 두 종류를 함께 저장합니다. `bar` 그래프는 평균 절대 SHAP 값을 기준으로 어떤 feature가 중요한지 순위를 보여주고, `beeswarm` 그래프는 각 관측치에서 feature 값이 예측을 어느 방향으로 밀었는지를 보여줍니다. 일반적으로 알려진 파란색/붉은색 SHAP 그림은 아래 beeswarm 그래프입니다. 붉은색은 해당 feature 값이 큰 관측치, 파란색은 해당 feature 값이 작은 관측치를 의미하고, x축 오른쪽은 경보 위험 예측을 높이는 방향, 왼쪽은 낮추는 방향으로 해석합니다.
+
+Tree 모델은 현재 조류량·수질·계절 조건을 강하게 보고, Non-tree 모델은 수문 변화량·누적 강우/방류·현재 조류 상태를 강하게 봅니다. 두 모델이 서로 다른 관점의 신호를 사용하므로, 운영 보고에서는 beeswarm 그래프로 방향성을 설명하고, 비교 bar 그래프로 workflow별 중요도 차이를 요약하는 것이 좋습니다.
+
+![Tree SHAP Beeswarm](artifacts/shap/tree_classification_shap_beeswarm.png)
+
+![Non-tree SHAP Beeswarm](artifacts/shap/non_tree_classification_shap_beeswarm.png)
 
 ![SHAP Comparison](artifacts/shap/classification_shap_importance_comparison.png)
 
