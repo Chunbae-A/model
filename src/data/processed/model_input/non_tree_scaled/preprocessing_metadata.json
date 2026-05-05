@@ -1,0 +1,239 @@
+{
+  "source": "src/data/ALGAE_DATA.csv",
+  "output": "src/data/processed/model_input/non_tree_scaled/algae_non_tree_scaled_station_expanded.csv",
+  "fit_policy": "Scalers are fit on rows where split == 'train' only, then applied to valid rows.",
+  "target_regression": "next_log_cells",
+  "target_alert_next": "target_alert_next",
+  "alert_cell_threshold": 1000,
+  "feature_policy": {
+    "tree_gradient_boosting": "Keep original units except already-scaled weather columns from the merged source.",
+    "non_tree_scaled": "One-hot encode station/location; log-transform skewed algae columns; scale feature groups."
+  },
+  "scaling_summary": {
+    "daily_rain_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 358.0
+    },
+    "rain_3d_sum_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 24.4
+    },
+    "rain_7d_sum_y_robust": {
+      "train_min": -0.21428571428571422,
+      "train_median": 0.0,
+      "train_max": 14.035714285714288
+    },
+    "rain_14d_sum_robust": {
+      "train_min": -0.42755344418052255,
+      "train_median": 0.0,
+      "train_max": 11.467933491686464
+    },
+    "avg_temp_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5967741935483871,
+      "train_max": 0.9999999999999999
+    },
+    "min_temp_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5704989154013015,
+      "train_max": 1.0
+    },
+    "max_temp_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5903890160183066,
+      "train_max": 1.0
+    },
+    "avg_wind_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.2439024390243902,
+      "train_max": 1.0
+    },
+    "air_temp_7d_mean_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5845486111111111,
+      "train_max": 1.0
+    },
+    "wind_7d_mean_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.35195530726256996,
+      "train_max": 1.0
+    },
+    "sunshine_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5746268656716419,
+      "train_max": 1.0
+    },
+    "solar_rad_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.4510062685582315,
+      "train_max": 0.9999999999999999
+    },
+    "cloud_cover_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.53,
+      "train_max": 1.0
+    },
+    "sunshine_7d_sum_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5162064825930374,
+      "train_max": 0.9999999999999999
+    },
+    "solar_7d_sum_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.40590809628008745,
+      "train_max": 1.0
+    },
+    "cloud_7d_mean_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.43529411764705883,
+      "train_max": 1.0
+    },
+    "max_wind_gust_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.3670886075949368,
+      "train_max": 1.0
+    },
+    "sin_season_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5043035382962442,
+      "train_max": 0.9999999999999999
+    },
+    "cos_season_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.4849662354141447,
+      "train_max": 1.0
+    },
+    "water_temp_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.4398496240601504,
+      "train_max": 1.0000000000000002
+    },
+    "pH_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.2790697674418605,
+      "train_max": 1.0
+    },
+    "DO_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.6293103448275863,
+      "train_max": 1.0
+    },
+    "transparency_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.33333333333333326,
+      "train_max": 0.9999999999999999
+    },
+    "acc_temp_7d_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5199246095853527,
+      "train_max": 1.0
+    },
+    "TSI_Chla_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.3581209542920385,
+      "train_max": 1.0
+    },
+    "TSI_SD_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.2822413594534682,
+      "train_max": 0.9999999999999999
+    },
+    "water_level_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5916742973867724,
+      "train_max": 1.0
+    },
+    "storage_vol_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5274663970697403,
+      "train_max": 1.0
+    },
+    "storage_rate_minmax": {
+      "train_min": 0.0,
+      "train_median": 0.5276115968706858,
+      "train_max": 1.0
+    },
+    "level_change_7d_robust": {
+      "train_min": -7.5187969924810565,
+      "train_median": 0.0,
+      "train_max": 26.954887218044593
+    },
+    "inflow_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 95.73438146462557
+    },
+    "outflow_robust": {
+      "train_min": -0.5761346131058183,
+      "train_median": 0.0,
+      "train_max": 84.67327289963265
+    },
+    "rainfall_robust": {
+      "train_min": -0.5664125283329899,
+      "train_median": 0.0,
+      "train_max": 122.23383474139709
+    },
+    "rain_7d_sum_x_robust": {
+      "train_min": -0.5788255867567863,
+      "train_median": 7.990570011218168e-17,
+      "train_max": 88.173572609395
+    },
+    "inflow_7d_sum_robust": {
+      "train_min": -0.2890220888441915,
+      "train_median": 0.0,
+      "train_max": 11.696089076579733
+    },
+    "outflow_7d_sum_robust": {
+      "train_min": -0.48741274106518745,
+      "train_median": 5.117434254131581e-17,
+      "train_max": 60.36142488707657
+    },
+    "residence_proxy_robust": {
+      "train_min": -1.0370953581049842,
+      "train_median": 0.0,
+      "train_max": 3.2082805493256172
+    },
+    "nutrient_stagnation_index_robust": {
+      "train_min": -0.3607079762727061,
+      "train_median": 0.0,
+      "train_max": 11.250013088711729
+    },
+    "turbidity_log10p1_robust": {
+      "train_min": -1.2337302796758625,
+      "train_median": 0.0,
+      "train_max": 6.345246882526062
+    },
+    "Chl_a_log10p1_robust": {
+      "train_min": -1.3524286381777328,
+      "train_median": 0.0,
+      "train_max": 3.1244829518410513
+    },
+    "cyano_cells_log10p1_robust": {
+      "train_min": -0.6221042127688815,
+      "train_median": 0.0,
+      "train_max": 1.2606869707608817
+    },
+    "Microcystis_log10p1_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 2.1695029859230712
+    },
+    "Anabaena_log10p1_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 3.7493497605974766
+    },
+    "Oscillatoria_log10p1_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 4.211147249814492
+    },
+    "Aphanizomenon_log10p1_robust": {
+      "train_min": 0.0,
+      "train_median": 0.0,
+      "train_max": 1.8885807945697513
+    }
+  }
+}
