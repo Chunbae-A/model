@@ -145,8 +145,8 @@ Tree workflow의 best classification model인 XGBoost와 Non-tree workflow의 be
 
 | workflow | 주요 SHAP feature |
 | --- | --- |
-| tree / XGBoost | `cyano_cells`, `sin_season`, `turbidity`, `acc_temp_7d`, `water_temp` |
-| non_tree / Logistic Regression | `outflow_7d_sum_robust`, `rain_7d_sum_x_robust`, `log_target`, `level_change_7d_robust`, `alert_encoded` |
+| tree / XGBoost | `cyano_cells`(현재 유해남조류 세포수), `sin_season`(계절 주기), `turbidity`(탁도), `acc_temp_7d`(최근 7회 누적 수온), `water_temp`(수온) |
+| non_tree / Logistic Regression | `outflow_7d_sum_robust`(최근 7일 누적 방류량 스케일값), `rain_7d_sum_x_robust`(최근 7일 누적 강우량 스케일값), `log_target`(현재 유해남조류 세포수 로그값), `level_change_7d_robust`(최근 7일 수위 변화량 스케일값), `alert_encoded`(현재 조류경보 단계 인코딩) |
 
 SHAP 시각화는 두 종류를 함께 저장합니다. `bar` 그래프는 평균 절대 SHAP 값을 기준으로 어떤 feature가 중요한지 순위를 보여주고, `beeswarm` 그래프는 각 관측치에서 feature 값이 예측을 어느 방향으로 밀었는지를 보여줍니다. 일반적으로 알려진 파란색/붉은색 SHAP 그림은 아래 beeswarm 그래프입니다. 붉은색은 해당 feature 값이 큰 관측치, 파란색은 해당 feature 값이 작은 관측치를 의미하고, x축 오른쪽은 경보 위험 예측을 높이는 방향, 왼쪽은 낮추는 방향으로 해석합니다.
 
