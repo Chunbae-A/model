@@ -76,7 +76,13 @@ jupyter notebook model_training.ipynb
 | `tree` | LightGBM, XGBoost, HistGradientBoosting | LightGBM, XGBoost, HistGradientBoosting |
 | `non_tree` | Ridge, ElasticNet, SVR-RBF, KNN Regressor | Logistic Regression, SVC-RBF, KNN Classifier |
 
+모델 후보는 데이터 특성과 운영 목적을 함께 고려해 선정했습니다. 조류 발생은 수온, 강우, 체류시간, 현재 세포수, 계절성처럼 비선형 상호작용이 강한 현상이므로 `LightGBM`, `XGBoost`, `HistGradientBoosting` 같은 gradient boosting 계열을 우선 비교했습니다. 이 계열은 변수 스케일에 덜 민감하고, 결측이나 이상치가 일부 있어도 비교적 안정적으로 작동하며, feature importance나 SHAP으로 운영자가 이해할 수 있는 설명을 만들기 쉽다는 장점이 있습니다.
+
+반대로 비트리 workflow는 `Ridge`, `ElasticNet`, `Logistic Regression`처럼 구조가 단순하고 계수 해석이 가능한 모델을 포함했습니다. 이 모델들은 스케일에 민감하므로 별도의 로그 변환과 Robust/MinMax scaling을 적용한 입력을 사용했습니다. 비트리 모델을 함께 둔 이유는 단순 baseline을 만들기 위해서만이 아니라, 복잡한 boosting 모델보다 단순한 모델이 실제 holdout에서 더 안정적인지 확인하기 위해서입니다. 즉 현재 비교는 “복잡한 비선형 모델이 항상 우세한가?”를 검증하는 구조입니다.
+
 LightGBM과 XGBoost도 실제 후보에 포함되어 학습됩니다. 설치되어 있지 않은 환경에서는 sklearn의 HistGradientBoosting으로 fallback될 수 있으므로, 실행 전 `python -m pip install -r requirements.txt`를 권장합니다.
+
+학습과 검증은 랜덤 split이 아니라 시간 기준 holdout으로 수행했습니다. `ALGAE_DATA.csv`는 하나의 조사일에 여러 지점과 여러 기상 관측소가 결합되어 같은 날짜의 사건이 여러 행으로 반복되는 구조입니다. 따라서 랜덤으로 나누면 같은 조사일의 정보가 train과 valid에 동시에 들어가 validation leakage가 발생할 수 있습니다. 현재 방식은 과거 시점으로 학습하고 미래 시점을 검증하는 out-of-time validation에 가깝기 때문에, 실제 운영 상황인 “과거 데이터로 다음 시점을 예측한다”는 조건을 더 잘 반영합니다.
 
 학습 흐름은 `src/pipeline/` 아래에 간단히 나누었습니다.
 
@@ -102,7 +108,13 @@ shap_compare.py  Tree/Non-tree SHAP 비교
 | non_tree | regression | ElasticNet | RMSE 0.6773 / R2 0.8364 |
 | non_tree | classification | Logistic Regression | Recall 0.9599 / Precision 0.9427 / F1 0.9512 |
 
-현재 기준에서는 비트리 스케일 workflow가 회귀와 분류 모두에서 더 좋습니다. 특히 조류경보 운영에서는 미탐을 줄이는 Recall이 중요하므로 `non_tree + Logistic Regression`이 1차 추천 분류 모델입니다. 반면 `tree + XGBoost`는 Precision이 높아 오경보를 줄이는 비교군으로 의미가 있습니다.
+현재 holdout 기준에서는 비트리 스케일 workflow가 회귀와 분류 모두에서 가장 좋은 성능을 보였습니다. 회귀에서는 `ElasticNet`의 RMSE가 0.6773으로 가장 낮아, 다음 조사 시점의 로그 세포수 예측 오차가 가장 작았습니다. 이는 로그 변환과 스케일링을 통해 극단적인 세포수와 수문 변수의 영향을 완화한 것이 선형 계열 모델에 유리하게 작용했음을 의미합니다.
+
+분류에서는 `Logistic Regression`이 Recall 0.9599, F1 0.9512로 가장 우수했습니다. 조류경보 예측에서는 실제 위험 상황을 놓치는 미탐이 가장 큰 리스크이므로 Recall이 특히 중요합니다. Precision도 0.9427로 높게 유지되어, 단순히 위험을 과도하게 많이 찍어서 Recall만 높인 결과는 아닙니다. 따라서 현재 검증 결과만 놓고 보면 `non_tree + Logistic Regression`이 조기경보용 1차 추천 모델입니다.
+
+다만 `tree + XGBoost`도 의미 있는 비교군입니다. XGBoost는 Precision 0.9781로 가장 높아, 위험으로 예측한 경우 실제 위험일 가능성이 매우 높습니다. 운영 관점에서 비트리 모델은 “위험을 놓치지 않는 조기 감지 모델”, 트리 모델은 “오경보를 줄이는 보수적 확인 모델”로 해석할 수 있습니다. 최종 운영에서는 두 모델 중 하나만 고르기보다, Logistic Regression을 주 모델로 두고 XGBoost의 예측과 SHAP 해석을 보조 근거로 함께 확인하는 방식이 더 설득력 있습니다.
+
+결론적으로 현재 실험의 핵심 메시지는 “복잡한 boosting 모델보다, 적절히 전처리된 비트리 모델이 현재 시간 기준 검증에서 더 우수했다”입니다. 이는 조류 데이터의 현재 feature set에서는 로그 변환, 누적 수문 변수, 현재 조류 상태가 충분히 강한 신호를 제공하고 있으며, 모델 복잡도를 높이는 것보다 누수 없는 전처리와 시간 기준 검증이 더 중요하다는 점을 보여줍니다.
 
 ![Classification Metrics](artifacts/figures/classification_metrics_by_workflow.png)
 
@@ -119,7 +131,11 @@ shap_compare.py  Tree/Non-tree SHAP 비교
 | Jarque-Bera p-value | 6.55e-22 | 잔차 정규성 가정이 약함 |
 | Logistic Brier Score | 0.0323 | 분류 확률 보정은 비교적 양호 |
 
-따라서 `ElasticNet`은 예측 모델로는 유효하지만, 계수 p-value나 인과적 해석에는 적합하지 않습니다. 이 모델은 “설명 가능한 예측 baseline”으로 보는 것이 안전합니다. Logistic Regression 분류 모델은 Recall/F1과 calibration이 좋아 조기경보 후보로 유지할 수 있습니다.
+비트리 모델은 성능이 좋더라도 두 가지 관점으로 나누어 해석해야 합니다. 첫째, 예측 모델로서의 신뢰성입니다. 현재 valid 구간에서 `ElasticNet`은 가장 낮은 RMSE를 보였고, `Logistic Regression`은 높은 Recall/F1과 낮은 Brier Score를 보였습니다. 따라서 “미래 holdout에서 예측이 잘 맞았는가?”라는 관점에서는 충분히 경쟁력 있는 모델입니다.
+
+둘째, 통계적 추론 모델로서의 신뢰성입니다. Durbin-Watson 값이 0.4624로 2에서 크게 벗어나므로 잔차 자기상관 가능성이 큽니다. 이는 시계열 데이터에서 인접한 시점의 오차가 서로 독립이 아닐 수 있음을 의미합니다. Breusch-Pagan p-value가 매우 작아 등분산성도 약하고, Jarque-Bera p-value 역시 매우 작아 잔차 정규성도 만족한다고 보기 어렵습니다. 따라서 ElasticNet의 계수를 “이 변수가 원인이고, 이만큼 영향을 준다”는 식의 인과적 설명이나 p-value 중심의 통계 해석으로 사용하면 위험합니다.
+
+정리하면 비트리 workflow는 **예측 목적에는 유효하지만, 전통적인 선형 회귀 가정에 기반한 인과 해석에는 제한이 있습니다.** 보고서에서는 이를 약점이라기보다 모델 사용 범위를 명확히 한 것으로 설명하는 것이 좋습니다. 즉 `ElasticNet`은 로그 세포수 예측 baseline으로 사용하고, `Logistic Regression`은 조기경보 분류 모델로 활용하되, 최종 의사결정에서는 SHAP 해석, XGBoost 비교 결과, 그리고 향후 walk-forward validation 결과를 함께 확인하는 방식이 적절합니다.
 
 ![Non-tree Residuals](artifacts/diagnostics/non_tree_residuals_vs_fitted.png)
 
@@ -168,4 +184,3 @@ artifacts/non_tree_scaled/
 ## 다음 과제
 
 현재 결과는 단일 chronological holdout 기준입니다. 최종 보고 전에는 `walk-forward validation` 또는 연도별 out-of-time validation으로 안정성을 확인해야 합니다. 또한 `log_target` 포함/제외 ablation, station-expanded 구조와 대표 station 집계 방식 비교, 운영 목표에 맞춘 threshold 조정이 필요합니다.
-
