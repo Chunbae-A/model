@@ -1,0 +1,124 @@
+enabled_models:
+  regression:
+    - lightgbm
+    - xgboost
+    - random_forest
+    - hist_gradient_boosting
+    - catboost
+    - stacking_ensemble
+  classification:
+    - lightgbm
+    - xgboost
+    - random_forest
+    - hist_gradient_boosting
+    - catboost
+    - stacking_ensemble
+
+selection:
+  regression_metric: rmse
+  classification_metric: recall
+
+models:
+  lightgbm:
+    regression:
+      objective: regression
+      n_estimators: 500
+      learning_rate: 0.03
+      num_leaves: 31
+      random_state: 42
+      n_jobs: 1
+      verbosity: -1
+    classification:
+      objective: binary
+      n_estimators: 500
+      learning_rate: 0.03
+      num_leaves: 31
+      random_state: 42
+      n_jobs: 1
+      verbosity: -1
+
+  xgboost:
+    regression:
+      objective: reg:squarederror
+      n_estimators: 500
+      learning_rate: 0.03
+      max_depth: 5
+      random_state: 42
+      n_jobs: 1
+      verbosity: 0
+    classification:
+      objective: binary:logistic
+      n_estimators: 500
+      learning_rate: 0.03
+      max_depth: 5
+      random_state: 42
+      n_jobs: 1
+      eval_metric: logloss
+      verbosity: 0
+
+  random_forest:
+    regression:
+      n_estimators: 500
+      min_samples_leaf: 2
+      max_features: sqrt
+      random_state: 42
+      n_jobs: 1
+    classification:
+      n_estimators: 500
+      min_samples_leaf: 2
+      max_features: sqrt
+      class_weight: balanced_subsample
+      random_state: 42
+      n_jobs: 1
+
+  hist_gradient_boosting:
+    regression:
+      learning_rate: 0.03
+      max_iter: 500
+      random_state: 42
+    classification:
+      learning_rate: 0.03
+      max_iter: 500
+      random_state: 42
+
+  catboost:
+    regression:
+      loss_function: RMSE
+      iterations: 500
+      learning_rate: 0.03
+      depth: 6
+      random_seed: 42
+      verbose: false
+      allow_writing_files: false
+    classification:
+      loss_function: Logloss
+      iterations: 500
+      learning_rate: 0.03
+      depth: 6
+      random_seed: 42
+      verbose: false
+      allow_writing_files: false
+
+  stacking_ensemble:
+    regression:
+      estimators:
+        - lightgbm
+        - xgboost
+        - random_forest
+        - hist_gradient_boosting
+        - catboost
+      final_estimator: ridge
+      cv: 5
+      passthrough: false
+      n_jobs: 1
+    classification:
+      estimators:
+        - lightgbm
+        - xgboost
+        - random_forest
+        - hist_gradient_boosting
+        - catboost
+      final_estimator: logistic_regression
+      cv: 5
+      passthrough: false
+      n_jobs: 1

@@ -1,3 +1,36 @@
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual envs
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Data and outputs (do not commit large files)
+data/
+model/data/
+output/
+artifacts/
+
+# Secrets
+.env
+*.key
+credentials.json
+
+# Python cache
+*.pyc
 .DS_Store
 __pycache__/
 *.py[cod]
@@ -6,12 +39,4 @@ __pycache__/
 venv/
 env/
 
-# Data and generated artifacts are intentionally excluded.
-# data/
-# models/
-# outputs/
-# reports/
-# artifacts/
-# *.joblib
-# *.pkl
-# *.keras
+
