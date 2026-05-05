@@ -189,4 +189,12 @@ artifacts/non_tree_scaled/
 
 ## 다음 과제
 
-현재 결과는 단일 chronological holdout 기준입니다. 최종 보고 전에는 `walk-forward validation` 또는 연도별 out-of-time validation으로 안정성을 확인해야 합니다. 또한 `log_target` 포함/제외 ablation, station-expanded 구조와 대표 station 집계 방식 비교, 운영 목표에 맞춘 threshold 조정이 필요합니다.
+현재 결과는 단일 chronological holdout 기준입니다. 즉 2016-04-04부터 2024-04-29까지의 과거 구간으로 학습하고, 2024-05-07부터 2025-12-15까지의 미래 구간으로 한 번 검증한 결과입니다. 따라서 현재 성능이 특정 valid 기간에만 잘 맞은 것인지, 여러 미래 구간에서도 안정적으로 유지되는지 추가 확인이 필요합니다.
+
+첫 번째 추가 과제는 `walk-forward validation`입니다. 이는 학습 기간을 점진적으로 늘려가며 이후 시점을 반복 검증하는 방식입니다. 예를 들어 2016~2021년으로 학습해 2022년을 검증하고, 2016~2022년으로 학습해 2023년을 검증하는 식입니다. 이 과정을 통해 모델이 특정 연도에만 우연히 잘 맞은 것이 아니라, 시간에 따라 반복적으로 안정적인 예측력을 보이는지 확인할 수 있습니다.
+
+두 번째 추가 과제는 트리 기반 모델의 hyperparameter tuning입니다. 현재 LightGBM과 XGBoost는 기본 후보 모델 수준으로 비교했기 때문에, 트리 모델의 최적 성능을 완전히 확인했다고 보기는 어렵습니다. `max_depth`, `learning_rate`, `n_estimators`, `num_leaves`, `subsample`, `colsample_bytree`, `reg_alpha`, `reg_lambda` 같은 설정을 조정해 과적합을 줄이고 미래 검증 성능을 개선할 필요가 있습니다. 현재 비트리 모델이 우세하더라도, 튜닝된 트리 모델은 비선형 상호작용을 더 잘 포착할 수 있으므로 중요한 비교군으로 유지해야 합니다.
+
+세 번째 추가 과제는 classification threshold tuning입니다. 분류 모델은 내부적으로 경보 위험 확률을 예측하고, 보통 0.5를 기준으로 위험/비위험을 나눕니다. 하지만 조류경보 예측에서는 실제 위험을 놓치는 미탐이 더 큰 리스크이므로, 기본 threshold가 최선이라고 단정할 수 없습니다. threshold를 낮추면 Recall은 올라가고 Precision은 낮아질 수 있으며, threshold를 높이면 Precision은 올라가고 Recall은 낮아질 수 있습니다. 따라서 운영 목적에 맞게 Recall과 Precision의 균형점을 선택해야 합니다.
+
+그 외에도 `log_target` 포함/제외 ablation, station-expanded 구조와 대표 station 집계 방식 비교, CatBoost/HuberRegressor/Calibrated Logistic Regression 같은 추가 후보 모델 검토가 필요합니다. 딥러닝은 현재 데이터가 정형 tabular 구조이고 표본 수가 크지 않기 때문에 우선순위가 높지 않습니다. 먼저 walk-forward validation, 트리 모델 tuning, threshold tuning으로 현재 모델의 안정성과 운영 적합성을 확인한 뒤, 성능 개선 여지가 남을 때 추가 실험으로 검토하는 것이 적절합니다.
