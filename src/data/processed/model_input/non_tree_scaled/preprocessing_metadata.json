@@ -1,5 +1,5 @@
 {
-  "source": "src/data/ALGAE_DATA.csv",
+  "source": "src/data/team-raw/ALGAE_DATA.csv",
   "output": "src/data/processed/model_input/non_tree_scaled/algae_non_tree_scaled_station_expanded.csv",
   "fit_policy": "Scalers are fit on rows where split == 'train' only, then applied to valid rows.",
   "target_regression": "next_log_cells",

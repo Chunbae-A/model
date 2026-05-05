@@ -2,8 +2,8 @@
 
 분석 대상 파일:
 
-- `/Users/hywznn/Desktop/model/src/data/ALGAE_DATA.csv`
-- `/Users/hywznn/Desktop/model/src/data/daechung_for_merge_v1.csv`
+- `/Users/hywznn/Desktop/model/src/data/team-raw/ALGAE_DATA.csv`
+- `/Users/hywznn/Desktop/model/src/data/team-raw/daechung_for_merge_v1.csv`
 
 ## 1. 전체 관계
 

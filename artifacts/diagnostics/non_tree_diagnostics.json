@@ -1,0 +1,27 @@
+{
+  "workflow": "non_tree",
+  "regression_model": "elasticnet",
+  "classification_model": "logistic_regression",
+  "regression_residuals": {
+    "mean": 0.15070609033538457,
+    "std": 0.6605979981874455,
+    "durbin_watson": 0.4624304194034332,
+    "breusch_pagan_lm": 308.01841733810517,
+    "breusch_pagan_lm_pvalue": 2.574268617748339e-34,
+    "breusch_pagan_f": 6.946167386200509,
+    "breusch_pagan_f_pvalue": 3.079735946618071e-43,
+    "jarque_bera": 97.5558100749395,
+    "jarque_bera_pvalue": 6.546738642039012e-22,
+    "skew": -0.08174823377926102,
+    "kurtosis": 4.396693073567011
+  },
+  "classification_calibration": {
+    "brier_score": 0.03232961186885273
+  },
+  "interpretation": {
+    "durbin_watson": "2에 가까울수록 잔차 자기상관이 약하다.",
+    "breusch_pagan": "p-value가 작으면 등분산성 가정이 약하다는 신호다.",
+    "jarque_bera": "p-value가 작으면 잔차 정규성이 약하다는 신호다.",
+    "brier_score": "0에 가까울수록 확률 예측이 잘 보정되어 있다."
+  }
+}

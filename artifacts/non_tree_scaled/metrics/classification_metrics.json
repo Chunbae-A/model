@@ -1,0 +1,164 @@
+[
+  {
+    "workflow": "non_tree",
+    "task": "classification",
+    "model_name": "logistic_regression",
+    "mae": NaN,
+    "rmse": NaN,
+    "r2": NaN,
+    "mae_cells": NaN,
+    "rmse_cells": NaN,
+    "threshold": 0.5,
+    "accuracy": 0.9543918918918919,
+    "precision": 0.942652329749104,
+    "recall": 0.9598540145985401,
+    "f1": 0.9511754068716094,
+    "confusion_matrix": [
+      [
+        604,
+        32
+      ],
+      [
+        22,
+        526
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9648562300319489,
+        "recall": 0.949685534591195,
+        "f1-score": 0.9572107765451664,
+        "support": 636.0
+      },
+      "1": {
+        "precision": 0.942652329749104,
+        "recall": 0.9598540145985401,
+        "f1-score": 0.9511754068716094,
+        "support": 548.0
+      },
+      "accuracy": 0.9543918918918919,
+      "macro avg": {
+        "precision": 0.9537542798905264,
+        "recall": 0.9547697745948676,
+        "f1-score": 0.9541930917083878,
+        "support": 1184.0
+      },
+      "weighted avg": {
+        "precision": 0.9545794248334698,
+        "recall": 0.9543918918918919,
+        "f1-score": 0.9544173790949052,
+        "support": 1184.0
+      }
+    },
+    "roc_auc": 0.9924195473534407,
+    "pr_auc": 0.9910599978666252
+  },
+  {
+    "workflow": "non_tree",
+    "task": "classification",
+    "model_name": "svc_rbf",
+    "mae": NaN,
+    "rmse": NaN,
+    "r2": NaN,
+    "mae_cells": NaN,
+    "rmse_cells": NaN,
+    "threshold": 0.5,
+    "accuracy": 0.745777027027027,
+    "precision": 0.8847352024922118,
+    "recall": 0.5182481751824818,
+    "f1": 0.6536248561565017,
+    "confusion_matrix": [
+      [
+        599,
+        37
+      ],
+      [
+        264,
+        284
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.694090382387022,
+        "recall": 0.9418238993710691,
+        "f1-score": 0.7991994663108739,
+        "support": 636.0
+      },
+      "1": {
+        "precision": 0.8847352024922118,
+        "recall": 0.5182481751824818,
+        "f1-score": 0.6536248561565017,
+        "support": 548.0
+      },
+      "accuracy": 0.745777027027027,
+      "macro avg": {
+        "precision": 0.7894127924396169,
+        "recall": 0.7300360372767755,
+        "f1-score": 0.7264121612336878,
+        "support": 1184.0
+      },
+      "weighted avg": {
+        "precision": 0.7823280187194915,
+        "recall": 0.745777027027027,
+        "f1-score": 0.7318220285029381,
+        "support": 1184.0
+      }
+    },
+    "roc_auc": 0.9257678005784327,
+    "pr_auc": 0.8299606789439922
+  },
+  {
+    "workflow": "non_tree",
+    "task": "classification",
+    "model_name": "knn_classifier",
+    "mae": NaN,
+    "rmse": NaN,
+    "r2": NaN,
+    "mae_cells": NaN,
+    "rmse_cells": NaN,
+    "threshold": 0.5,
+    "accuracy": 0.7964527027027027,
+    "precision": 0.9528023598820059,
+    "recall": 0.5894160583941606,
+    "f1": 0.7282976324689966,
+    "confusion_matrix": [
+      [
+        620,
+        16
+      ],
+      [
+        225,
+        323
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.7337278106508875,
+        "recall": 0.9748427672955975,
+        "f1-score": 0.837272113436867,
+        "support": 636.0
+      },
+      "1": {
+        "precision": 0.9528023598820059,
+        "recall": 0.5894160583941606,
+        "f1-score": 0.7282976324689966,
+        "support": 548.0
+      },
+      "accuracy": 0.7964527027027027,
+      "macro avg": {
+        "precision": 0.8432650852664467,
+        "recall": 0.782129412844879,
+        "f1-score": 0.7827848729529319,
+        "support": 1184.0
+      },
+      "weighted avg": {
+        "precision": 0.8351238013423173,
+        "recall": 0.7964527027027027,
+        "f1-score": 0.7868346002861972,
+        "support": 1184.0
+      }
+    },
+    "roc_auc": 0.9221554652710829,
+    "pr_auc": 0.9140140209474157
+  }
+]

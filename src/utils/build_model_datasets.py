@@ -12,15 +12,15 @@ from sklearn.preprocessing import MinMaxScaler, RobustScaler
 ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = ROOT / "src" / "data"
 
-RAW_DIR = DATA_DIR / "raw"
+RAW_DIR = DATA_DIR / "team-raw"
 PROCESSED_DIR = DATA_DIR / "processed" / "model_input"
 TREE_DIR = PROCESSED_DIR / "tree_gradient_boosting"
 NON_TREE_DIR = PROCESSED_DIR / "non_tree_scaled"
 
 SOURCE_FILES = {
-    "algae_merged": DATA_DIR / "ALGAE_DATA.csv",
-    "weather_scaled": DATA_DIR / "ALGAE_MODEL_DATA_SCALED.csv",
-    "daechung_base": DATA_DIR / "daechung_for_merge_v1.csv",
+    "algae_merged": RAW_DIR / "ALGAE_DATA.csv",
+    "weather_scaled": RAW_DIR / "ALGAE_MODEL_DATA_SCALED.csv",
+    "daechung_base": RAW_DIR / "daechung_for_merge_v1.csv",
 }
 
 TREE_OUTPUT = TREE_DIR / "algae_tree_station_expanded.csv"

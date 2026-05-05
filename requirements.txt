@@ -3,6 +3,9 @@ pandas>=2.1
 scikit-learn>=1.4
 joblib>=1.3
 jupyter>=1.0
+matplotlib>=3.8
+seaborn>=0.13
+statsmodels>=0.14
 # Optional packages. The notebook falls back to sklearn HistGradientBoosting if these are not installed.
 lightgbm>=4.0
 xgboost>=2.0

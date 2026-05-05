@@ -15,8 +15,6 @@
 | `processed/model_input/tree_gradient_boosting/algae_tree_station_expanded.csv` | 6,304 | 59 | 트리 기반 모델용. 원 단위 수질/조류/댐 feature를 유지한다. |
 | `processed/model_input/non_tree_scaled/algae_non_tree_scaled_station_expanded.csv` | 6,304 | 66 | 비트리 모델용. 수질/조류/댐 feature까지 로그/스케일링한다. |
 
-비트리 모델용 데이터 생성 과정은 `notebooks/features/build_non_tree_model_input.ipynb`에도 정리되어 있다.
-
 ## 공통 주의사항
 
 - 두 파일 모두 `ALGAE_DATA.csv`의 station-expanded 구조를 유지한다.
@@ -39,3 +37,4 @@
 - 수온, pH, DO, 수위, 저수량 등 범위가 비교적 제한적인 컬럼: `MinMaxScaler`
 - 기상 컬럼: 전처리팀의 Robust/MinMax 의도를 유지하되, 비트리 파일에서는 train split 기준으로 다시 스케일링
 - scaler는 `split == train` 행에만 fit하고 valid 행에는 transform만 적용한다.
+
