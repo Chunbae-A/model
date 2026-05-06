@@ -76,8 +76,8 @@ src/data/processed/model_input/tree_gradient_boosting/algae_tree_station_expande
 
 | task | candidates |
 | --- | --- |
-| regression | LightGBM, XGBoost, HistGradientBoosting |
-| classification | LightGBM, XGBoost, HistGradientBoosting |
+| regression | LightGBM, XGBoost, HistGradientBoosting, RandomForest, CatBoost |
+| classification | LightGBM, XGBoost, HistGradientBoosting, RandomForest, CatBoost |
 
 의도:
 
@@ -103,8 +103,8 @@ src/data/processed/model_input/non_tree_scaled/algae_non_tree_scaled_station_exp
 
 | task | candidates |
 | --- | --- |
-| regression | Ridge, ElasticNet, SVR-RBF, KNN Regressor |
-| classification | Logistic Regression, SVC-RBF, KNN Classifier |
+| regression | Ridge, ElasticNet, HuberRegressor, SVR-RBF, KNN Regressor |
+| classification | Logistic Regression, Calibrated Logistic Regression, SVC-RBF, KNN Classifier |
 
 의도:
 
@@ -174,13 +174,14 @@ PY
 
 | workflow | selected_for | model_name | RMSE | Precision | Recall | F1 |
 | --- | --- | --- | ---: | ---: | ---: | ---: |
-| tree | regression | lightgbm | 0.7339 |  |  |  |
-| tree | classification | xgboost |  | 0.9781 | 0.8960 | 0.9352 |
+| tree | regression | catboost | 0.7200 |  |  |  |
+| tree | classification | random_forest |  | 0.9692 | 0.9197 | 0.9438 |
 | non_tree | regression | elasticnet | 0.6773 |  |  |  |
 | non_tree | classification | logistic_regression |  | 0.9427 | 0.9599 | 0.9512 |
 
 해석:
 
+- 추가 후보 반영 후 tree 회귀 best는 `CatBoost`, tree 분류 best는 `RandomForest`다.
 - 회귀 RMSE 기준으로는 현재 비트리 스케일 workflow의 `ElasticNet`이 더 낮다.
 - 분류 Recall/F1 기준으로도 현재 비트리 스케일 workflow의 `Logistic Regression`이 더 높다.
 - 다만 현재 데이터는 station-expanded 구조이므로, 이 결과는 date-level holdout 기준의 1차 비교로 봐야 한다.
@@ -194,4 +195,3 @@ PY
 4. `target_alert_next`는 `next_log_cells >= log10(1000 + 1)`로 만든 분류 target이다.
 5. `next_log_cells`, `target_alert_next`, `split`, `date`는 feature로 넣지 않는다.
 6. 최종 보고용 성능은 단일 holdout보다 rolling-origin evaluation으로 보강하는 편이 좋다.
-

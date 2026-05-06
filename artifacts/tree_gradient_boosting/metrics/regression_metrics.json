@@ -55,5 +55,43 @@
     "classification_report": NaN,
     "roc_auc": NaN,
     "pr_auc": NaN
+  },
+  {
+    "workflow": "tree",
+    "task": "regression",
+    "model_name": "random_forest",
+    "mae": 0.5682581955897351,
+    "rmse": 0.7317697452371565,
+    "r2": 0.8090706507683255,
+    "mae_cells": 5777.855622318529,
+    "rmse_cells": 14834.649727321326,
+    "threshold": NaN,
+    "accuracy": NaN,
+    "precision": NaN,
+    "recall": NaN,
+    "f1": NaN,
+    "confusion_matrix": NaN,
+    "classification_report": NaN,
+    "roc_auc": NaN,
+    "pr_auc": NaN
+  },
+  {
+    "workflow": "tree",
+    "task": "regression",
+    "model_name": "catboost",
+    "mae": 0.5470593685654207,
+    "rmse": 0.7199579736310133,
+    "r2": 0.8151846306139332,
+    "mae_cells": 5272.22313322739,
+    "rmse_cells": 14413.563223691288,
+    "threshold": NaN,
+    "accuracy": NaN,
+    "precision": NaN,
+    "recall": NaN,
+    "f1": NaN,
+    "confusion_matrix": NaN,
+    "classification_report": NaN,
+    "roc_auc": NaN,
+    "pr_auc": NaN
   }
 ]

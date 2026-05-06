@@ -319,14 +319,15 @@
               <li>LightGBM</li>
               <li>XGBoost</li>
               <li>HistGradientBoosting</li>
+              <li>RandomForest / CatBoost</li>
             </ul>
           </div>
           <div class="card non-tree">
             <h3>Non-tree Workflow</h3>
             <ul>
               <li>ElasticNet / Ridge</li>
-              <li>SVR / KNN</li>
-              <li>Logistic Regression / SVC</li>
+              <li>Huber / SVR / KNN</li>
+              <li>Logistic / Calibrated Logistic / SVC</li>
             </ul>
           </div>
         </div>
@@ -392,8 +393,8 @@
     <section class="footer">
       <div class="card">
         <h3>현재 Best 결과</h3>
-        <div class="result-row">Tree Regression: <strong>LightGBM</strong>, RMSE 0.7339</div>
-        <div class="result-row">Tree Classification: <strong>XGBoost</strong>, Recall 0.8960 / Precision 0.9781 / F1 0.9352</div>
+        <div class="result-row">Tree Regression: <strong>CatBoost</strong>, RMSE 0.7200</div>
+        <div class="result-row">Tree Classification: <strong>RandomForest</strong>, Recall 0.9197 / Precision 0.9692 / F1 0.9438</div>
         <div class="result-row non">Non-tree Regression: <strong>ElasticNet</strong>, RMSE 0.6773</div>
         <div class="result-row non">Non-tree Classification: <strong>Logistic Regression</strong>, Recall 0.9599 / Precision 0.9427 / F1 0.9512</div>
       </div>
@@ -402,7 +403,7 @@
         <p class="note">
           현재 holdout 기준에서는 비트리 스케일 workflow가 회귀와 분류 모두 우세하다.
           특히 조류경보는 미탐을 줄이는 Recall이 중요하므로 Logistic Regression이 강한 후보가 된다.
-          단, 트리 XGBoost는 Precision이 높아 오경보를 줄이는 비교군으로 유지한다.
+          단, RandomForest와 CatBoost는 비선형 구조를 확인하는 보조 비교군으로 유지한다.
         </p>
       </div>
       <div class="card">

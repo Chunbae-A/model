@@ -13,15 +13,15 @@
 
 | workflow | 입력 데이터 | 모델군 |
 | --- | --- | --- |
-| `tree` | `tree_gradient_boosting/algae_tree_station_expanded.csv` | LightGBM, XGBoost, HistGradientBoosting |
-| `non_tree` | `non_tree_scaled/algae_non_tree_scaled_station_expanded.csv` | Ridge, ElasticNet, SVR, KNN, Logistic Regression, SVC |
+| `tree` | `tree_gradient_boosting/algae_tree_station_expanded.csv` | LightGBM, XGBoost, HistGradientBoosting, RandomForest, CatBoost |
+| `non_tree` | `non_tree_scaled/algae_non_tree_scaled_station_expanded.csv` | Ridge, ElasticNet, HuberRegressor, SVR, KNN, Logistic Regression, Calibrated Logistic Regression, SVC |
 
 ## 2. 핵심 결과
 
 | workflow | task | best model | 핵심 metric |
 | --- | --- | --- | --- |
-| `tree` | regression | `lightgbm` | RMSE `0.7339`, R2 `0.8080` |
-| `tree` | classification | `xgboost` | Recall `0.8960`, Precision `0.9781`, F1 `0.9352` |
+| `tree` | regression | `catboost` | RMSE `0.7200`, R2 `0.8152` |
+| `tree` | classification | `random_forest` | Recall `0.9197`, Precision `0.9692`, F1 `0.9438` |
 | `non_tree` | regression | `elasticnet` | RMSE `0.6773`, R2 `0.8364` |
 | `non_tree` | classification | `logistic_regression` | Recall `0.9599`, Precision `0.9427`, F1 `0.9512` |
 
@@ -33,7 +33,7 @@
 
 | workflow | model | MAE | RMSE | R2 | MAE cells | RMSE cells |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| `tree` | `lightgbm` | 0.5510 | 0.7339 | 0.8080 | 4,976.0 | 14,045.1 |
+| `tree` | `catboost` | 0.5471 | 0.7200 | 0.8152 | 5,272.2 | 14,413.6 |
 | `non_tree` | `elasticnet` | 0.4932 | 0.6773 | 0.8364 | 4,764.3 | 13,977.2 |
 
 해석:
@@ -55,12 +55,12 @@
 
 | workflow | model | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `tree` | `xgboost` | 0.9426 | 0.9781 | 0.8960 | 0.9352 | 0.9941 | 0.9933 |
+| `tree` | `random_forest` | 0.9493 | 0.9692 | 0.9197 | 0.9438 | 0.9941 | 0.9931 |
 | `non_tree` | `logistic_regression` | 0.9544 | 0.9427 | 0.9599 | 0.9512 | 0.9924 | 0.9911 |
 
 해석:
 
-- `tree`의 XGBoost는 Precision이 매우 높다. 즉 위험이라고 예측한 경우 맞을 확률이 높다.
+- `tree`의 RandomForest는 tree 계열 중 Recall/F1이 가장 높고 Precision도 높다.
 - 하지만 Recall은 `non_tree`의 Logistic Regression이 더 높다.
 - 조류경보 예측에서는 미탐을 줄이는 것이 중요하므로 Recall 관점에서는 `non_tree`가 더 유리하다.
 - F1도 `non_tree`가 더 높아 precision-recall 균형이 더 좋았다.
@@ -74,11 +74,11 @@
 
 ## 5. Confusion Matrix 기준 비교
 
-`tree` classification best model: `xgboost`
+`tree` classification best model: `random_forest`
 
 ```text
-TN 625 / FP 11
-FN 57  / TP 491
+TN 620 / FP 16
+FN 44  / TP 504
 ```
 
 `non_tree` classification best model: `logistic_regression`
@@ -90,7 +90,7 @@ FN 22  / TP 526
 
 해석:
 
-- `tree`는 false positive가 적다. 즉 불필요한 경보 후보를 덜 만든다.
+- `tree`는 false positive가 비교적 적다. 즉 불필요한 경보 후보를 덜 만든다.
 - `non_tree`는 false negative가 적다. 즉 실제 위험을 놓치는 경우가 훨씬 적다.
 - 운영 목적이 조기 경보라면 false negative를 줄이는 `non_tree` 분류 모델이 더 적합하다.
 - 단, 현장 대응 비용이 매우 높고 오경보를 줄이는 것이 더 중요하면 `tree` 분류 모델도 후보로 남길 수 있다.
@@ -162,7 +162,7 @@ FN 22  / TP 526
 | --- | --- |
 | 다음 세포수 정량 예측 | `non_tree_scaled / ElasticNet` |
 | 관심 이상 조기 탐지 | `non_tree_scaled / Logistic Regression` |
-| 오경보 최소화 보조 비교군 | `tree / XGBoost` |
+| 비선형 보조 비교군 | `tree / RandomForest`, `tree / CatBoost` |
 
 ## 8. 다음 검증 과제
 
@@ -209,7 +209,7 @@ artifacts/diagnostics/non_tree_logistic_calibration.png
 
 ## 10. SHAP 비교
 
-Tree workflow의 best classification model인 `XGBoost`와 Non-tree workflow의 best classification model인 `Logistic Regression`에 대해 SHAP 분석을 수행했다.
+Tree workflow의 best classification model인 `RandomForest`와 Non-tree workflow의 best classification model인 `Logistic Regression`에 대해 SHAP 분석을 수행했다.
 
 생성 파일:
 
@@ -226,12 +226,12 @@ artifacts/shap/classification_shap_importance_comparison.csv
 
 | workflow | model | 주요 feature |
 | --- | --- | --- |
-| tree | XGBoost | `cyano_cells`, `sin_season`, `turbidity`, `acc_temp_7d`, `water_temp` |
+| tree | RandomForest | `cyano_cells`, `log_target`, `alert_encoded`, `water_temp`, `turbidity` |
 | non_tree | Logistic Regression | `outflow_7d_sum_robust`, `rain_7d_sum_x_robust`, `log_target`, `level_change_7d_robust`, `alert_encoded` |
 
 해석:
 
-- Tree 모델은 현재 조류량과 수질·계절 조건을 강하게 사용한다.
+- Tree 모델은 현재 조류량, 현재 경보 단계, 수질 조건을 강하게 사용한다.
 - Non-tree 모델은 수문 변화량, 누적 강우/방류, 현재 조류 상태를 강하게 사용한다.
 - 두 모델이 서로 다른 관점의 신호를 사용하므로, 운영 보고에서는 두 해석을 함께 제시하는 것이 좋다.
 

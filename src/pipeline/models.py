@@ -4,8 +4,14 @@ from typing import Any
 
 import pandas as pd
 from sklearn.base import clone
-from sklearn.ensemble import HistGradientBoostingClassifier, HistGradientBoostingRegressor
-from sklearn.linear_model import ElasticNet, LogisticRegression, Ridge
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.ensemble import (
+    HistGradientBoostingClassifier,
+    HistGradientBoostingRegressor,
+    RandomForestClassifier,
+    RandomForestRegressor,
+)
+from sklearn.linear_model import ElasticNet, HuberRegressor, LogisticRegression, Ridge
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.svm import SVC, SVR
 
@@ -59,10 +65,35 @@ def build_regression_model_candidates(
                 l2_regularization=0.01,
                 random_state=random_state,
             )
+        elif name == "random_forest":
+            models[name] = RandomForestRegressor(
+                n_estimators=400,
+                max_depth=None,
+                min_samples_leaf=3,
+                n_jobs=-1,
+                random_state=random_state,
+            )
+        elif name == "catboost":
+            try:
+                from catboost import CatBoostRegressor
+
+                models[name] = CatBoostRegressor(
+                    iterations=500,
+                    learning_rate=0.03,
+                    depth=5,
+                    loss_function="RMSE",
+                    random_seed=random_state,
+                    verbose=False,
+                    allow_writing_files=False,
+                )
+            except Exception:
+                continue
         elif name == "ridge":
             models[name] = Ridge(alpha=1.0)
         elif name == "elasticnet":
             models[name] = ElasticNet(alpha=0.001, l1_ratio=0.2, random_state=random_state, max_iter=10000)
+        elif name == "huber_regressor":
+            models[name] = HuberRegressor(epsilon=1.35, alpha=0.0001, max_iter=5000)
         elif name == "svr_rbf":
             models[name] = SVR(kernel="rbf", C=10.0, epsilon=0.05)
         elif name == "knn_regressor":
@@ -115,12 +146,50 @@ def build_classification_model_candidates(
                 l2_regularization=0.01,
                 random_state=random_state,
             )
+        elif name == "random_forest":
+            models[name] = RandomForestClassifier(
+                n_estimators=400,
+                max_depth=None,
+                min_samples_leaf=3,
+                class_weight="balanced",
+                n_jobs=-1,
+                random_state=random_state,
+            )
+        elif name == "catboost":
+            try:
+                from catboost import CatBoostClassifier
+
+                models[name] = CatBoostClassifier(
+                    iterations=500,
+                    learning_rate=0.03,
+                    depth=5,
+                    loss_function="Logloss",
+                    eval_metric="Recall",
+                    auto_class_weights="Balanced",
+                    random_seed=random_state,
+                    verbose=False,
+                    allow_writing_files=False,
+                )
+            except Exception:
+                continue
         elif name == "logistic_regression":
             models[name] = LogisticRegression(
                 max_iter=10000,
                 solver="liblinear",
                 class_weight="balanced",
                 random_state=random_state,
+            )
+        elif name == "calibrated_logistic_regression":
+            base_model = LogisticRegression(
+                max_iter=10000,
+                solver="liblinear",
+                class_weight="balanced",
+                random_state=random_state,
+            )
+            models[name] = CalibratedClassifierCV(
+                estimator=base_model,
+                method="sigmoid",
+                cv=3,
             )
         elif name == "svc_rbf":
             models[name] = SVC(kernel="rbf", C=5.0, probability=True, class_weight="balanced", random_state=random_state)

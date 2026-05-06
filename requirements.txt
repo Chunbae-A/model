@@ -6,7 +6,8 @@ jupyter>=1.0
 matplotlib>=3.8
 seaborn>=0.13
 statsmodels>=0.14
-# Optional packages. The notebook falls back to sklearn HistGradientBoosting if these are not installed.
+# Optional tree/shap packages. Missing optional tree libraries are skipped by the model builder.
 lightgbm>=4.0
 xgboost>=2.0
+catboost>=1.2
 shap>=0.44

@@ -9,8 +9,8 @@ flowchart LR
     C1["3-A. Tree Workflow Dataset<br/>algae_tree_station_expanded.csv<br/><br/>ALGAE_DATA + split + target_alert_next<br/>원 단위 feature 유지"]
     C2["3-B. Non-tree Scaled Dataset<br/>algae_non_tree_scaled_station_expanded.csv<br/><br/>로그 변환 + RobustScaler + MinMaxScaler<br/>station/location one-hot"]
     D["4. Target & Split<br/><br/>회귀 target: next_log_cells<br/>분류 target: target_alert_next<br/>split: date-level chronological holdout"]
-    E1["5-A. Tree Models<br/><br/>LightGBM<br/>XGBoost<br/>HistGradientBoosting"]
-    E2["5-B. Non-tree Models<br/><br/>ElasticNet / Ridge / SVR / KNN<br/>Logistic Regression / SVC / KNN"]
+    E1["5-A. Tree Models<br/><br/>LightGBM / XGBoost<br/>HistGradientBoosting / RandomForest / CatBoost"]
+    E2["5-B. Non-tree Models<br/><br/>ElasticNet / Ridge / Huber / SVR / KNN<br/>Logistic / Calibrated Logistic / SVC / KNN"]
     F["6. Evaluation<br/><br/>Regression: MAE, RMSE, R2, cells metrics<br/>Classification: Precision, Recall, F1, ROC-AUC, PR-AUC<br/>Threshold candidates"]
     G["7. Model Selection<br/><br/>Regression: RMSE 최소<br/>Classification: Recall 우선<br/>workflow별 best model 선택"]
     H["8. Artifacts<br/><br/>models/*.pkl<br/>metrics/*.json, *.csv<br/>predictions/*.csv<br/>explain/feature_importance.csv"]
@@ -34,8 +34,7 @@ flowchart LR
 
 | workflow | task | best model | metric |
 | --- | --- | --- | --- |
-| tree | regression | LightGBM | RMSE 0.7339 |
-| tree | classification | XGBoost | Recall 0.8960 / Precision 0.9781 / F1 0.9352 |
+| tree | regression | CatBoost | RMSE 0.7200 |
+| tree | classification | RandomForest | Recall 0.9197 / Precision 0.9692 / F1 0.9438 |
 | non_tree | regression | ElasticNet | RMSE 0.6773 |
 | non_tree | classification | Logistic Regression | Recall 0.9599 / Precision 0.9427 / F1 0.9512 |
-

@@ -56,6 +56,60 @@
   {
     "workflow": "non_tree",
     "task": "classification",
+    "model_name": "calibrated_logistic_regression",
+    "mae": NaN,
+    "rmse": NaN,
+    "r2": NaN,
+    "mae_cells": NaN,
+    "rmse_cells": NaN,
+    "threshold": 0.5,
+    "accuracy": 0.9315878378378378,
+    "precision": 0.9587426326129665,
+    "recall": 0.8905109489051095,
+    "f1": 0.923368022705771,
+    "confusion_matrix": [
+      [
+        615,
+        21
+      ],
+      [
+        60,
+        488
+      ]
+    ],
+    "classification_report": {
+      "0": {
+        "precision": 0.9111111111111111,
+        "recall": 0.9669811320754716,
+        "f1-score": 0.9382151029748284,
+        "support": 636.0
+      },
+      "1": {
+        "precision": 0.9587426326129665,
+        "recall": 0.8905109489051095,
+        "f1-score": 0.923368022705771,
+        "support": 548.0
+      },
+      "accuracy": 0.9315878378378378,
+      "macro avg": {
+        "precision": 0.9349268718620388,
+        "recall": 0.9287460404902905,
+        "f1-score": 0.9307915628402996,
+        "support": 1184.0
+      },
+      "weighted avg": {
+        "precision": 0.9331567815359563,
+        "recall": 0.9315878378378378,
+        "f1-score": 0.931343312444893,
+        "support": 1184.0
+      }
+    },
+    "roc_auc": 0.9909648579167241,
+    "pr_auc": 0.9892455350102528
+  },
+  {
+    "workflow": "non_tree",
+    "task": "classification",
     "model_name": "svc_rbf",
     "mae": NaN,
     "rmse": NaN,
