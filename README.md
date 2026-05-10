@@ -266,37 +266,37 @@ eda/figure_interpretation.md
 
 ```text
 .
-├── README.md
-├── requirements.txt
-├── src/
-│   ├── config/
-│   │   └── model_config.py
-│   ├── data/
-│   │   ├── team-raw/
-│   │   └── processed/model_input/
-│   ├── schema/
-│   │   ├── model_input_schema.csv
-│   │   └── model_input_schema.md
-│   ├── pipeline/
-│   │   ├── data.py
-│   │   ├── models.py
-│   │   ├── evaluation.py
-│   │   ├── artifacts.py
-│   │   ├── runner.py
-│   │   ├── visualization.py
-│   │   ├── diagnostics.py
-│   │   ├── shap_compare.py
-│   │   └── enhancement.py
-│   └── utils/
-│       └── build_model_datasets.py
-├── artifacts/
-│   ├── tree_gradient_boosting/
-│   ├── non_tree_scaled/
-│   ├── enhancement/
-│   ├── diagnostics/
-│   ├── figures/
-│   └── shap/
-└── eda/
+├── README.md                         # 프로젝트 목적, 실행 방법, 모델 결과를 정리한 메인 문서
+├── requirements.txt                  # 모델 학습/시각화/해석에 필요한 Python 패키지 목록
+├── src/                              # 재사용 가능한 모델링 소스 코드와 데이터 정의
+│   ├── config/                       # 경로, target, 후보 모델, 평가 기준 설정
+│   │   └── model_config.py           # tree/non_tree workflow와 공통 상수 정의
+│   ├── data/                         # 원본 데이터와 모델 입력 데이터 보관
+│   │   ├── team-raw/                 # 전처리팀이 제공한 원본 CSV 보존 영역
+│   │   └── processed/model_input/    # tree/non_tree 학습에 바로 쓰는 최종 입력 CSV
+│   ├── schema/                       # 모델 입력 컬럼 구조와 스키마 설명
+│   │   ├── model_input_schema.csv    # 입력 컬럼 목록과 타입/역할 요약
+│   │   └── model_input_schema.md     # 모델 입력 스키마 설명 문서
+│   ├── pipeline/                     # 모델 학습, 평가, 저장, 해석의 핵심 파이프라인
+│   │   ├── data.py                   # 데이터 로드, feature 선택, train/valid split
+│   │   ├── models.py                 # 후보 회귀/분류 모델 정의와 학습
+│   │   ├── evaluation.py             # RMSE, Recall, Precision 등 성능 평가
+│   │   ├── artifacts.py              # 모델, 예측값, metric, feature importance 저장
+│   │   ├── runner.py                 # 전체 workflow 실행 진입점
+│   │   ├── visualization.py          # 모델 비교 결과 시각화 생성
+│   │   ├── diagnostics.py            # 비트리 모델 잔차와 확률 보정 진단
+│   │   ├── shap_compare.py           # tree/non_tree SHAP 해석 비교
+│   │   └── enhancement.py            # 튜닝, MLP 등 모델 고도화 실험
+│   └── utils/                        # 데이터셋 재생성 등 보조 유틸리티
+│       └── build_model_datasets.py   # ALGAE_DATA 기반 tree/non_tree 입력 생성
+├── artifacts/                        # 학습 후 생성된 모델, 지표, 예측, 그림 산출물
+│   ├── tree_gradient_boosting/       # tree workflow의 모델/metric/prediction/explain
+│   ├── non_tree_scaled/              # non_tree workflow의 모델/metric/prediction/explain
+│   ├── enhancement/                  # 고도화 실험 결과와 튜닝 모델
+│   ├── diagnostics/                  # 잔차 진단, Q-Q plot, calibration plot
+│   ├── figures/                      # 모델 성능 비교 그래프
+│   └── shap/                         # SHAP importance, bar, beeswarm 결과
+└── eda/                              # 탐색적 데이터 분석 스크립트, 표, 시각화
 ```
 
 핵심 코드는 `src/pipeline/`에 있다. `runner.py`가 전체 실행 진입점이고, `data.py`, `models.py`, `evaluation.py`, `artifacts.py`가 각각 데이터 로드, 모델 학습, 평가, 저장을 맡는다. `enhancement.py`는 추가 고도화 실험을 담당하며, `visualization.py`, `diagnostics.py`, `shap_compare.py`는 결과 분석 산출물을 만든다.
