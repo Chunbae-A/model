@@ -122,11 +122,11 @@ target_alert_next = next_log_cells >= log10(1000 + 1)
 | workflow | 회귀 후보 | 분류 후보 |
 | --- | --- | --- |
 | `tree` | LightGBM, XGBoost, HistGradientBoosting, RandomForest, CatBoost | LightGBM, XGBoost, HistGradientBoosting, RandomForest, CatBoost |
-| `non_tree` | Ridge, ElasticNet, HuberRegressor, SVR-RBF, KNN Regressor | Logistic Regression, Calibrated Logistic Regression, SVC-RBF, KNN Classifier |
+| `non_tree` | Ridge, ElasticNet, HuberRegressor, SVR-RBF, KNN Regressor | Logistic Regression, SGDClassifier, Calibrated Logistic Regression, SVC-RBF, KNN Classifier |
 
 트리 계열 모델을 포함한 이유는 조류 발생이 수온, 강우, 체류시간, 현재 조류 상태, 계절성의 비선형 상호작용으로 나타날 가능성이 크기 때문이다. LightGBM, XGBoost, CatBoost는 gradient boosting 방식으로 오차를 순차적으로 보정하며 복잡한 상호작용을 포착할 수 있고, RandomForest는 여러 tree의 평균 또는 투표로 예측 분산을 줄인다.
 
-비트리 모델을 포함한 이유는 단순한 baseline을 넘어서, 스케일링과 로그 변환이 잘 설계된 경우 더 단순한 모델이 미래 holdout에서 더 안정적일 수 있는지 확인하기 위해서다. 특히 Logistic Regression은 확률 출력과 threshold 조정이 쉬워 조기경보 운영 모델로 설명하기 좋다.
+비트리 모델을 포함한 이유는 단순한 baseline을 넘어서, 스케일링과 로그 변환이 잘 설계된 경우 더 단순한 모델이 미래 holdout에서 더 안정적일 수 있는지 확인하기 위해서다. 특히 Logistic Regression은 확률 출력과 threshold 조정이 쉬워 조기경보 운영 모델로 설명하기 좋다. SGDClassifier는 Logistic Regression과 같은 log-loss 기반 선형 분류기를 확률적 경사하강법으로 학습하는 후보로, 향후 데이터가 커지거나 온라인 업데이트 구조로 확장할 때의 비교 기준으로 추가했다.
 
 ## 기본 모델 결과
 
@@ -163,9 +163,10 @@ target_alert_next = next_log_cells >= log10(1000 + 1)
 | workflow | model | rank | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC | TN | FP | FN | TP | best |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
 | non_tree | Logistic Regression | 1 | 0.9544 | 0.9427 | 0.9599 | 0.9512 | 0.9924 | 0.9911 | 604 | 32 | 22 | 526 | Y |
-| non_tree | Calibrated Logistic Regression | 2 | 0.9316 | 0.9587 | 0.8905 | 0.9234 | 0.9910 | 0.9892 | 615 | 21 | 60 | 488 |  |
-| non_tree | KNN Classifier | 3 | 0.7965 | 0.9528 | 0.5894 | 0.7283 | 0.9222 | 0.9140 | 620 | 16 | 225 | 323 |  |
-| non_tree | SVC-RBF | 4 | 0.7458 | 0.8847 | 0.5182 | 0.6536 | 0.9258 | 0.8300 | 599 | 37 | 264 | 284 |  |
+| non_tree | SGDClassifier | 2 | 0.9341 | 0.9304 | 0.9270 | 0.9287 | 0.9433 | 0.9068 | 598 | 38 | 40 | 508 |  |
+| non_tree | Calibrated Logistic Regression | 3 | 0.9316 | 0.9587 | 0.8905 | 0.9234 | 0.9910 | 0.9892 | 615 | 21 | 60 | 488 |  |
+| non_tree | KNN Classifier | 4 | 0.7965 | 0.9528 | 0.5894 | 0.7283 | 0.9222 | 0.9140 | 620 | 16 | 225 | 323 |  |
+| non_tree | SVC-RBF | 5 | 0.7458 | 0.8847 | 0.5182 | 0.6536 | 0.9258 | 0.8300 | 599 | 37 | 264 | 284 |  |
 | tree | RandomForest | 1 | 0.9493 | 0.9692 | 0.9197 | 0.9438 | 0.9941 | 0.9931 | 620 | 16 | 44 | 504 | Y |
 | tree | CatBoost | 2 | 0.9392 | 0.9542 | 0.9124 | 0.9328 | 0.9919 | 0.9904 | 612 | 24 | 48 | 500 |  |
 | tree | XGBoost | 3 | 0.9426 | 0.9781 | 0.8960 | 0.9352 | 0.9941 | 0.9933 | 625 | 11 | 57 | 491 |  |
@@ -187,7 +188,7 @@ artifacts/all_model_results.csv
 | regression | HuberRegressor | RMSE 0.6691 / R2 0.8403 | `epsilon=2.0`, `alpha=1e-05` |
 | classification | Logistic Regression tuned | Recall 0.9818 / Precision 0.9181 / F1 0.9489 | `C=0.03`, `penalty=l2`, `class_weight=balanced` |
 
-고도화 후 회귀는 ElasticNet보다 HuberRegressor가 더 낮은 RMSE를 보였다. HuberRegressor는 일반적인 구간에서는 제곱 오차처럼 학습하지만, 큰 오차 구간에는 덜 민감하게 반응한다. 현재 데이터처럼 폭우, 유입량 급증, 조류 폭증이 함께 나타나는 구간에서는 이런 robust 특성이 유리하게 작용할 수 있다.
+고도화 후 회귀는 ElasticNet보다 HuberRegressor가 더 낮은 RMSE를 보였다. HuberRegressor는 일반적인 구간에서는 제곱 오차처럼 학습하지만, 큰 오차 구간에는 덜 민감하게 반응한다. 현재 데이터처럼 폭우, 유입량 급증, 조류 폭증이 함께 나타나는 구간에서는 이런 robust 특성이 유리하게 작용할 수 있다. 자세한 적용 방식은 [HuberRegressor 적용 설명](docs/huber_regressor_explanation.md)에 정리했다.
 
 분류는 tuned Logistic Regression이 Recall 0.9818을 달성했다. 기존 Logistic Regression보다 실제 위험을 놓치는 false negative가 줄었다. 다만 Precision은 약간 낮아졌으므로, 운영에서는 “미탐을 줄이는 대신 일부 과잉 경보를 감수한다”는 의사결정으로 설명해야 한다.
 
@@ -233,9 +234,44 @@ artifacts/enhancement/enhancement_report.md
 
 정리하면 non_tree workflow는 예측 모델로는 유효하지만, 전통적인 선형 회귀 가정에 기반한 인과 해석에는 제한이 있다. ElasticNet과 HuberRegressor는 로그 세포수 예측 baseline 및 robust 예측 모델로 사용하고, Logistic Regression은 높은 Recall을 가진 조기경보 분류 모델로 활용하는 것이 적절하다.
 
+## 운영 시나리오 흐름
+
+최종 운영 목적은 단순히 모델 점수를 출력하는 것이 아니라, 대청댐 관리자가 현재 상황을 보고 어떤 대응을 해야 하는지 **시나리오 기반으로 설명 가능한 판단 근거를 제공하는 것**이다. 따라서 본 프로젝트의 운영 흐름은 아래처럼 구성하는 것이 적절하다.
+
+```text
+입력 데이터
+↓
+Logistic Regression / HuberRegressor 예측
+↓
+위험 단계 산정
+↓
+SHAP으로 위험 원인 설명
+↓
+시나리오 기반 대응안 출력
+↓
+추후 운영 데이터 축적 후 Hvt-UCB로 대응 정책 최적화
+```
+
+여기서 `Logistic Regression`은 다음 조사 시점의 경보 위험 여부를 판단하는 **분류 주 모델**이다. 운영상 중요한 것은 실제 위험 상황을 놓치지 않는 것이므로 Recall이 높은 Logistic Regression을 조기경보 판단의 중심 모델로 둔다. `HuberRegressor`는 다음 조사 시점의 유해남조류 세포수 로그값을 예측하는 **회귀 주 모델**이다. 폭우, 유입량 급증, 조류 폭증처럼 값이 튀는 구간에 덜 민감한 robust 회귀라는 점에서 보조적인 수치 예측 근거로 활용한다.
+
+위험 단계는 두 모델의 출력을 함께 사용해 산정할 수 있다. 예를 들어 Logistic Regression의 경보 확률이 높고, HuberRegressor의 예상 세포수도 1,000 cells/mL 기준을 넘는다면 `고위험` 또는 `경계` 단계로 볼 수 있다. 반대로 분류 확률은 다소 높지만 예상 세포수가 낮거나 SHAP 원인이 약하면 `주의 관찰` 단계로 낮춰 볼 수 있다. 이처럼 분류 모델은 “위험 여부”, 회귀 모델은 “예상 규모”를 담당한다.
+
+SHAP은 이 과정에서 관리자에게 설명 가능한 원인을 제공한다. 예측 결과가 `고위험`으로 나왔을 때 단순히 “위험 확률 0.92”라고 출력하는 것보다, “최근 7일 방류량 감소, 누적 강우 증가, 현재 세포수 증가, 경보 단계 상승이 위험도를 높였다”처럼 원인을 함께 제공해야 실제 대응으로 연결된다. 따라서 SHAP은 모델 해석용 부가 기능이 아니라, 시나리오 기반 대응안을 만드는 핵심 근거다.
+
+시나리오 출력은 다음처럼 구성할 수 있다.
+
+| 위험 단계 | 판단 예시 | 관리자 대응 시나리오 |
+| --- | --- | --- |
+| 안정 | 경보 확률 낮음, 예상 세포수 낮음 | 기존 모니터링 유지 |
+| 주의 | 경보 확률 상승, 일부 수문·수질 위험 요인 존재 | 채수 빈도 확대 검토, 원인 feature 추적 |
+| 경계 | 경보 확률 높음, 예상 세포수 기준 근접 또는 초과 | 현장 점검, 관계기관 공유, 취수·방류 운영 검토 |
+| 고위험 | 경보 확률 매우 높음, 예상 세포수 기준 초과, SHAP 위험 요인 다수 | 즉시 경보 대응 체계 가동, 집중 모니터링, 운영 조치 우선순위 검토 |
+
+Hvt-UCB는 현재 예측 모델로 직접 사용하지 않는다. 다만 운영 데이터가 충분히 쌓여 “어떤 상황에서 어떤 대응을 했고, 그 결과 세포수와 경보 상태가 어떻게 바뀌었는지”를 reward로 정의할 수 있다면, 향후에는 여러 대응 조치 중 장기적으로 효과적인 행동을 선택하는 **실시간 대응 정책 최적화 레이어**로 확장할 수 있다.
+
 ## SHAP 해석
 
-SHAP 분석은 tree classification best model과 non_tree classification best model을 비교하기 위해 수행했다.
+SHAP 분석은 tree classification best model과 non_tree classification best model을 비교하기 위해 수행했다. 본 프로젝트에서 SHAP의 역할은 단순히 feature importance를 보여주는 것이 아니라, 운영 시나리오에서 **왜 해당 위험 단계가 나왔는지 설명하는 것**이다.
 
 | workflow | 주요 SHAP feature |
 | --- | --- |
@@ -244,11 +280,35 @@ SHAP 분석은 tree classification best model과 non_tree classification best mo
 
 Tree 모델은 현재 조류 상태와 수질 조건을 강하게 보고, non_tree 모델은 수문 변화와 현재 조류 상태를 강하게 본다. 이 차이는 두 workflow가 서로 다른 관점에서 위험을 판단한다는 의미가 있다. 운영 보고에서는 Logistic Regression을 주 모델로 두되, RandomForest/CatBoost의 SHAP 결과를 보조 설명으로 함께 제시하는 방식이 설득력 있다.
 
+예를 들어 non_tree SHAP에서 `outflow_7d_sum_robust`, `rain_7d_sum_x_robust`, `level_change_7d_robust`, `log_target`이 크게 나타난다면, 모델은 최근 방류·강우·수위 변화와 현재 조류 상태를 근거로 위험도를 높게 판단한 것이다. 이 경우 대응 시나리오는 단순 관찰보다 수문 운영 상태 확인, 채수 빈도 확대, 관계기관 공유 쪽으로 강화될 수 있다. 반대로 tree SHAP에서 `cyano_cells`, `water_temp`, `turbidity`, `Microcystis`가 크게 나타난다면 현재 조류량과 수질 조건 자체가 위험 판단의 핵심 근거라는 뜻이므로 현장 수질 점검과 조류 종별 모니터링이 중요해진다.
+
+단, tree 모델과 Logistic Regression의 raw SHAP 값은 같은 단위가 아니다. Tree SHAP은 확률 변화량에 가까운 작은 값으로 나오고, Linear SHAP은 log-odds 기준으로 더 크게 나올 수 있다. 따라서 workflow 간 비교 그림은 raw SHAP 절대값을 그대로 쓰지 않고, 각 workflow 내부 최대 중요도를 1.0으로 맞춘 `normalized_mean_abs_shap` 기준으로 저장한다.
+
 ```text
 artifacts/shap/tree_classification_shap_beeswarm.png
 artifacts/shap/non_tree_classification_shap_beeswarm.png
 artifacts/shap/classification_shap_importance_comparison.png
 ```
+
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="artifacts/shap/tree_classification_shap_beeswarm.png" alt="Tree SHAP beeswarm" width="100%">
+      <br>
+      <sub>Tree SHAP beeswarm</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="artifacts/shap/non_tree_classification_shap_beeswarm.png" alt="Non-tree SHAP beeswarm" width="100%">
+      <br>
+      <sub>Non-tree SHAP beeswarm</sub>
+    </td>
+    <td align="center" width="33%">
+      <img src="artifacts/shap/classification_shap_importance_comparison.png" alt="Normalized SHAP comparison" width="100%">
+      <br>
+      <sub>Normalized SHAP comparison</sub>
+    </td>
+  </tr>
+</table>
 
 ## EDA 산출물
 
@@ -268,6 +328,8 @@ eda/figure_interpretation.md
 .
 ├── README.md                         # 프로젝트 목적, 실행 방법, 모델 결과를 정리한 메인 문서
 ├── requirements.txt                  # 모델 학습/시각화/해석에 필요한 Python 패키지 목록
+├── docs/                             # 모델 선택 근거와 세부 설명 문서
+│   └── huber_regressor_explanation.md # HuberRegressor 적용 방식과 해석
 ├── src/                              # 재사용 가능한 모델링 소스 코드와 데이터 정의
 │   ├── config/                       # 경로, target, 후보 모델, 평가 기준 설정
 │   │   └── model_config.py           # tree/non_tree workflow와 공통 상수 정의
@@ -306,6 +368,7 @@ eda/figure_interpretation.md
 | 경로 | 내용 |
 | --- | --- |
 | `src/data/README.md` | 모델 입력 데이터 생성 기준 |
+| `docs/huber_regressor_explanation.md` | HuberRegressor 적용 방식과 회귀 성능 해석 |
 | `artifacts/all_model_results.csv` | 모든 후보 모델의 결과표 |
 | `artifacts/workflow_comparison_summary.csv` | workflow별 best 모델 요약 |
 | `artifacts/enhancement/enhancement_report.md` | 고도화 실험 결과와 최종 추천 |
