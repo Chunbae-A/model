@@ -66,7 +66,10 @@ def create_shap_comparison(max_background: int = 250, max_sample: int = 500) -> 
 
     background와 sample 크기를 제한하는 이유는 SHAP 계산 비용을 관리하기 위해서다.
     전체 valid를 모두 쓰지 않아도 주요 feature 방향성과 상대 중요도를 설명하는
-    데에는 충분한 표본을 확보할 수 있다.
+    데에는 충분한 표본을 확보할 수 있다. workflow 간 비교 그림은 raw SHAP 값이
+    아니라 workflow 내부 최대값 기준 0~1 정규화 값을 사용한다. TreeExplainer와
+    LinearExplainer의 raw SHAP scale이 달라 절대값을 그대로 비교하면 오해가
+    생기기 때문이다.
     """
 
     SHAP_DIR.mkdir(parents=True, exist_ok=True)
@@ -124,14 +127,21 @@ def create_shap_comparison(max_background: int = 250, max_sample: int = 500) -> 
         outputs.append(path)
 
     combined = pd.concat(importance_frames, ignore_index=True)
+    max_by_workflow = combined.groupby("workflow")["mean_abs_shap"].transform("max")
+    combined["normalized_mean_abs_shap"] = np.where(
+        max_by_workflow.gt(0),
+        combined["mean_abs_shap"] / max_by_workflow,
+        0.0,
+    )
     combined.to_csv(SHAP_DIR / "classification_shap_importance_comparison.csv", index=False)
 
     top = combined.groupby("workflow").head(12).copy()
-    plt.figure(figsize=(10.5, 6))
-    sns.barplot(data=top, y="feature", x="mean_abs_shap", hue="workflow")
-    plt.title("Classification SHAP Importance Comparison")
-    plt.xlabel("Mean absolute SHAP value")
+    plt.figure(figsize=(10.5, 6.8))
+    sns.barplot(data=top, y="feature", x="normalized_mean_abs_shap", hue="workflow")
+    plt.title("Classification SHAP Importance Comparison (Normalized within Workflow)")
+    plt.xlabel("Normalized mean absolute SHAP value (workflow max = 1.0)")
     plt.ylabel("")
+    plt.xlim(0, 1.05)
     path = SHAP_DIR / "classification_shap_importance_comparison.png"
     plt.tight_layout()
     plt.savefig(path, dpi=180, bbox_inches="tight")

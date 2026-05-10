@@ -11,7 +11,7 @@ from sklearn.ensemble import (
     RandomForestClassifier,
     RandomForestRegressor,
 )
-from sklearn.linear_model import ElasticNet, HuberRegressor, LogisticRegression, Ridge
+from sklearn.linear_model import ElasticNet, HuberRegressor, LogisticRegression, Ridge, SGDClassifier
 from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor
 from sklearn.svm import SVC, SVR
 
@@ -216,6 +216,19 @@ def build_classification_model_candidates(
                 estimator=base_model,
                 method="sigmoid",
                 cv=3,
+            )
+        elif name == "sgd_classifier":
+            # Logistic Regression과 같은 log-loss 선형 분류기를 확률적 경사하강법으로 학습한다.
+            # 데이터가 더 커지거나 온라인 업데이트로 확장할 때 비교 기준으로 쓰기 좋다.
+            models[name] = SGDClassifier(
+                loss="log_loss",
+                penalty="elasticnet",
+                alpha=0.0001,
+                l1_ratio=0.15,
+                max_iter=5000,
+                tol=1e-4,
+                class_weight="balanced",
+                random_state=random_state,
             )
         elif name == "svc_rbf":
             # 비선형 결정경계를 확인하는 SVM 후보. probability=True로 ROC/PR 계산을 가능하게 한다.

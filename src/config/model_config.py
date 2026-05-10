@@ -53,7 +53,13 @@ WORKFLOWS = {
         model_input_path=NON_TREE_MODEL_INPUT_PATH,
         # 선형, SVM, KNN 계열은 스케일 영향을 크게 받으므로 별도 스케일링 입력을 사용한다.
         regression_candidates=["ridge", "elasticnet", "huber_regressor", "svr_rbf", "knn_regressor"],
-        classification_candidates=["logistic_regression", "calibrated_logistic_regression", "svc_rbf", "knn_classifier"],
+        classification_candidates=[
+            "logistic_regression",
+            "sgd_classifier",
+            "calibrated_logistic_regression",
+            "svc_rbf",
+            "knn_classifier",
+        ],
         artifact_subdir="non_tree_scaled",
     ),
 }
