@@ -1,0 +1,2652 @@
+[
+  {
+    "date": "2024-03-04 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.540153743252437,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-03-11 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3.413824221053324,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 3.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-03-18 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.3638931852923184,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-03-25 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.1578367966056495,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-01 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.5280833764051931,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-08 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.5693383407030279,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.6 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-15 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.41656341463318336,
+    "alert_probability": 0.02,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 2.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-22 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.3562803913049415,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-29 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.8509888080419543,
+    "alert_probability": 0.03,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.9 cells/mL (위험도: 3.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-07 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.4628330636911584,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.5 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-13 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.2850831810647176,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.3 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-20 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5.467697885002015,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 5.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-27 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 20.970526641920802,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 21.0 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-03 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 42.19763719304897,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 42.2 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-10 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 97.5447186668049,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 97.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-17 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 81.22255186535978,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 81.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-24 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 226.74238884098685,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 226.7 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-01 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 250.96405483713005,
+    "alert_probability": 0.08,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 251.0 cells/mL (위험도: 8.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-08 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 103.22261538313701,
+    "alert_probability": 0.04,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 103.2 cells/mL (위험도: 4.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-15 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 501.96051517064586,
+    "alert_probability": 0.15,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 502.0 cells/mL (위험도: 15.0%). 주요 탐지 요인: ['sin_season', 'cos_season', 'water_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-23 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1001.9925534826966,
+    "alert_probability": 0.44,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1002.0 cells/mL (위험도: 44.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-07-29 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2426.2918068236827,
+    "alert_probability": 0.73,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2426.3 cells/mL (위험도: 73.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-05 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2442.400600865643,
+    "alert_probability": 0.81,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2442.4 cells/mL (위험도: 81.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-12 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2453.109911805136,
+    "alert_probability": 0.75,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2453.1 cells/mL (위험도: 75.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-14 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1977.5911697779466,
+    "alert_probability": 0.62,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1977.6 cells/mL (위험도: 62.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-19 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4146.4962984670265,
+    "alert_probability": 0.83,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 4146.5 cells/mL (위험도: 83.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-22 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3685.516099208824,
+    "alert_probability": 0.75,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3685.5 cells/mL (위험도: 75.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-26 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3467.092107664899,
+    "alert_probability": 0.84,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3467.1 cells/mL (위험도: 84.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-29 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2288.578315919686,
+    "alert_probability": 0.79,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2288.6 cells/mL (위험도: 79.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-02 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2121.5445728208647,
+    "alert_probability": 0.74,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2121.5 cells/mL (위험도: 74.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-05 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 939.2276303141413,
+    "alert_probability": 0.75,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 939.2 cells/mL (위험도: 75.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-09-09 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2243.495887045212,
+    "alert_probability": 0.86,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2243.5 cells/mL (위험도: 86.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-12 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2409.9628804208874,
+    "alert_probability": 0.66,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2410.0 cells/mL (위험도: 66.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-19 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3054.6255920804138,
+    "alert_probability": 0.63,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3054.6 cells/mL (위험도: 63.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-23 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5478.530512221152,
+    "alert_probability": 0.75,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5478.5 cells/mL (위험도: 75.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-30 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4449.766853117539,
+    "alert_probability": 0.63,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 4449.8 cells/mL (위험도: 63.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-07 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1903.4443667490832,
+    "alert_probability": 0.43,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "air_temp_7d_mean"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1903.4 cells/mL (위험도: 43.0%). 주요 탐지 요인: ['turbidity', 'air_temp_7d_mean', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-14 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 930.0437391585302,
+    "alert_probability": 0.27,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "pH"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 930.0 cells/mL (위험도: 27.0%). 주요 탐지 요인: ['turbidity', 'cos_season', 'pH']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-10-21 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 599.5032910495,
+    "alert_probability": 0.24,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "transparency"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 599.5 cells/mL (위험도: 24.0%). 주요 탐지 요인: ['cos_season', 'turbidity', 'transparency']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-10-28 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 281.64360147579174,
+    "alert_probability": 0.1,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 2,
+        "feature": "air_temp_7d_mean"
+      },
+      {
+        "rank": 3,
+        "feature": "transparency"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 281.6 cells/mL (위험도: 10.0%). 주요 탐지 요인: ['cos_season', 'air_temp_7d_mean', 'transparency']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-04 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 47.27036963130909,
+    "alert_probability": 0.04,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "air_temp_7d_mean"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 47.3 cells/mL (위험도: 4.0%). 주요 탐지 요인: ['cos_season', 'turbidity', 'air_temp_7d_mean']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-11 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 118.630377051987,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "avg_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 118.6 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['turbidity', 'cos_season', 'avg_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-18 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 62.94897145823125,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 62.9 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'cos_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-25 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 77.2920008112071,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 77.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-02 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 31.883375412254246,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 31.9 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-09 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 26.150886048751357,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "avg_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 26.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'cos_season', 'avg_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-16 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 30.489350365725564,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 30.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-23 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 35.62782942672416,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 35.6 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-30 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 29.262916843285417,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 29.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-06 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 13.155053260109323,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 13.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-13 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.2776711906261005,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-20 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 7.858590807903278,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 7.9 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-31 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3.9385925523006584,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 3.9 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-03 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 10.253235215160885,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 10.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-10 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 9.057516607644418,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 9.1 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-17 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6.390440083158219,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 6.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-24 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 11.848118793116214,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 11.8 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-04 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5.813071085675127,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 5.8 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-10 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2.7775334722760006,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 2.8 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-17 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 8.018787006751907,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 8.0 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-24 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.500343694026786,
+    "alert_probability": 0.02,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.5 cells/mL (위험도: 2.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-31 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.4214622226719777,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-08 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.19766277795740428,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-14 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.2224854930111277,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-21 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.2714811973875353,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-28 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.05288384238526267,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.1 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-07 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.0,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.0 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-12 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.13142120966092397,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.1 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-19 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.4264657702720269,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-26 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.7408866126923115,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.7 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-02 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.6767888271023268,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.7 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-09 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 17.260136230404417,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 17.3 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-16 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 55.3804124822607,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 55.4 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['sin_season', 'water_temp', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-23 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 242.79515829574657,
+    "alert_probability": 0.07,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 242.8 cells/mL (위험도: 7.0%). 주요 탐지 요인: ['sin_season', 'acc_temp_7d', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-30 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 231.02160786812607,
+    "alert_probability": 0.1,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 231.0 cells/mL (위험도: 10.0%). 주요 탐지 요인: ['sin_season', 'acc_temp_7d', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-07 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 365.47073827593107,
+    "alert_probability": 0.05,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 365.5 cells/mL (위험도: 5.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-14 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 456.7142745975339,
+    "alert_probability": 0.05,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 456.7 cells/mL (위험도: 5.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-21 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 737.0277299563895,
+    "alert_probability": 0.34,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 737.0 cells/mL (위험도: 34.0%). 주요 탐지 요인: ['sin_season', 'cos_season', 'water_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-28 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1645.938024334616,
+    "alert_probability": 0.61,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1645.9 cells/mL (위험도: 61.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-04 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5066.79328738678,
+    "alert_probability": 0.78,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5066.8 cells/mL (위험도: 78.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-11 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5776.31210924888,
+    "alert_probability": 0.9,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5776.3 cells/mL (위험도: 90.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-13 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5485.061529610413,
+    "alert_probability": 0.9,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5485.1 cells/mL (위험도: 90.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-18 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5033.708539566005,
+    "alert_probability": 0.87,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5033.7 cells/mL (위험도: 87.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-21 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5321.103415710084,
+    "alert_probability": 0.87,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5321.1 cells/mL (위험도: 87.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-25 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4976.13869669805,
+    "alert_probability": 0.88,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 4976.1 cells/mL (위험도: 88.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-28 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5095.52214002742,
+    "alert_probability": 0.84,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5095.5 cells/mL (위험도: 84.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-01 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3336.762209624296,
+    "alert_probability": 0.73,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3336.8 cells/mL (위험도: 73.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-04 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6677.222159446801,
+    "alert_probability": 0.86,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 6677.2 cells/mL (위험도: 86.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-08 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5740.950041664081,
+    "alert_probability": 0.91,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5741.0 cells/mL (위험도: 91.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-11 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5851.446710165651,
+    "alert_probability": 0.89,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5851.4 cells/mL (위험도: 89.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-15 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6164.798307646308,
+    "alert_probability": 0.82,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 6164.8 cells/mL (위험도: 82.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-18 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3008.3636544390342,
+    "alert_probability": 0.95,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3008.4 cells/mL (위험도: 95.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-22 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2701.1232761384267,
+    "alert_probability": 0.88,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2701.1 cells/mL (위험도: 88.0%). 주요 탐지 요인: ['sin_season', 'turbidity', 'water_temp']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-25 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1394.9464910930274,
+    "alert_probability": 0.51,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1394.9 cells/mL (위험도: 51.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-29 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 818.0614223310513,
+    "alert_probability": 0.37,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 818.1 cells/mL (위험도: 37.0%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'water_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-10-10 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 401.09825589448207,
+    "alert_probability": 0.36,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 401.1 cells/mL (위험도: 36.0%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-10-14 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 346.4996602042743,
+    "alert_probability": 0.24,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "transparency"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 346.5 cells/mL (위험도: 24.0%). 주요 탐지 요인: ['turbidity', 'cos_season', 'transparency']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-10-20 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 410.85106140844107,
+    "alert_probability": 0.26,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "water_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 410.9 cells/mL (위험도: 26.0%). 주요 탐지 요인: ['cos_season', 'turbidity', 'water_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-10-27 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 318.2057665922827,
+    "alert_probability": 0.05,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 3,
+        "feature": "air_temp_7d_mean"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 318.2 cells/mL (위험도: 5.0%). 주요 탐지 요인: ['turbidity', 'cos_season', 'air_temp_7d_mean']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-03 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 46.442217099163955,
+    "alert_probability": 0.03,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "cos_season"
+      },
+      {
+        "rank": 2,
+        "feature": "air_temp_7d_mean"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 46.4 cells/mL (위험도: 3.0%). 주요 탐지 요인: ['cos_season', 'air_temp_7d_mean', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-10 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 189.73690315152348,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 189.7 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-17 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 91.50608436873047,
+    "alert_probability": 0.01,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 91.5 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-24 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 131.96005885154597,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 132.0 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-01 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 67.53036321814439,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 3,
+        "feature": "cos_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 67.5 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['turbidity', 'water_temp', 'cos_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-08 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 106.7447879710883,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "avg_temp"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 106.7 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'avg_temp']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-15 00:00:00",
+    "site": "회남(옥천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 79.17435292316186,
+    "alert_probability": 0.0,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "water_temp"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 79.2 cells/mL (위험도: 0.0%). 주요 탐지 요인: ['water_temp', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  }
+]

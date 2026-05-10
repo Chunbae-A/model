@@ -1,0 +1,2627 @@
+[
+  {
+    "date": "2024-03-25 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.4109419325784438,
+    "alert_probability": 0.006387897780654069,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-01 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.9124348024583582,
+    "alert_probability": 0.008294557715247706,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.9 cells/mL (위험도: 0.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2.198984204128656,
+    "alert_probability": 0.005826529516198095,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 2.2 cells/mL (위험도: 0.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-15 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.6982589328898992,
+    "alert_probability": 0.006627063628591139,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.7 cells/mL (위험도: 0.7%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-22 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.3440260674754252,
+    "alert_probability": 0.004813706553234737,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.3 cells/mL (위험도: 0.5%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-04-29 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.492304752659402,
+    "alert_probability": 0.008570104064269552,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.5 cells/mL (위험도: 0.9%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-07 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.341342849671354,
+    "alert_probability": 0.007515978213904977,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.3 cells/mL (위험도: 0.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-13 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2.4356762321916214,
+    "alert_probability": 0.006420657737912967,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 2.4 cells/mL (위험도: 0.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-20 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.3621169499352446,
+    "alert_probability": 0.006477734863934991,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.4 cells/mL (위험도: 0.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-05-27 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.1625732261387203,
+    "alert_probability": 0.003109238678456758,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.2 cells/mL (위험도: 0.3%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-03 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 7.015645794444216,
+    "alert_probability": 0.014999315983152127,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 7.0 cells/mL (위험도: 1.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 8.029770810289964,
+    "alert_probability": 0.004063894026584989,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 8.0 cells/mL (위험도: 0.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-17 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.901022027111278,
+    "alert_probability": 0.0046465046483256025,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.9 cells/mL (위험도: 0.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-06-24 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 24.91388635125816,
+    "alert_probability": 0.006172611836147418,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 24.9 cells/mL (위험도: 0.6%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-01 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 23.13558416458815,
+    "alert_probability": 0.005352181685782425,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 23.1 cells/mL (위험도: 0.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 56.8845550923095,
+    "alert_probability": 0.029439192406913978,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 56.9 cells/mL (위험도: 2.9%). 주요 탐지 요인: ['sin_season', 'acc_temp_7d', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-15 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 86.08949825373108,
+    "alert_probability": 0.08701366830622038,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 86.1 cells/mL (위험도: 8.7%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-23 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 193.41139487897584,
+    "alert_probability": 0.33315306707084025,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 193.4 cells/mL (위험도: 33.3%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-07-29 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1240.4538079520726,
+    "alert_probability": 0.8060358512585896,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1240.5 cells/mL (위험도: 80.6%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-05 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1541.1161891981562,
+    "alert_probability": 0.3327427570607373,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "pH"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1541.1 cells/mL (위험도: 33.3%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'pH']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-12 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 859.8371399027612,
+    "alert_probability": 0.44737183171382056,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "pH"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 859.8 cells/mL (위험도: 44.7%). 주요 탐지 요인: ['acc_temp_7d', 'pH', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-08-19 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2856.399909899591,
+    "alert_probability": 0.9127984788453699,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2856.4 cells/mL (위험도: 91.3%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-08-26 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2383.6799252821297,
+    "alert_probability": 0.7200385631356753,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2383.7 cells/mL (위험도: 72.0%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-02 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 7617.206591361699,
+    "alert_probability": 0.8938211832384445,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 7617.2 cells/mL (위험도: 89.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-09 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6676.190287737496,
+    "alert_probability": 0.8849807998365423,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 6676.2 cells/mL (위험도: 88.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-12 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6696.384324000336,
+    "alert_probability": 0.5941604327396449,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 6696.4 cells/mL (위험도: 59.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-19 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 5692.147969611069,
+    "alert_probability": 0.9388694204214892,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 5692.1 cells/mL (위험도: 93.9%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-23 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 9185.03166007234,
+    "alert_probability": 0.9749000633802729,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 9185.0 cells/mL (위험도: 97.5%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-26 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 8907.070368998044,
+    "alert_probability": 0.988443120507511,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 8907.1 cells/mL (위험도: 98.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-09-30 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 6196.343576829527,
+    "alert_probability": 0.9920004249394574,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 6196.3 cells/mL (위험도: 99.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-02 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3942.5723987051783,
+    "alert_probability": 0.98767077617816,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3942.6 cells/mL (위험도: 98.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-07 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2920.3702187840986,
+    "alert_probability": 0.9295638040987542,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2920.4 cells/mL (위험도: 93.0%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3655.585628932724,
+    "alert_probability": 0.9795550372424672,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3655.6 cells/mL (위험도: 98.0%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-14 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2604.3140412088806,
+    "alert_probability": 0.8858192766504278,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2604.3 cells/mL (위험도: 88.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-21 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1394.5817826766236,
+    "alert_probability": 0.8121709699132967,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1394.6 cells/mL (위험도: 81.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2024-10-28 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 752.1610921988718,
+    "alert_probability": 0.5947474800096386,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 752.2 cells/mL (위험도: 59.5%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-04 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 506.4010149123856,
+    "alert_probability": 0.44597898805292796,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 506.4 cells/mL (위험도: 44.6%). 주요 탐지 요인: ['sin_season', 'turbidity', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-11 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 540.8628396353251,
+    "alert_probability": 0.11615704853972844,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 540.9 cells/mL (위험도: 11.6%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-18 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 403.74532445234433,
+    "alert_probability": 0.05007353660042338,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 403.7 cells/mL (위험도: 5.0%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-11-25 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 403.56083627186155,
+    "alert_probability": 0.04081836336944528,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "storage_vol"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 403.6 cells/mL (위험도: 4.1%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'storage_vol']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-02 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 210.0999955778511,
+    "alert_probability": 0.013518751891590826,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 210.1 cells/mL (위험도: 1.4%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-09 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 209.4225930332436,
+    "alert_probability": 0.019224984558602744,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 209.4 cells/mL (위험도: 1.9%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-16 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 93.48025118904599,
+    "alert_probability": 0.009716587449369665,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 93.5 cells/mL (위험도: 1.0%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-23 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 52.35531939894603,
+    "alert_probability": 0.006542773672484003,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 52.4 cells/mL (위험도: 0.7%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2024-12-30 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 8.909080087392445,
+    "alert_probability": 0.0037818772067888698,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 8.9 cells/mL (위험도: 0.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-06 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.854878541046132,
+    "alert_probability": 0.0037342507677025328,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.9 cells/mL (위험도: 0.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-13 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 15.430969193935788,
+    "alert_probability": 0.0024687512026279265,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 15.4 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-20 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 9.542714354417893,
+    "alert_probability": 0.0032324817370154857,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 9.5 cells/mL (위험도: 0.3%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-01-31 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.13454603604018,
+    "alert_probability": 0.0021129245061074033,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.1 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-03 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 9.464365618562024,
+    "alert_probability": 0.0016473889366979304,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 9.5 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 9.979119563270032,
+    "alert_probability": 0.0022391738533972605,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 10.0 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-17 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4.948914252494919,
+    "alert_probability": 0.0017639433205884844,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 4.9 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-02-24 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 7.711575340636401,
+    "alert_probability": 0.002065834696579486,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 7.7 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-04 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2.2455273655121437,
+    "alert_probability": 0.0167325289910958,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 2.2 cells/mL (위험도: 1.7%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.1578708636527701,
+    "alert_probability": 0.0015148443659514668,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.2 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-17 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.0151044189977925,
+    "alert_probability": 0.0016103249900383978,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.0 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-24 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.2840611196367289,
+    "alert_probability": 0.001830355036181237,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.3 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-03-31 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.1026155935415187,
+    "alert_probability": 0.001552474092171862,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.1 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.1424101102893045,
+    "alert_probability": 0.0014432334118971257,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.1 cells/mL (위험도: 0.1%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-14 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.09132107418762203,
+    "alert_probability": 0.001997257870738212,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.1 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-21 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.19427126452926258,
+    "alert_probability": 0.002370236739596408,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.2 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-04-28 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1.0931533825475626,
+    "alert_probability": 0.002579081553205246,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 1.1 cells/mL (위험도: 0.3%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-07 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.6861676084538313,
+    "alert_probability": 0.0019691277325823812,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.7 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-12 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.41233744811298134,
+    "alert_probability": 0.0020444115545574515,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-19 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.4123036668491542,
+    "alert_probability": 0.002289124040303227,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-05-26 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.05159113015372041,
+    "alert_probability": 0.0019602645972789418,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.1 cells/mL (위험도: 0.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-02 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3.0569561690931026,
+    "alert_probability": 0.0032434600834378483,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 3.1 cells/mL (위험도: 0.3%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-09 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 0.44965501997860846,
+    "alert_probability": 0.0031565574201534124,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 0.4 cells/mL (위험도: 0.3%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-16 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2.1479012585804496,
+    "alert_probability": 0.004796054548894274,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 2.1 cells/mL (위험도: 0.5%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-23 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 17.660710051622154,
+    "alert_probability": 0.008171036112191747,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 17.7 cells/mL (위험도: 0.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-06-30 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 56.80174389688575,
+    "alert_probability": 0.007237821887897168,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 56.8 cells/mL (위험도: 0.7%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-07 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 38.94953108976232,
+    "alert_probability": 0.013910255949122177,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 38.9 cells/mL (위험도: 1.4%). 주요 탐지 요인: ['sin_season', 'acc_temp_7d', 'turbidity']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-14 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 67.39099454037719,
+    "alert_probability": 0.022231579484258707,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 67.4 cells/mL (위험도: 2.2%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-21 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 576.0863304536356,
+    "alert_probability": 0.5104646381868575,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 576.1 cells/mL (위험도: 51.0%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-07-28 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 579.9674749581989,
+    "alert_probability": 0.5809902840586398,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 580.0 cells/mL (위험도: 58.1%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-08-04 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 382.386782415926,
+    "alert_probability": 0.42351177071797846,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "inflow_diff_1d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 382.4 cells/mL (위험도: 42.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'inflow_diff_1d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-08-11 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 683.6439145057192,
+    "alert_probability": 0.2840787704813163,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 683.6 cells/mL (위험도: 28.4%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-08-18 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2993.768370070827,
+    "alert_probability": 0.8879276384007629,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2993.8 cells/mL (위험도: 88.8%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-08-25 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1550.107106792179,
+    "alert_probability": 0.6811776215058459,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1550.1 cells/mL (위험도: 68.1%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-01 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1162.1810576851005,
+    "alert_probability": 0.4188948661203813,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "inflow_diff_1d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 강우 및 영양염류 유입 시나리오",
+    "scenario_reason": "예측 세포수: 1162.2 cells/mL (위험도: 41.9%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'inflow_diff_1d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 상류 오염원 단속 및 현장 예찰"
+  },
+  {
+    "date": "2025-09-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3822.754217602535,
+    "alert_probability": 0.9152445962311254,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3822.8 cells/mL (위험도: 91.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-15 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3917.7533535412895,
+    "alert_probability": 0.9545131339686436,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3917.8 cells/mL (위험도: 95.5%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-18 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4065.888201586328,
+    "alert_probability": 0.9582031072108143,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 4065.9 cells/mL (위험도: 95.8%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-22 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3246.6793130090787,
+    "alert_probability": 0.9624114681305421,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3246.7 cells/mL (위험도: 96.2%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-25 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3210.788883876833,
+    "alert_probability": 0.9171968275204135,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3210.8 cells/mL (위험도: 91.7%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-09-29 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3616.2317312141236,
+    "alert_probability": 0.9628052458403935,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3616.2 cells/mL (위험도: 96.3%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-01 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 4577.950914955657,
+    "alert_probability": 0.9838390696891541,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 4578.0 cells/mL (위험도: 98.4%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2910.4128584317764,
+    "alert_probability": 0.9767955010001589,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2910.4 cells/mL (위험도: 97.7%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2591.7781867180347,
+    "alert_probability": 0.9794514585781102,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2591.8 cells/mL (위험도: 97.9%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-14 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2518.650680515459,
+    "alert_probability": 0.9656116459964337,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2518.7 cells/mL (위험도: 96.6%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-16 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 3043.6433921717817,
+    "alert_probability": 0.9671095518726898,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "turbidity"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 3043.6 cells/mL (위험도: 96.7%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'turbidity']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-20 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2742.2539682483516,
+    "alert_probability": 0.9799637605704826,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2742.3 cells/mL (위험도: 98.0%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-22 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 2532.738451970827,
+    "alert_probability": 0.9718257297676376,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 2532.7 cells/mL (위험도: 97.2%). 주요 탐지 요인: ['acc_temp_7d', 'turbidity', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-27 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1853.0654974591298,
+    "alert_probability": 0.940565004486083,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1853.1 cells/mL (위험도: 94.1%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-10-29 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1280.3067568104593,
+    "alert_probability": 0.9397436196296577,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1280.3 cells/mL (위험도: 94.0%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-11-03 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1076.3031344199967,
+    "alert_probability": 0.8212900128090564,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 수체 정체에 의한 조류 번식 시나리오",
+    "scenario_reason": "예측 세포수: 1076.3 cells/mL (위험도: 82.1%). 주요 탐지 요인: ['turbidity', 'sin_season', 'water_level']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 물순환설비(수류발생장치 등) 가동 검토"
+  },
+  {
+    "date": "2025-11-06 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 916.2015397512924,
+    "alert_probability": 0.7277317042238894,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "acc_temp_7d"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 916.2 cells/mL (위험도: 72.8%). 주요 탐지 요인: ['turbidity', 'sin_season', 'acc_temp_7d']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-10 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 1353.4048518009622,
+    "alert_probability": 0.7662486151230206,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟡 관심] 고온 및 일사량 증가 시나리오",
+    "scenario_reason": "예측 세포수: 1353.4 cells/mL (위험도: 76.6%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "수질 모니터링 주 1회 강화 및 표층 수온 모니터링 및 정수처리 주의"
+  },
+  {
+    "date": "2025-11-13 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 904.4035014470927,
+    "alert_probability": 0.431095367331531,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "sin_season"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 904.4 cells/mL (위험도: 43.1%). 주요 탐지 요인: ['acc_temp_7d', 'sin_season', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-17 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 762.1710968206947,
+    "alert_probability": 0.5367693708312216,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 2,
+        "feature": "water_level"
+      },
+      {
+        "rank": 3,
+        "feature": "storage_vol"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 762.2 cells/mL (위험도: 53.7%). 주요 탐지 요인: ['acc_temp_7d', 'water_level', 'storage_vol']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-20 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 634.422956757213,
+    "alert_probability": 0.6617922251432066,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 634.4 cells/mL (위험도: 66.2%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-11-24 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 450.8914967693375,
+    "alert_probability": 0.12000918787291029,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 450.9 cells/mL (위험도: 12.0%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-01 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 354.1975105537936,
+    "alert_probability": 0.4324337570985594,
+    "predicted_alert_label": 1,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "water_level"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 354.2 cells/mL (위험도: 43.2%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'water_level']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-08 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 269.4260709313058,
+    "alert_probability": 0.042010467548246666,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "storage_vol"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 269.4 cells/mL (위험도: 4.2%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'storage_vol']",
+    "recommended_action_category": "일반 관찰 유지"
+  },
+  {
+    "date": "2025-12-15 00:00:00",
+    "site": "추동(세천)",
+    "forecast_horizon": "t_plus_7",
+    "predicted_cells": 209.67007502505624,
+    "alert_probability": 0.01822835075827547,
+    "predicted_alert_label": 0,
+    "top_reasons": [
+      {
+        "rank": 1,
+        "feature": "turbidity"
+      },
+      {
+        "rank": 2,
+        "feature": "acc_temp_7d"
+      },
+      {
+        "rank": 3,
+        "feature": "sin_season"
+      }
+    ],
+    "scenario_type": "[🟢 정상] 안정 상태 시나리오",
+    "scenario_reason": "예측 세포수: 209.7 cells/mL (위험도: 1.8%). 주요 탐지 요인: ['turbidity', 'acc_temp_7d', 'sin_season']",
+    "recommended_action_category": "일반 관찰 유지"
+  }
+]
