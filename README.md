@@ -143,6 +143,35 @@ target_alert_next = next_log_cells >= log10(1000 + 1)
 
 분류에서는 Logistic Regression이 가장 높은 Recall을 보였다. 조류경보 문제에서는 실제 위험 상황을 놓치는 미탐이 운영상 큰 문제이므로 Recall이 특히 중요하다. 동시에 Precision도 0.94 이상으로 유지되어, 위험을 지나치게 많이 찍어서 Recall만 높인 모델은 아니라고 볼 수 있다.
 
+기본 회귀 후보 전체 결과는 다음과 같다. `best=Y`는 각 workflow 내부에서 선택된 모델을 의미한다.
+
+| workflow | model | rank | RMSE | MAE | R2 | MAE_cells | RMSE_cells | best |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| non_tree | ElasticNet | 1 | 0.6773 | 0.4932 | 0.8364 | 4,764.3 | 13,977.2 | Y |
+| non_tree | Ridge | 2 | 0.6786 | 0.4967 | 0.8358 | 4,974.0 | 14,442.5 |  |
+| non_tree | HuberRegressor | 3 | 0.7153 | 0.4446 | 0.8176 | 4,204.5 | 13,200.8 |  |
+| non_tree | SVR-RBF | 4 | 1.1172 | 1.0193 | 0.5550 | 7,626.5 | 17,347.6 |  |
+| non_tree | KNN Regressor | 5 | 1.1790 | 0.9188 | 0.5044 | 7,252.7 | 16,978.3 |  |
+| tree | CatBoost | 1 | 0.7200 | 0.5471 | 0.8152 | 5,272.2 | 14,413.6 | Y |
+| tree | RandomForest | 2 | 0.7318 | 0.5683 | 0.8091 | 5,777.9 | 14,834.6 |  |
+| tree | LightGBM | 3 | 0.7339 | 0.5510 | 0.8080 | 4,976.0 | 14,045.1 |  |
+| tree | XGBoost | 4 | 0.7385 | 0.5525 | 0.8056 | 5,096.8 | 14,158.1 |  |
+| tree | HistGradientBoosting | 5 | 0.7437 | 0.5534 | 0.8028 | 4,925.8 | 13,892.0 |  |
+
+기본 분류 후보 전체 결과는 다음과 같다. 조류경보 목적에서는 실제 위험을 놓치지 않는 것이 중요하므로 rank는 Recall 기준이다.
+
+| workflow | model | rank | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC | TN | FP | FN | TP | best |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| non_tree | Logistic Regression | 1 | 0.9544 | 0.9427 | 0.9599 | 0.9512 | 0.9924 | 0.9911 | 604 | 32 | 22 | 526 | Y |
+| non_tree | Calibrated Logistic Regression | 2 | 0.9316 | 0.9587 | 0.8905 | 0.9234 | 0.9910 | 0.9892 | 615 | 21 | 60 | 488 |  |
+| non_tree | KNN Classifier | 3 | 0.7965 | 0.9528 | 0.5894 | 0.7283 | 0.9222 | 0.9140 | 620 | 16 | 225 | 323 |  |
+| non_tree | SVC-RBF | 4 | 0.7458 | 0.8847 | 0.5182 | 0.6536 | 0.9258 | 0.8300 | 599 | 37 | 264 | 284 |  |
+| tree | RandomForest | 1 | 0.9493 | 0.9692 | 0.9197 | 0.9438 | 0.9941 | 0.9931 | 620 | 16 | 44 | 504 | Y |
+| tree | CatBoost | 2 | 0.9392 | 0.9542 | 0.9124 | 0.9328 | 0.9919 | 0.9904 | 612 | 24 | 48 | 500 |  |
+| tree | XGBoost | 3 | 0.9426 | 0.9781 | 0.8960 | 0.9352 | 0.9941 | 0.9933 | 625 | 11 | 57 | 491 |  |
+| tree | HistGradientBoosting | 4 | 0.9324 | 0.9756 | 0.8759 | 0.9231 | 0.9923 | 0.9910 | 624 | 12 | 68 | 480 |  |
+| tree | LightGBM | 5 | 0.9307 | 0.9755 | 0.8723 | 0.9210 | 0.9938 | 0.9929 | 624 | 12 | 70 | 478 |  |
+
 전체 후보별 결과는 아래 파일에 저장되어 있다.
 
 ```text
@@ -163,6 +192,26 @@ artifacts/all_model_results.csv
 분류는 tuned Logistic Regression이 Recall 0.9818을 달성했다. 기존 Logistic Regression보다 실제 위험을 놓치는 false negative가 줄었다. 다만 Precision은 약간 낮아졌으므로, 운영에서는 “미탐을 줄이는 대신 일부 과잉 경보를 감수한다”는 의사결정으로 설명해야 한다.
 
 딥러닝 후보로는 MLPRegressor와 MLPClassifier를 추가했다. MLP는 hidden layer를 통해 feature 간 비선형 조합을 학습할 수 있으나, 현재 데이터는 표본 수가 크지 않고 이미 도메인 기반 파생 feature가 많이 포함된 tabular 데이터다. 결과적으로 MLP는 최종 best가 되지 못했다. 따라서 본 프로젝트에서 딥러닝은 주 모델이 아니라, 복잡한 비선형 학습을 시도했지만 현재 데이터 조건에서는 규제 선형/robust 모델이 더 안정적이었다는 비교 근거로 해석한다.
+
+고도화 회귀 후보 전체 결과는 다음과 같다.
+
+| rank | experiment | workflow | model | RMSE | MAE | R2 | MAE_cells | RMSE_cells | selected params |
+| ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | huber_tuned | non_tree | HuberRegressor | 0.6691 | 0.4694 | 0.8403 | 5,312.7 | 15,376.0 | `epsilon=2.0`, `alpha=1e-05` |
+| 2 | elasticnet_tuned | non_tree | ElasticNet | 0.6777 | 0.4935 | 0.8363 | 4,759.2 | 13,944.1 | `alpha=0.001`, `l1_ratio=0.4` |
+| 3 | ridge_tuned | non_tree | Ridge | 0.6779 | 0.4923 | 0.8361 | 4,688.3 | 13,867.8 | `alpha=10.0` |
+| 4 | catboost_regressor_tuned | tree | CatBoostRegressor | 0.6991 | 0.5305 | 0.8257 | 5,252.0 | 14,372.9 | `depth=5`, `iterations=500`, `l2_leaf_reg=7`, `learning_rate=0.02` |
+| 5 | mlp_regressor_deep | non_tree | MLPRegressor | 0.7800 | 0.5939 | 0.7831 | 6,349.9 | 16,039.2 | `activation=tanh`, `hidden_layer_sizes=(64, 32)`, `alpha=0.01`, `learning_rate_init=0.003` |
+
+고도화 분류 후보 전체 결과는 다음과 같다. `tuned_th`는 Recall을 더 높이기 위해 탐색한 운영 threshold 후보 중 선택된 값이다.
+
+| rank | experiment | workflow | model | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC | tuned_th | tuned_precision | tuned_recall | selected params |
+| ---: | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | logistic_regression_tuned | non_tree | LogisticRegression | 0.9510 | 0.9181 | 0.9818 | 0.9489 | 0.9896 | 0.9872 | 0.15 | 0.8176 | 0.9982 | `C=0.03`, `penalty=l2`, `class_weight=balanced` |
+| 2 | catboost_classifier_tuned | tree | CatBoostClassifier | 0.9493 | 0.9420 | 0.9489 | 0.9455 | 0.9906 | 0.9889 | 0.10 | 0.8523 | 1.0000 | `depth=3`, `iterations=300`, `l2_leaf_reg=5`, `learning_rate=0.03` |
+| 3 | calibrated_logistic_tuned | non_tree | CalibratedClassifierCV | 0.9468 | 0.9450 | 0.9398 | 0.9424 | 0.9884 | 0.9815 | 0.10 | 0.8558 | 0.9964 | `C=0.03`, `penalty=l1`, `method=isotonic` |
+| 4 | random_forest_classifier_tuned | tree | RandomForestClassifier | 0.9468 | 0.9499 | 0.9343 | 0.9420 | 0.9930 | 0.9918 | 0.20 | 0.9013 | 1.0000 | `n_estimators=800`, `max_depth=6`, `max_features=log2`, `min_samples_leaf=3`, `class_weight=balanced` |
+| 5 | mlp_classifier_deep | non_tree | MLPClassifier | 0.9451 | 0.9600 | 0.9197 | 0.9394 | 0.9886 | 0.9863 | 0.10 | 0.8390 | 0.9891 | `activation=relu`, `hidden_layer_sizes=(128, 64, 32)`, `alpha=0.01`, `learning_rate_init=0.001` |
 
 고도화 결과는 아래 위치에 저장된다.
 
