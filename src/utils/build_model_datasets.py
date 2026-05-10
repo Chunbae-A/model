@@ -106,11 +106,19 @@ PASS_THROUGH_FEATURE_COLS = [
 
 
 def ensure_dirs() -> None:
+    """원본 보관 폴더와 모델 입력 폴더를 만든다."""
+
     for path in [RAW_DIR, TREE_DIR, NON_TREE_DIR]:
         path.mkdir(parents=True, exist_ok=True)
 
 
 def copy_raw_files() -> None:
+    """원본 CSV를 team-raw 영역에 보존한다.
+
+    이미 같은 파일이 있으면 덮어쓰지 않는다. 전처리 재현성을 위해 원본을
+    보존하는 목적이며, 모델 학습은 processed/model_input 아래 파일을 사용한다.
+    """
+
     for source in SOURCE_FILES.values():
         if source.exists():
             destination = RAW_DIR / source.name
@@ -119,6 +127,15 @@ def copy_raw_files() -> None:
 
 
 def add_model_columns(df: pd.DataFrame) -> pd.DataFrame:
+    """공통 모델 컬럼을 추가한다.
+
+    - `target_alert_next`: 다음 조사 시점 세포수가 1,000 cells/mL 이상인지 여부
+    - `split`: 날짜 기준 train/valid 구분
+
+    같은 날짜가 여러 loc/station 행으로 반복되므로 정렬 기준도 date, loc, station으로
+    고정해 결과 CSV가 매번 같은 순서로 생성되게 한다.
+    """
+
     output = df.copy()
     output[DATE_COLUMN] = pd.to_datetime(output[DATE_COLUMN])
     threshold_log10 = np.log10(ALERT_CELL_THRESHOLD + 1)
@@ -130,6 +147,8 @@ def add_model_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def make_time_split(date_series: pd.Series, valid_ratio: float = 0.2) -> pd.Series:
+    """날짜 순서를 기준으로 마지막 20% 날짜를 valid로 둔다."""
+
     unique_dates = pd.Series(pd.to_datetime(date_series).sort_values().unique())
     split_idx = int(len(unique_dates) * (1 - valid_ratio))
     valid_start = unique_dates.iloc[split_idx]
@@ -137,6 +156,12 @@ def make_time_split(date_series: pd.Series, valid_ratio: float = 0.2) -> pd.Seri
 
 
 def write_tree_dataset(source_df: pd.DataFrame) -> pd.DataFrame:
+    """트리 기반 모델용 입력 파일을 만든다.
+
+    트리/부스팅 계열은 feature의 단위 차이에 덜 민감하므로 수질·조류·수문
+    feature의 원 단위를 유지한다. 모델 target과 split만 추가한다.
+    """
+
     tree_df = add_model_columns(source_df)
     tree_df.to_csv(TREE_OUTPUT, index=False)
     return tree_df
@@ -149,6 +174,12 @@ def fit_transform_column_group(
     train_mask: pd.Series,
     suffix: str = "",
 ) -> tuple[pd.DataFrame, dict[str, dict[str, float]]]:
+    """지정된 컬럼 묶음에 scaler를 fit/transform하고 요약 통계를 반환한다.
+
+    scaler는 반드시 train 구간에만 fit한다. valid 데이터까지 함께 fit하면
+    미래 분포 정보를 전처리 단계에서 미리 본 셈이 되어 validation leakage가 된다.
+    """
+
     output = pd.DataFrame(index=df.index)
     fitted = scaler.fit(df.loc[train_mask, columns])
     values = fitted.transform(df[columns])
@@ -165,6 +196,13 @@ def fit_transform_column_group(
 
 
 def write_non_tree_dataset(source_df: pd.DataFrame) -> pd.DataFrame:
+    """비트리/딥러닝 모델용 스케일링 입력 파일을 만든다.
+
+    선형 모델, SVM, KNN, MLP는 feature scale에 민감하다. 그래서 station/location은
+    one-hot encoding하고, 강수/유입/방류처럼 극단값이 많은 변수는 RobustScaler,
+    물리적 범위가 비교적 제한된 변수는 MinMaxScaler를 적용한다.
+    """
+
     base = add_model_columns(source_df)
     train_mask = base["split"].eq("train")
 
@@ -187,6 +225,7 @@ def write_non_tree_dataset(source_df: pd.DataFrame) -> pd.DataFrame:
         scaling_summary.update(stats)
 
     log_existing = [col for col in LOG_THEN_ROBUST_COLS if col in base.columns]
+    # 세포수와 Chl-a는 0이 많고 큰 폭증 구간이 있어 먼저 log10(x + 1)로 압축한다.
     logged = np.log10(base[log_existing] + 1)
     logged.columns = [f"{col}_log10p1" for col in log_existing]
     transformed, stats = fit_transform_column_group(
@@ -226,13 +265,15 @@ def write_non_tree_dataset(source_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def write_readme(tree_df: pd.DataFrame, non_tree_df: pd.DataFrame) -> None:
+    """생성된 모델 입력 데이터의 README를 갱신한다."""
+
     readme = f"""# 모델 입력 데이터 구조
 
 이 폴더는 원본 데이터를 보존하면서 모델 종류별 최종 입력 CSV를 분리한다.
 
 ## 폴더
 
-- `raw/`: 원본 CSV 복사본. 재현성과 비교를 위한 보존 영역.
+- `team-raw/`: 전처리팀이 제공한 원본 CSV 보존 영역.
 - `processed/model_input/tree_gradient_boosting/`: LightGBM, XGBoost, HistGradientBoosting 같은 트리 기반 Gradient Boosting용 입력.
 - `processed/model_input/non_tree_scaled/`: 선형모델, SVM, KNN, 신경망, PCA 등 스케일에 민감한 모델용 입력.
 

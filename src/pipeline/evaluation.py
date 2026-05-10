@@ -22,6 +22,13 @@ from src.config import model_config as config
 
 
 def inverse_transform_cells(values: np.ndarray | pd.Series) -> np.ndarray:
+    """로그 target을 원래 세포수 단위로 되돌린다.
+
+    모델은 `next_log_cells`를 예측하지만, 보고서에서는 로그 오차뿐 아니라
+    실제 cells 단위 오차도 함께 보여줘야 한다. 이 함수는 그 변환을 한 곳에
+    모아 target 변환 방식이 바뀌어도 평가 코드 전체를 고치지 않게 한다.
+    """
+
     arr = np.asarray(values, dtype=float)
     if config.REGRESSION_TARGET_TRANSFORM == "log10_plus_1":
         return (10**arr) - 1
@@ -33,6 +40,8 @@ def inverse_transform_cells(values: np.ndarray | pd.Series) -> np.ndarray:
 
 
 def regression_metrics(y_true: pd.Series, y_pred: np.ndarray) -> dict[str, float | None]:
+    """회귀 성능을 로그 단위와 원 세포수 단위로 동시에 계산한다."""
+
     y_true_cells = inverse_transform_cells(y_true)
     y_pred_cells = np.maximum(inverse_transform_cells(y_pred), 0)
     return {
@@ -45,6 +54,13 @@ def regression_metrics(y_true: pd.Series, y_pred: np.ndarray) -> dict[str, float
 
 
 def classification_probability(model: Any, x: pd.DataFrame) -> np.ndarray:
+    """모델 종류와 상관없이 양성 class 확률을 반환한다.
+
+    대부분의 classifier는 `predict_proba`를 제공하지만, 일부 모델은
+    `decision_function`만 제공한다. 이 경우 sigmoid로 score를 확률처럼
+    변환해 threshold 평가가 가능하도록 맞춘다.
+    """
+
     if hasattr(model, "predict_proba"):
         return model.predict_proba(x)[:, 1]
     if hasattr(model, "decision_function"):
@@ -58,6 +74,13 @@ def classification_metrics(
     risk_probability: np.ndarray,
     threshold: float = config.PROBABILITY_THRESHOLD,
 ) -> dict[str, Any]:
+    """분류 성능 지표를 계산한다.
+
+    조류경보 문제에서는 미탐을 줄이는 것이 중요하므로 recall을 핵심 지표로
+    본다. 동시에 precision, f1, ROC-AUC, PR-AUC를 함께 저장해 경보를 너무
+    과도하게 남발하는 모델인지도 확인한다.
+    """
+
     y_pred = (risk_probability >= threshold).astype(int)
     result: dict[str, Any] = {
         "threshold": float(threshold),
@@ -78,6 +101,8 @@ def classification_metrics(
 
 
 def evaluate_threshold_candidates(y_true: pd.Series, risk_probability: np.ndarray) -> pd.DataFrame:
+    """여러 확률 threshold에서 precision/recall trade-off를 계산한다."""
+
     rows = []
     for threshold in config.THRESHOLD_CANDIDATES:
         y_pred = (risk_probability >= threshold).astype(int)
@@ -98,6 +123,13 @@ def evaluate_candidate_models(
     valid_df: pd.DataFrame,
     workflow_key: str,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """학습된 후보 모델 전체를 valid 데이터에서 평가한다.
+
+    best model만 저장하면 왜 그 모델을 골랐는지 설명하기 어렵다. 그래서 모든
+    후보의 성능표와 threshold 후보표를 함께 만들고, 이후 문서/시각화에서
+    전체 비교 근거로 사용한다.
+    """
+
     feature_columns = trained["feature_columns"]
     x_valid = valid_df[feature_columns]
     y_reg = valid_df[config.REGRESSION_TARGET]
@@ -126,6 +158,8 @@ def evaluate_candidate_models(
 
 
 def select_best_models(metrics_df: pd.DataFrame) -> dict[str, str]:
+    """프로젝트 목적에 맞는 기준으로 best 회귀/분류 모델을 선택한다."""
+
     reg_df = metrics_df[metrics_df["task"].eq("regression")].copy()
     cls_df = metrics_df[metrics_df["task"].eq("classification")].copy()
     best_reg = reg_df.sort_values(config.MODEL_SELECTION_METRIC_REGRESSION, ascending=True).iloc[0]["model_name"]

@@ -4,7 +4,7 @@
 
 ## 폴더
 
-- `raw/`: 원본 CSV 복사본. 재현성과 비교를 위한 보존 영역.
+- `team-raw/`: 전처리팀이 제공한 원본 CSV 보존 영역.
 - `processed/model_input/tree_gradient_boosting/`: LightGBM, XGBoost, HistGradientBoosting 같은 트리 기반 Gradient Boosting용 입력.
 - `processed/model_input/non_tree_scaled/`: 선형모델, SVM, KNN, 신경망, PCA 등 스케일에 민감한 모델용 입력.
 
@@ -37,4 +37,3 @@
 - 수온, pH, DO, 수위, 저수량 등 범위가 비교적 제한적인 컬럼: `MinMaxScaler`
 - 기상 컬럼: 전처리팀의 Robust/MinMax 의도를 유지하되, 비트리 파일에서는 train split 기준으로 다시 스케일링
 - scaler는 `split == train` 행에만 fit하고 valid 행에는 transform만 적용한다.
-

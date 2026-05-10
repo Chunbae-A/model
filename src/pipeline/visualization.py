@@ -14,6 +14,8 @@ FIGURE_DIR = config.ARTIFACT_DIR / "figures"
 
 
 def _save_current_figure(path: Path) -> Path:
+    """현재 matplotlib figure를 저장하고 메모리를 정리한다."""
+
     path.parent.mkdir(parents=True, exist_ok=True)
     plt.tight_layout()
     plt.savefig(path, dpi=180, bbox_inches="tight")
@@ -22,6 +24,8 @@ def _save_current_figure(path: Path) -> Path:
 
 
 def load_comparison_summary() -> pd.DataFrame:
+    """workflow 비교 요약 CSV를 읽는다."""
+
     path = config.ARTIFACT_DIR / "workflow_comparison_summary.csv"
     if not path.exists():
         raise FileNotFoundError(f"Comparison summary not found: {path}")
@@ -29,6 +33,8 @@ def load_comparison_summary() -> pd.DataFrame:
 
 
 def plot_regression_rmse(summary: pd.DataFrame) -> Path:
+    """회귀 best 모델의 RMSE를 workflow별 막대그래프로 저장한다."""
+
     reg = summary[summary["selected_for"].eq("regression")].copy()
     reg["label"] = reg["workflow"] + "\n" + reg["model_name"]
     plt.figure(figsize=(7.5, 4.5))
@@ -43,6 +49,8 @@ def plot_regression_rmse(summary: pd.DataFrame) -> Path:
 
 
 def plot_classification_metrics(summary: pd.DataFrame) -> Path:
+    """분류 best 모델의 precision/recall/f1을 비교한다."""
+
     cls = summary[summary["selected_for"].eq("classification")].copy()
     long = cls.melt(
         id_vars=["workflow", "model_name"],
@@ -63,6 +71,8 @@ def plot_classification_metrics(summary: pd.DataFrame) -> Path:
 
 
 def plot_confusion_matrices(summary: pd.DataFrame) -> Path:
+    """분류 best 모델의 confusion matrix를 시각화한다."""
+
     cls = summary[summary["selected_for"].eq("classification")].copy()
     fig, axes = plt.subplots(1, len(cls), figsize=(5.2 * len(cls), 4.5))
     if len(cls) == 1:
@@ -79,6 +89,8 @@ def plot_confusion_matrices(summary: pd.DataFrame) -> Path:
 
 
 def plot_prediction_scatter() -> Path:
+    """회귀 예측값과 실제값의 일치 정도를 산점도로 확인한다."""
+
     paths = {
         "tree": config.ARTIFACT_DIR
         / "tree_gradient_boosting/predictions/regression_predictions.csv",
@@ -113,6 +125,8 @@ def plot_prediction_scatter() -> Path:
 
 
 def plot_feature_importance_top10() -> Path:
+    """workflow별 상위 10개 feature importance를 비교한다."""
+
     paths = {
         "tree": config.ARTIFACT_DIR / "tree_gradient_boosting/explain/feature_importance.csv",
         "non_tree": config.ARTIFACT_DIR / "non_tree_scaled/explain/feature_importance.csv",
@@ -128,6 +142,8 @@ def plot_feature_importance_top10() -> Path:
 
 
 def create_all_visualizations() -> list[Path]:
+    """모델 비교용 주요 그림을 한 번에 생성한다."""
+
     summary = load_comparison_summary()
     return [
         plot_regression_rmse(summary),

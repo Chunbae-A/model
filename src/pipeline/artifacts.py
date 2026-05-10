@@ -14,6 +14,8 @@ from src.pipeline.evaluation import classification_probability, inverse_transfor
 
 
 def workflow_artifact_dirs(workflow: config.WorkflowConfig) -> dict[str, Path]:
+    """workflow별 산출물 저장 폴더를 표준화한다."""
+
     root = config.ARTIFACT_DIR / workflow.artifact_subdir
     return {
         "root": root,
@@ -29,6 +31,13 @@ def make_predictions(
     valid_df: pd.DataFrame,
     best_models: dict[str, str],
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """best 모델의 valid 예측 결과를 테이블로 만든다.
+
+    회귀는 로그 단위 예측값과 원래 cells 단위 예측값을 모두 저장한다.
+    분류는 확률과 threshold 0.5 기준 label을 함께 저장해, 이후 threshold
+    조정이나 운영 보고서 작성에 바로 사용할 수 있게 한다.
+    """
+
     feature_columns = trained["feature_columns"]
     ids = valid_df[config.ID_COLUMNS].reset_index(drop=True)
     x_valid = valid_df[feature_columns]
@@ -61,6 +70,13 @@ def get_feature_importance(
     valid_df: pd.DataFrame,
     best_models: dict[str, str],
 ) -> pd.DataFrame:
+    """best 회귀 모델의 feature importance를 계산한다.
+
+    tree 모델처럼 `feature_importances_`가 있으면 그 값을 사용하고, 선형/기타
+    모델처럼 native importance가 없으면 permutation importance로 대체한다.
+    그래서 workflow가 달라도 같은 형식의 설명 파일을 만들 수 있다.
+    """
+
     feature_columns = trained["feature_columns"]
     x_valid = valid_df[feature_columns]
     y_reg = valid_df[config.REGRESSION_TARGET]
@@ -87,6 +103,8 @@ def get_feature_importance(
 
 
 def _json_default(obj: Any) -> Any:
+    """numpy 타입을 JSON으로 저장하기 위한 변환 함수."""
+
     if isinstance(obj, (np.integer, np.floating)):
         return obj.item()
     if isinstance(obj, np.ndarray):
@@ -104,6 +122,8 @@ def save_artifacts(
     classification_predictions: pd.DataFrame,
     feature_importance: pd.DataFrame,
 ) -> dict[str, Path]:
+    """모델, 지표, 예측값, 중요도를 workflow 폴더에 저장한다."""
+
     dirs = workflow_artifact_dirs(workflow)
     for directory in dirs.values():
         directory.mkdir(parents=True, exist_ok=True)
