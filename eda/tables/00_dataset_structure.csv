@@ -1,0 +1,9 @@
+metric,value
+rows,6304
+columns,57
+unique_dates,546
+date_min,2016-04-04
+date_max,2025-12-15
+missing_total,0
+stations,"옥천(604), 세천(643), 장동(648), 청남대(888)"
+locations,"문의(0), 추동(1), 하남(2)"
