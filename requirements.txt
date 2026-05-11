@@ -24,7 +24,7 @@
 # shap                      0.51.0
 # tabulate                  0.10.0
 # xgboost                   3.2.0
-
+# python-dotenv              1.2.2
 
 numpy
 pandas
@@ -39,8 +39,6 @@ PyYAML
 requests
 tabulate
 openpyxl
-
-
 python-dotenv
 
 
