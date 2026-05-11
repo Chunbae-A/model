@@ -41,3 +41,6 @@ tabulate
 openpyxl
 
 
+python-dotenv
+
+
