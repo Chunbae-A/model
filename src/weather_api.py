@@ -42,6 +42,32 @@ AWS_TO_ASOS = {
     "604": "226",  # 옥천 -> 보은
 }
 
+WEATHER_OUTPUT_COLUMNS = [
+    "station",
+    "date",
+    "avg_temp",
+    "min_temp",
+    "max_temp",
+    "daily_rain",
+    "max_wind_gust",
+    "avg_wind",
+    "air_temp_7d_mean",
+    "hot_days_30c_7d",
+    "rain_3d_sum",
+    "rain_7d_sum",
+    "rain_14d_sum",
+    "wind_7d_mean",
+    "low_wind_days_2ms_7d",
+    "sunshine",
+    "solar_rad",
+    "cloud_cover",
+    "sunshine_7d_sum",
+    "solar_7d_sum",
+    "cloud_7d_mean",
+    "sin_season",
+    "cos_season",
+]
+
 OUT_DIR = os.path.join(str(ROOT), 'data')
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -254,6 +280,50 @@ def make_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def save_standard_weather_csv(weather_df: pd.DataFrame) -> str:
+    """Save the canonical WEATHER.csv consumed by build_clean_dataset.py."""
+    output = weather_df.copy()
+    output["station"] = output["station"].astype(str)
+    output["date"] = pd.to_datetime(output["date"])
+
+    frames = []
+    for aws_station, asos_station in AWS_TO_ASOS.items():
+        part = output[output["station"].eq(str(asos_station))].copy()
+        if part.empty:
+            continue
+        part["station"] = int(aws_station)
+        frames.append(part)
+
+    if not frames:
+        raise ValueError("No ASOS rows were available to build WEATHER.csv")
+
+    standard = pd.concat(frames, ignore_index=True, sort=False)
+    for col in WEATHER_OUTPUT_COLUMNS:
+        if col not in standard.columns:
+            standard[col] = np.nan
+
+    standard = standard[WEATHER_OUTPUT_COLUMNS].copy()
+    for col in [c for c in standard.columns if c != "date"]:
+        standard[col] = pd.to_numeric(standard[col], errors="coerce")
+
+    standard["daily_rain"] = standard["daily_rain"].fillna(0)
+    standard = standard.sort_values(["station", "date"]).reset_index(drop=True)
+    interp_cols = [
+        col for col in WEATHER_OUTPUT_COLUMNS if col not in {"station", "date", "daily_rain"}
+    ]
+    standard[interp_cols] = standard.groupby("station")[interp_cols].transform(
+        lambda g: g.interpolate(method="linear", limit_direction="both").ffill().bfill()
+    )
+    standard[interp_cols] = standard[interp_cols].fillna(0)
+    standard["station"] = standard["station"].astype(int)
+    standard["date"] = standard["date"].dt.strftime("%Y-%m-%d")
+
+    out_path = os.path.join(OUT_DIR, "WEATHER.csv")
+    standard.to_csv(out_path, index=False, encoding="utf-8-sig")
+    print("Saved canonical weather file:", out_path, "rows=", len(standard))
+    return out_path
+
+
 def merge_with_water(weather_df: pd.DataFrame, water_csv: str, aws_matches: list) -> pd.DataFrame:
     if not os.path.exists(water_csv):
         print("Water CSV not found, skipping merge:", water_csv)
@@ -435,6 +505,7 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
 
     out_final = os.path.join(OUT_DIR, 'combined_weather_water_10y.csv')
     merged_all.to_csv(out_final, index=False)
+    save_standard_weather_csv(merged_all)
     print('최종 파일 저장:', out_final)
 
 

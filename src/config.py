@@ -33,7 +33,7 @@ FORECAST_HORIZON = "t_plus_7"
 
 REGRESSION_TARGET = "next_log_cells"
 CLASSIFICATION_TARGET = "alert_encoded"
-CELL_COUNT_COLUMN = "유해남조류_세포수"
+CELL_COUNT_COLUMN = "cyano_cells"
 LOG_TARGET_COLUMN = "log_target"
 
 # User-confirmed location coding for Daecheong Dam samples.
@@ -41,13 +41,13 @@ LOG_TARGET_COLUMN = "log_target"
 # model can learn spatial differences between Munui, Hoenam, and Chudong.
 LOCATION_NAME_BY_CODE = {
     0: "문의",
-    1: "회남",
-    2: "추동",
+    1: "추동",
+    2: "회남",
 }
 LOCATION_FLOW_ORDER = {
     0: 0,  # 문의
-    1: 1,  # 회남
-    2: 2,  # 추동
+    1: 1,  # 추동
+    2: 2,  # 회남
 }
 
 # Drop and safety rules

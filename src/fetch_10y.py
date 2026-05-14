@@ -4,11 +4,6 @@ import time
 import requests
 import pandas as pd
 
-# Minimal fetch_kma_range implementation.
-# Strategy:
-# 1) If a local cached file exists under data/weather_{stn}_10y.csv, load slices from it.
-# 2) Otherwise, attempt Open-Meteo archive API as a fallback (works for many recent ranges).
-
 STATION_COORDS = {
     '133': {'lat': 36.351, 'lon': 127.385},  # Daejeon approximate
     '226': {'lat': 36.487, 'lon': 127.731},  # Boeun approx

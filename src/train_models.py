@@ -3,6 +3,10 @@ from __future__ import annotations
 import logging
 
 from pathlib import Path
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from src.loader import load_model_input
 from src.features import (

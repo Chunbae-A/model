@@ -254,18 +254,10 @@ python train.py
 
 ## 모델 비교 그래프
 
-모델별 성능 비교 그래프는 SVG만 생성합니다.
+<p align="center">
+  <img src="./artifacts/figures/model_comparison.svg" alt="Model Comparison" width="800"/>
+</p>
 
-```powershell
-cd model
-python plot_model_comparison.py
-```
-
-생성 파일:
-
-```text
-artifacts/figures/model_comparison.svg
-```
 
 ## 시나리오 분류 기준
 
@@ -384,3 +376,69 @@ output/run_*/llm_scenario_sample.csv
 | 관찰 강화 시나리오 | 명확한 발령 후보는 아니지만 확률 또는 일부 원인 지표가 상승한 상태입니다. 다음 정기 채수 전까지 주요 원인 지표를 일 단위로 확인하고, 위험이 커지면 관심 접근 또는 발령 후보 단계로 전환합니다. |
 
 LLM 브리핑 문장으로 만들 때는 위 대응 초안을 그대로 명령문처럼 쓰기보다, “권장”, “검토”, “사전 준비”, “관계기관 공유”처럼 의사결정 보조 표현으로 변환하는 것이 안전합니다.
+
+## 2026-05-14 자동화 구조 추가 
+
+이번 정리 이후 Python 실행 코드는 모두 `src/` 아래에 모았습니다. 루트에는 실행 스크립트, README, requirements만 남기는 구조입니다.
+
+```text
+model/
+  run_pipeline.ps1                 # Windows 자동 실행 진입점
+  run_pipeline.sh                  # Bash/WSL 자동 실행 진입점
+  requirements.txt
+  README.md
+
+  src/
+    pipeline.py                    # 전체 파이프라인 오케스트레이션
+    water_gate.py                  # 대청댐 수문 Selenium 수집 및 원본 CSV 병합
+    water_quality.py               # 대청호 조류/수질 Selenium 수집 및 원본 CSV 병합
+    weather_api.py                 # 기상 API 수집 및 WEATHER.csv 생성
+    fetch_10y.py                   # KMA ASOS 요청 helper
+    preprocess_data.py             # 수문+수질+기상 병합, 파생변수 생성, Final.csv 저장
+    train_models.py                # 모델 학습/평가/예측 산출
+    plot_metrics.py                # 모델 성능 비교 SVG 생성
+    config.py
+    features.py
+    models.py
+    persistence.py
+    explain_scenario.py
+    loader.py
+    model_config.py
+    llm_publisher.py
+```
+
+병합과 전처리는 `src/preprocess_data.py`에서 수행합니다. 이 파일이 `data/대청수문_10년치_통합데이터.csv`, `data/수질_10년치_통합데이터.csv`, `data/WEATHER.csv`를 읽어서 수문/수질/기상을 합치고, TSI, 적산수온, 종별 비율, 수문 정체 지수, lag/diff 변수, `log_target`, `next_log_cells`를 만든 뒤 아래 파일을 저장합니다.
+
+```text
+data/Final.csv
+data/daechung_final_clean_dataset.csv
+data/combined_weather_water_10y.csv
+data/processed/model_input/algae_model_input.csv
+```
+
+한 번에 실행하려면 Windows에서는 아래 명령을 사용합니다. PowerShell 실행 정책 때문에 `.\run_pipeline.ps1`이 막히는 경우가 있어 `-ExecutionPolicy Bypass` 형태를 권장합니다.
+
+```powershell
+cd C:\Users\User\Desktop\content\model
+powershell -ExecutionPolicy Bypass -File .\run_pipeline.ps1
+```
+
+기존 데이터로 전처리까지만 확인하려면:
+
+```powershell
+.\venv\Scripts\python.exe src\pipeline.py --skip-train
+```
+
+이미 만든 `Final.csv`와 모델 입력 파일로 학습만 다시 돌리려면:
+
+```powershell
+.\venv\Scripts\python.exe src\pipeline.py --skip-preprocess --skip-plot
+```
+
+새 데이터를 다시 받으려면:
+
+```powershell
+.\venv\Scripts\python.exe src\pipeline.py --fetch all
+```
+
+`--fetch water`, `--fetch weather`, `--fetch all`을 선택할 수 있습니다. `--fetch water`는 `src/water_gate.py`와 `src/water_quality.py`를 순서대로 실행합니다. 기상 API는 `.env` 또는 환경변수 `KMA_SERVICE_KEY`가 있으면 `src/weather_api.py`에서 갱신합니다.

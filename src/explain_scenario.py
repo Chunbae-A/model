@@ -22,6 +22,7 @@ from .config import (
 SCENARIO_CONTEXT_COLUMNS = [
     "location_name",
     "loc_flow_order",
+    "water_temp",
     "수온",
     "pH",
     "Chl_a",
@@ -37,15 +38,21 @@ SCENARIO_CONTEXT_COLUMNS = [
     "rain_14d_sum",
     "inflow_7d_sum",
     "outflow_7d_sum",
+    "outflow",
     "방류량",
     "residence_proxy",
     "nutrient_stagnation_index",
     "wind_7d_mean",
     "low_wind_days_2ms_7d",
+    "cyano_cells",
     "유해남조류_세포수",
+    "microcystis",
     "Microcystis",
+    "anabaena",
     "Anabaena",
+    "oscillatoria",
     "Oscillatoria",
+    "aphanizomenon",
     "Aphanizomenon",
     "previous_observed_cells",
     "previous_exceeded",
@@ -77,6 +84,59 @@ def _extract_2d_shap_values(shap_values: Any) -> np.ndarray:
     return values
 
 
+def _make_global_top_reasons_table(
+    trained: dict[str, Any],
+    input_df: pd.DataFrame,
+    best_prediction_df: pd.DataFrame,
+    top_n: int,
+) -> pd.DataFrame:
+    feature_columns = trained["feature_columns"]
+    x = input_df[feature_columns]
+    model = trained["classification_model"]
+
+    try:
+        probabilities = model.predict_proba(x)[:, 1]
+    except Exception:
+        probabilities = np.zeros(len(x))
+
+    scores = []
+    for feature in feature_columns:
+        feature_values = pd.to_numeric(x[feature], errors="coerce").fillna(0).to_numpy()
+        if np.nanstd(feature_values) == 0 or np.nanstd(probabilities) == 0:
+            score = 0.0
+        else:
+            score = float(abs(np.corrcoef(feature_values, probabilities)[0, 1]))
+            if np.isnan(score):
+                score = 0.0
+        scores.append(score)
+
+    top_indices = np.argsort(scores)[::-1][:top_n]
+    rows = []
+    for row_idx in range(len(x)):
+        row: dict[str, Any] = {}
+        for col in [DATE_COLUMN, SITE_COLUMN]:
+            if col in input_df.columns:
+                row[col] = input_df.iloc[row_idx][col]
+
+        row["predicted_cells"] = best_prediction_df.iloc[row_idx].get("predicted_cells")
+        row["alert_probability"] = best_prediction_df.iloc[row_idx].get("alert_probability")
+        row["predicted_alert_label"] = best_prediction_df.iloc[row_idx].get("predicted_alert_label")
+        row["predicted_alert_stage"] = best_prediction_df.iloc[row_idx].get("predicted_alert_stage")
+
+        for col in SCENARIO_CONTEXT_COLUMNS:
+            if col in input_df.columns:
+                row[col] = input_df.iloc[row_idx].get(col)
+            elif col in best_prediction_df.columns:
+                row[col] = best_prediction_df.iloc[row_idx].get(col)
+
+        for rank, feature_idx in enumerate(top_indices, start=1):
+            row[f"shap_top_{rank}"] = feature_columns[feature_idx]
+            row[f"shap_top_{rank}_value"] = scores[feature_idx]
+
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def make_shap_top_reasons_table(
     trained: dict[str, Any],
     input_df: pd.DataFrame,
@@ -91,11 +151,14 @@ def make_shap_top_reasons_table(
     feature_columns = trained["feature_columns"]
     x = input_df[feature_columns]
     model = trained["classification_model"]
-    explainer = shap.Explainer(model, x)
     try:
-        shap_values = explainer(x, check_additivity=False)
-    except TypeError:
-        shap_values = explainer(x)
+        explainer = shap.Explainer(model, x)
+        try:
+            shap_values = explainer(x, check_additivity=False)
+        except TypeError:
+            shap_values = explainer(x)
+    except Exception:
+        return _make_global_top_reasons_table(trained, input_df, best_prediction_df, top_n)
     values_2d = _extract_2d_shap_values(shap_values)
 
     rows = []
@@ -188,8 +251,8 @@ def alert_stage_from_cells(cells: Any) -> str:
 def add_scenario_flags(df: pd.DataFrame) -> pd.DataFrame:
     output = df.copy()
 
-    rain = _max_across(output, ["rain_3d_sum", "rain_7d_sum_x", "rain_7d_sum_y", "rain_14d_sum"])
-    temp = _max_across(output, ["수온", "avg_temp", "air_temp_7d_mean", "max_temp"])
+    rain = _max_across(output, ["rain_3d_sum", "rain_7d_sum", "rain_7d_sum_x", "rain_7d_sum_y", "rain_14d_sum"])
+    temp = _max_across(output, ["water_temp", "수온", "avg_temp", "air_temp_7d_mean", "max_temp"])
     light = _max_across(output, ["sunshine_7d_sum", "solar_7d_sum"])
     hoenam = pd.to_numeric(output.get("hoenam_cells_same_date", 0), errors="coerce").fillna(0)
     month = (
@@ -209,7 +272,10 @@ def add_scenario_flags(df: pd.DataFrame) -> pd.DataFrame:
 
     growth_ratio = pd.to_numeric(output.get("cell_growth_ratio_since_previous", 0), errors="coerce").fillna(0)
     growth_delta = pd.to_numeric(output.get("cell_change_since_previous", 0), errors="coerce").fillna(0)
-    current_cells = pd.to_numeric(output.get("유해남조류_세포수", 0), errors="coerce").fillna(0)
+    current_cells = pd.to_numeric(
+        output["cyano_cells"] if "cyano_cells" in output.columns else output.get("유해남조류_세포수", 0),
+        errors="coerce",
+    ).fillna(0)
     predicted_cells = pd.to_numeric(output.get("predicted_cells", 0), errors="coerce").fillna(0)
 
     output["current_alert_stage"] = current_cells.map(alert_stage_from_cells)
@@ -237,7 +303,7 @@ def classify_scenario(row: pd.Series) -> tuple[str, str, str]:
 
     probability = _as_float(row.get("alert_probability"), 0.0)
     predicted_cells = _as_float(row.get("predicted_cells"), 0.0)
-    current_cells = _as_float(row.get("유해남조류_세포수"), 0.0)
+    current_cells = _as_float(row.get("cyano_cells", row.get("유해남조류_세포수")), 0.0)
     previous_cells = _as_float(row.get("previous_observed_cells"), 0.0)
 
     previous_watch = previous_cells >= WATCH_CELL_THRESHOLD
@@ -331,6 +397,7 @@ def build_scenario_results(shap_top_reasons_df: pd.DataFrame) -> pd.DataFrame:
         "predicted_alert_label",
         "current_alert_stage",
         "predicted_alert_stage",
+        "cyano_cells",
         "유해남조류_세포수",
         "previous_observed_cells",
         "previous_exceeded",
