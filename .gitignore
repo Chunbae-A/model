@@ -21,6 +21,7 @@ Thumbs.db
 # Data and outputs (do not commit large files)
 data/
 water_data/
+model/water_data/
 model/data/
 output/
 artifacts/
