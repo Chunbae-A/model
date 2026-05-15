@@ -13,6 +13,7 @@ DATA_DIR = ROOT / "data"
 DAM_RAW = DATA_DIR / "대청수문_10년치_통합데이터.csv"
 WATER_RAW = DATA_DIR / "수질_10년치_통합데이터.csv"
 WEATHER = DATA_DIR / "WEATHER.csv"
+ALGAE_FINAL_CANONICAL = DATA_DIR / "ALGAE_FINAL_v2.csv"
 DAM_RAW_CANDIDATES = [
     DAM_RAW,
     DATA_DIR / "daechung_dam_10y.csv",
@@ -44,6 +45,14 @@ LOC_TO_STATION = {
     0: 888,  # 문의 -> 청남대
     1: 643,  # 추동 -> 세천
     2: 604,  # 회남 -> 옥천
+}
+
+
+SPECIES_COLUMN_RENAMES = {
+    "Microcystis": "microcystis",
+    "Anabaena": "anabaena",
+    "Oscillatoria": "oscillatoria",
+    "Aphanizomenon": "aphanizomenon",
 }
 
 
@@ -142,6 +151,40 @@ def to_number(series: pd.Series) -> pd.Series:
         .str.strip()
     )
     return pd.to_numeric(cleaned, errors="coerce")
+
+
+def loc_encoded_from_station_name(series: pd.Series) -> pd.Series:
+    station_names = series.astype("string")
+    loc_encoded = pd.Series(pd.NA, index=series.index, dtype="Int64")
+    loc_encoded = loc_encoded.mask(station_names.str.contains("\ubb38\uc758", na=False), 0)
+    loc_encoded = loc_encoded.mask(station_names.str.contains("\ucd94\ub3d9", na=False), 1)
+    loc_encoded = loc_encoded.mask(station_names.str.contains("\ud68c\ub0a8", na=False), 2)
+    return loc_encoded
+
+
+def build_final_from_canonical(path: Path = ALGAE_FINAL_CANONICAL) -> pd.DataFrame:
+    final = pd.read_csv(path, encoding="utf-8-sig")
+    final = final.rename(columns=SPECIES_COLUMN_RENAMES)
+
+    if "station" not in final.columns:
+        raise KeyError(f"Canonical algae file is missing station column: {path}")
+
+    final["loc_encoded"] = loc_encoded_from_station_name(final["station"])
+    missing_locations = int(final["loc_encoded"].isna().sum())
+    if missing_locations:
+        raise ValueError(f"Could not map station names to loc_encoded for {missing_locations} rows in {path}")
+
+    final["station"] = final["loc_encoded"].map(LOC_TO_STATION)
+    final = final.sort_values(["loc_encoded", "date"]).reset_index(drop=True)
+    final["date"] = pd.to_datetime(final["date"]).dt.strftime("%Y-%m-%d")
+
+    numeric_cols = [c for c in final.columns if c != "date"]
+    final[numeric_cols] = final[numeric_cols].apply(pd.to_numeric, errors="coerce")
+    final[numeric_cols] = final[numeric_cols].fillna(0)
+    final["station"] = final["station"].astype(int)
+    final["loc_encoded"] = final["loc_encoded"].astype(int)
+    final["alert_encoded"] = final["alert_encoded"].astype(int)
+    return final
 
 
 def read_raw_csv(path: Path, *, min_columns: int, label: str) -> pd.DataFrame:
@@ -378,11 +421,19 @@ def finalize_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
-    ensure_local_source_csvs()
-    dam = parse_dam()
-    water = parse_water()
-    water_hydro = merge_water_hydro(water, dam)
-    final = finalize_columns(merge_weather(water_hydro))
+    if ALGAE_FINAL_CANONICAL.exists():
+        final = build_final_from_canonical()
+        water_hydro = final.copy()
+        dam = pd.DataFrame()
+        water = final.copy()
+        source_message = f"canonical source: {ALGAE_FINAL_CANONICAL}"
+    else:
+        ensure_local_source_csvs()
+        dam = parse_dam()
+        water = parse_water()
+        water_hydro = merge_water_hydro(water, dam)
+        final = finalize_columns(merge_weather(water_hydro))
+        source_message = "rebuilt from raw source files"
 
     WATER_HYDRO_OUT.parent.mkdir(parents=True, exist_ok=True)
     MODEL_INPUT_OUT.parent.mkdir(parents=True, exist_ok=True)
@@ -397,6 +448,7 @@ def main() -> None:
         col for col in final.select_dtypes(include=["object", "str"]).columns if col != "date"
     ]
     print("--- build complete ---")
+    print(source_message)
     print(f"dam rows: {len(dam):,}")
     print(f"water rows after 2016-04-01: {len(water):,}")
     print(f"water+hydro rows: {len(water_hydro):,}")

@@ -16,6 +16,7 @@ DATA_DIR = ROOT / "data"
 sys.path.insert(0, str(ROOT))
 
 from src.preprocess_data import (
+    ALGAE_FINAL_CANONICAL,
     DAM_RAW_CANDIDATES,
     WATER_RAW_CANDIDATES,
     WEATHER_CANDIDATES,
@@ -59,6 +60,10 @@ def ensure_inputs(paths: list[Path], hint: str) -> None:
 
 
 def ensure_source_inputs() -> None:
+    if ALGAE_FINAL_CANONICAL.exists():
+        log(f"using canonical algae dataset: {ALGAE_FINAL_CANONICAL}")
+        return
+
     ensure_local_source_csvs()
     find_data_file(DAM_RAW_CANDIDATES, label="dam operation")
     find_data_file(WATER_RAW_CANDIDATES, label="water quality")
