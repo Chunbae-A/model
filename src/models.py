@@ -13,7 +13,8 @@ from sklearn.ensemble import (
     StackingClassifier,
     StackingRegressor,
 )
-from sklearn.linear_model import LogisticRegression, RidgeCV
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import HuberRegressor, LogisticRegression, RidgeCV
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
@@ -27,6 +28,8 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import RobustScaler, StandardScaler
 
 from .config import (
     MIN_PRECISION_FOR_THRESHOLD,
@@ -38,10 +41,14 @@ from .model_config import get_enabled_models, get_model_params, load_model_confi
 
 
 def _require_package(import_error: Exception, package_name: str, model_name: str) -> None:
+    detail = ""
+    if package_name == "lightgbm" and "libomp.dylib" in str(import_error):
+        detail = " On macOS, install the OpenMP runtime with `brew install libomp`."
+
     raise ImportError(
         f"'{model_name}' is enabled in config/model_config.yaml, but package '{package_name}' "
         "is not installed or cannot be imported. Install the dependency or remove the model "
-        "from enabled_models."
+        f"from enabled_models.{detail}"
     ) from import_error
 
 
@@ -58,6 +65,21 @@ def _build_single_regression_model(
 
     if model_name == "random_forest":
         return RandomForestRegressor(**params)
+
+    if model_name == "huber_regressor":
+        params.pop("random_state", None)
+        scaler_name = params.pop("scaler", "standard")
+        if scaler_name == "robust":
+            scaler = RobustScaler()
+        elif scaler_name == "standard":
+            scaler = StandardScaler()
+        else:
+            raise ValueError(f"Unsupported huber_regressor scaler: {scaler_name}")
+        return make_pipeline(
+            SimpleImputer(strategy="median"),
+            scaler,
+            HuberRegressor(**params),
+        )
 
     if model_name == "lightgbm":
         try:

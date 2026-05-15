@@ -1,44 +1,14 @@
-# python --version ==3.12.3
-
-# catboost                  1.2.10
-# joblib                    1.5.3
-# jupyter                   1.1.1
-# jupyter_client            8.8.0
-# jupyter-console           6.6.3
-# jupyter_core              5.9.1
-# jupyter-events            0.12.1
-# jupyter-lsp               2.3.1
-# jupyter_server            2.18.0
-# jupyter_server_terminals  0.5.4
-# jupyterlab                4.5.7
-# jupyterlab_pygments       0.3.0
-# jupyterlab_server         2.28.0
-# jupyterlab_widgets        3.0.16
-# lightgbm                  4.6.0
-# numpy                     2.4.4
-# openpyxl                  3.1.5
-# pandas                    3.0.2
-# PyYAML                    6.0.3
-# requests                  2.33.1
-# scikit-learn              1.8.0
-# shap                      0.51.0
-# tabulate                  0.10.0
-# xgboost                   3.2.0
-# python-dotenv              1.2.2
-
-numpy
-pandas
-scikit-learn
-joblib
-jupyter
-lightgbm
-xgboost
-shap
-catboost
-PyYAML
-requests
-tabulate
-openpyxl
-python-dotenv
-
-
+catboost==1.2.10          # 후보 모델 중 CatBoost 학습용
+joblib==1.5.3             # 학습된 모델/파이프라인 저장 및 로드용
+lightgbm==4.6.0           # 후보 모델 중 LightGBM 학습용
+numpy==2.4.4              # 수치 계산, 로그 변환, 삼각함수 계절 변수 생성용
+openpyxl==3.1.5           # xlsx 원천 데이터 읽기용
+pandas==3.0.2             # CSV/Excel 로드, 전처리, 병합, 파생변수 생성용
+python-dotenv==1.2.2      # .env의 KMA API 키 등 환경변수 로드용
+PyYAML==6.0.3             # config/model_config.yaml 모델 설정 읽기용
+requests==2.33.1          # KMA/API 데이터 요청용
+scikit-learn==1.8.0       # RandomForest, Stacking, 평가 지표, 전처리 기반 모델링용
+selenium==4.44.0          # 수문/수질 웹 데이터 크롤링 자동화용
+shap==0.51.0              # 모델 설명, feature importance/SHAP reason 생성용
+tabulate==0.10.0          # 결과 테이블을 보기 좋게 출력하기 위한 용도
+xgboost==3.2.0            # 후보 모델 중 XGBoost 학습용

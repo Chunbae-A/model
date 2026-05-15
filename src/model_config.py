@@ -7,11 +7,14 @@ from typing import Any
 import yaml
 
 
-DEFAULT_MODEL_CONFIG_PATH = Path("config/model_config.yaml")
+ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_MODEL_CONFIG_PATH = ROOT / "config" / "model_config.yaml"
 
 
 def load_model_config(config_path: Path | str = DEFAULT_MODEL_CONFIG_PATH) -> dict[str, Any]:
     path = Path(config_path)
+    if not path.is_absolute():
+        path = ROOT / path
     if not path.exists():
         raise FileNotFoundError(f"Model config YAML not found: {path}")
 
