@@ -60,7 +60,8 @@ def ensure_inputs(paths: list[Path], hint: str) -> None:
 
 
 def ensure_source_inputs() -> None:
-    if ALGAE_FINAL_CANONICAL.exists():
+    use_canonical = os.environ.get("USE_CANONICAL_FINAL", "1").lower() not in {"0", "false", "no"}
+    if use_canonical and ALGAE_FINAL_CANONICAL.exists():
         log(f"using canonical algae dataset: {ALGAE_FINAL_CANONICAL}")
         return
 
@@ -174,6 +175,9 @@ def main() -> None:
         fetch_water_sources()
     if args.fetch in {"weather", "all"}:
         fetch_weather_sources(start, end)
+
+    if args.fetch in {"water", "weather", "all"}:
+        os.environ["USE_CANONICAL_FINAL"] = "0"
 
     if not args.skip_preprocess:
         preprocess()

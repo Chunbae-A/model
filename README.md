@@ -529,3 +529,37 @@ $env:KMA_FETCH_AWS="1"
 python src\pipeline.py --fetch weather
 ```
 
+## ALGAE_FINAL_v2 기준 재생성 / API 원천 재생성
+
+`data/ALGAE_FINAL_v2.csv`는 수동 전처리까지 끝난 기준 최종 데이터입니다. 기본 실행은 이 파일이 있으면 이 파일을 기준으로 `Final.csv`, `daechung_final_clean_dataset.csv`, `combined_weather_water_10y.csv`, `processed/model_input/algae_model_input.csv`를 다시 만듭니다.
+
+```bash
+cd <repo-folder>/model
+bash run_pipeline.sh --skip-train
+```
+
+API와 크롤링 원천 데이터부터 다시 받아서 같은 전처리 규칙으로 재생성하려면 `--fetch` 옵션을 사용합니다. KMA 기상 API 키가 있으면 AWS 상세 기상값도 함께 가져옵니다.
+
+```bash
+cd <repo-folder>/model
+export KMA_SERVICE_KEY="your-kma-api-key"
+export KMA_FETCH_AWS=1
+bash run_pipeline.sh --fetch all --skip-train
+```
+
+기상 데이터만 다시 만들 때는 아래처럼 실행합니다.
+
+```bash
+export KMA_SERVICE_KEY="your-kma-api-key"
+export KMA_FETCH_AWS=1
+bash run_pipeline.sh --fetch weather --skip-train
+```
+
+macOS에서 LightGBM 실행 중 `libomp.dylib` 오류가 나면 OpenMP 런타임이 없는 상태입니다.
+
+```bash
+brew install libomp
+```
+
+`--fetch water`, `--fetch weather`, `--fetch all`을 쓰면 기준 파일 복사 모드가 아니라 원천 데이터 재생성 모드로 동작합니다. 실행 후 `Final.csv`는 `date + loc_encoded` 중복, 결측치, object 컬럼 검사를 통과해야 합니다.
+

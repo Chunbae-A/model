@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 import unicodedata
 
@@ -212,9 +213,9 @@ def parse_dam(path: Path | None = None) -> pd.DataFrame:
                 "water_level": to_number(raw[1]),
                 "storage_vol": to_number(raw[2]),
                 "storage_rate": to_number(raw[3]),
-                "dam_rain": to_number(raw[4]),
-                "inflow": to_number(raw[5]),
-                "outflow": to_number(raw[6]),
+                "inflow": to_number(raw[4]),
+                "outflow": to_number(raw[5]),
+                "dam_rain": to_number(raw[6]),
             }
         )
         chunk = chunk.dropna(subset=["date"])
@@ -288,15 +289,7 @@ def parse_water(path: Path | None = None) -> pd.DataFrame:
     for col in ["microcystis", "anabaena", "oscillatoria", "aphanizomenon"]:
         water[f"{col}_ratio"] = water[col] / (water["cyano_cells"] + 1)
 
-    water["alert_encoded"] = np.select(
-        [
-            water["cyano_cells"].ge(1_000_000),
-            water["cyano_cells"].ge(10_000),
-            water["cyano_cells"].ge(1_000),
-        ],
-        [3, 2, 1],
-        default=0,
-    )
+    water["alert_encoded"] = water["cyano_cells"].ge(1_000).astype(int)
     water["log_target"] = np.log10(water["cyano_cells"] + 1)
     water["next_log_cells"] = water.groupby("loc_encoded")["log_target"].shift(-1)
 
@@ -378,11 +371,9 @@ def finalize_columns(df: pd.DataFrame) -> pd.DataFrame:
         "water_level",
         "storage_vol",
         "storage_rate",
-        "dam_rain",
         "inflow",
         "outflow",
         "level_change_7d",
-        "dam_rain_7d_sum",
         "inflow_7d_sum",
         "outflow_7d_sum",
         "residence_proxy",
@@ -421,7 +412,8 @@ def finalize_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
-    if ALGAE_FINAL_CANONICAL.exists():
+    use_canonical = os.environ.get("USE_CANONICAL_FINAL", "1").lower() not in {"0", "false", "no"}
+    if use_canonical and ALGAE_FINAL_CANONICAL.exists():
         final = build_final_from_canonical()
         water_hydro = final.copy()
         dam = pd.DataFrame()

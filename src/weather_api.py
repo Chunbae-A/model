@@ -71,6 +71,41 @@ WEATHER_OUTPUT_COLUMNS = [
     "cos_season",
 ]
 
+ROBUST_SCALE_COLUMNS = [
+    "daily_rain",
+    "rain_3d_sum",
+    "rain_7d_sum",
+    "rain_14d_sum",
+]
+
+MINMAX_SCALE_COLUMNS = [
+    "avg_temp",
+    "min_temp",
+    "max_temp",
+    "max_wind_gust",
+    "avg_wind",
+    "air_temp_7d_mean",
+    "wind_7d_mean",
+    "sunshine",
+    "solar_rad",
+    "cloud_cover",
+    "sunshine_7d_sum",
+    "solar_7d_sum",
+    "cloud_7d_mean",
+]
+
+WEATHER_COLUMN_CANDIDATES = {
+    "avg_temp": ["avg_temp", "avg_temp_x", "avg_temp_y", "평균기온(°C)", "평균기온", "TAVG"],
+    "min_temp": ["min_temp", "min_temp_x", "min_temp_y", "최저기온(°C)", "최저기온", "TMIN"],
+    "max_temp": ["max_temp", "max_temp_x", "max_temp_y", "최고기온(°C)", "최고기온", "TMAX"],
+    "daily_rain": ["daily_rain", "daily_rain_x", "daily_rain_y", "일강수량(mm)", "일강수량", "강수량", "RN"],
+    "max_wind_gust": ["max_wind_gust", "max_wind_gust_x", "max_wind_gust_y", "최대 순간 풍속(m/s)", "최대풍속", "WS_MAX"],
+    "avg_wind": ["avg_wind", "avg_wind_x", "avg_wind_y", "평균 풍속(m/s)", "평균풍속", "WS_AVG"],
+    "sunshine": ["sunshine", "sunshine_x", "sunshine_y", "합계 일조 시간(hr)", "합계 일조시간(hr)", "합계 일조 시간", "일조시간"],
+    "solar_rad": ["solar_rad", "solar_rad_x", "solar_rad_y", "합계 일사(MJ/m2)", "합계 일사량(MJ/m2)", "합계 일사", "일사량"],
+    "cloud_cover": ["cloud_cover", "cloud_cover_x", "cloud_cover_y", "평균 전운량(1/10)", "평균 전운량", "전운량"],
+}
+
 OUT_DIR = os.path.join(str(ROOT), 'data')
 os.makedirs(OUT_DIR, exist_ok=True)
 
@@ -255,39 +290,127 @@ def fetch_aws_range(start_dt: date, end_dt: date, station: str, auth_key: str) -
 def make_features(df: pd.DataFrame) -> pd.DataFrame:
     # Expect df contains at least 'date', 'station' and some numeric weather cols
     df = df.copy()
-    # common column normalization
-    # Some KMA outputs may have column names like 'avg_temp' or 'TAVG' etc. Keep flexible.
-    # Ensure numeric columns exist or create placeholders
-    if 'avg_temp' not in df.columns and 'TAVG' in df.columns:
-        df['avg_temp'] = pd.to_numeric(df['TAVG'], errors='coerce')
-    for col in ['avg_temp', 'min_temp', 'max_temp', 'daily_rain', 'avg_wind', 'max_wind_gust']:
-        if col not in df.columns:
-            df[col] = np.nan
-        else:
-            df[col] = pd.to_numeric(df[col], errors='coerce')
-
-    # Ensure date
+    normalize_weather_columns(df)
     df['date'] = pd.to_datetime(df['date'])
     df = df.sort_values(['station', 'date']).reset_index(drop=True)
-    gb = df.groupby('station')
+    df = add_weather_features(df)
+    return df
 
-    df['air_temp_7d_mean'] = gb['avg_temp'].transform(lambda x: x.rolling(7, min_periods=1).mean())
-    df['rain_7d_sum'] = gb['daily_rain'].transform(lambda x: x.rolling(7, min_periods=1).sum())
-    df['wind_7d_mean'] = gb['avg_wind'].transform(lambda x: x.rolling(7, min_periods=1).mean())
 
-    # seasonal sin/cos
-    df['doy'] = df['date'].dt.dayofyear
-    df['sin_season'] = np.sin(2 * np.pi * df['doy'] / 365.25)
-    df['cos_season'] = np.cos(2 * np.pi * df['doy'] / 365.25)
+def normalize_weather_columns(df: pd.DataFrame) -> pd.DataFrame:
+    for target, candidates in WEATHER_COLUMN_CANDIDATES.items():
+        values = None
+        for candidate in candidates:
+            if candidate not in df.columns:
+                continue
+            candidate_values = pd.to_numeric(df[candidate], errors="coerce")
+            values = candidate_values if values is None else values.fillna(candidate_values)
+        df[target] = values if values is not None else np.nan
 
+    if "station" not in df.columns and "지점" in df.columns:
+        df["station"] = df["지점"]
+    if "date" not in df.columns:
+        if "일시" in df.columns:
+            df["date"] = df["일시"]
+        elif "TM" in df.columns:
+            df["date"] = df["TM"]
+
+    df["station"] = df["station"].astype(str)
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    return df
+
+
+def add_weather_features(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    df = df.dropna(subset=["station", "date"]).sort_values(["station", "date"]).reset_index(drop=True)
+
+    gb = df.groupby("station", sort=False)
+    df["air_temp_7d_mean"] = gb["avg_temp"].transform(lambda x: x.rolling(window=7, min_periods=1).mean())
+    df["hot_days_30c_7d"] = gb["max_temp"].transform(lambda x: (x >= 30).rolling(window=7, min_periods=1).sum())
+    df["rain_3d_sum"] = gb["daily_rain"].transform(lambda x: x.rolling(window=3, min_periods=1).sum())
+    df["rain_7d_sum"] = gb["daily_rain"].transform(lambda x: x.rolling(window=7, min_periods=1).sum())
+    df["rain_14d_sum"] = gb["daily_rain"].transform(lambda x: x.rolling(window=14, min_periods=1).sum())
+    df["wind_7d_mean"] = gb["avg_wind"].transform(lambda x: x.rolling(window=7, min_periods=1).mean())
+    df["low_wind_days_2ms_7d"] = gb["avg_wind"].transform(lambda x: (x <= 2.0).rolling(window=7, min_periods=1).sum())
+    df["sunshine_7d_sum"] = gb["sunshine"].transform(lambda x: x.rolling(window=7, min_periods=1).sum())
+    df["solar_7d_sum"] = gb["solar_rad"].transform(lambda x: x.rolling(window=7, min_periods=1).sum())
+    df["cloud_7d_mean"] = gb["cloud_cover"].transform(lambda x: x.rolling(window=7, min_periods=1).mean())
+
+    doy = df["date"].dt.dayofyear
+    df["sin_season"] = np.sin(2 * np.pi * doy / 365.25)
+    df["cos_season"] = np.cos(2 * np.pi * doy / 365.25)
+    return df
+
+
+def complete_weather_calendar(df: pd.DataFrame, start_dt: date | None = None, end_dt: date | None = None) -> pd.DataFrame:
+    frames = []
+    df = df.copy()
+    df["date"] = pd.to_datetime(df["date"], errors="coerce")
+    for station, group in df.groupby("station", sort=False):
+        group = group.sort_values("date").drop_duplicates("date", keep="first")
+        start = pd.Timestamp(start_dt) if start_dt else group["date"].min()
+        end = pd.Timestamp(end_dt) if end_dt else group["date"].max()
+        idx = pd.date_range(start, end, freq="D")
+        completed = group.set_index("date").reindex(idx).rename_axis("date").reset_index()
+        completed["station"] = station
+        frames.append(completed)
+    return pd.concat(frames, ignore_index=True, sort=False) if frames else df
+
+
+def impute_weather_values(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy().sort_values(["station", "date"]).reset_index(drop=True)
+    df["daily_rain"] = pd.to_numeric(df["daily_rain"], errors="coerce").fillna(0)
+
+    spatial_cols = ["sunshine", "solar_rad", "cloud_cover"]
+    for col in spatial_cols:
+        daily_mean = df.groupby("date")[col].transform("mean")
+        df[col] = df[col].fillna(daily_mean)
+
+    interp_cols = [
+        "avg_temp",
+        "min_temp",
+        "max_temp",
+        "max_wind_gust",
+        "avg_wind",
+        "sunshine",
+        "solar_rad",
+        "cloud_cover",
+    ]
+    df[interp_cols] = df.groupby("station")[interp_cols].transform(
+        lambda g: g.interpolate(method="linear", limit_direction="both").ffill().bfill()
+    )
+    df[interp_cols] = df[interp_cols].fillna(0)
+    return df
+
+
+def scale_weather_values(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    for col in ROBUST_SCALE_COLUMNS:
+        if col not in df.columns:
+            continue
+        values = pd.to_numeric(df[col], errors="coerce")
+        q1 = values.quantile(0.25)
+        q3 = values.quantile(0.75)
+        iqr = q3 - q1
+        median = values.median()
+        df[col] = 0.0 if pd.isna(iqr) or iqr == 0 else (values - median) / iqr
+
+    for col in MINMAX_SCALE_COLUMNS:
+        if col not in df.columns:
+            continue
+        values = pd.to_numeric(df[col], errors="coerce")
+        min_value = values.min()
+        max_value = values.max()
+        span = max_value - min_value
+        df[col] = 0.0 if pd.isna(span) or span == 0 else (values - min_value) / span
     return df
 
 
 def save_standard_weather_csv(weather_df: pd.DataFrame) -> str:
     """Save the canonical WEATHER.csv consumed by build_clean_dataset.py."""
     output = weather_df.copy()
-    output["station"] = output["station"].astype(str)
-    output["date"] = pd.to_datetime(output["date"])
+    normalize_weather_columns(output)
 
     frames = []
     for aws_station, asos_station in AWS_TO_ASOS.items():
@@ -297,27 +420,26 @@ def save_standard_weather_csv(weather_df: pd.DataFrame) -> str:
         part["station"] = int(aws_station)
         frames.append(part)
 
-    if not frames:
-        raise ValueError("No ASOS rows were available to build WEATHER.csv")
+    if frames:
+        standard = pd.concat(frames, ignore_index=True, sort=False)
+    else:
+        standard = output[output["station"].isin(AWS_TO_ASOS.keys())].copy()
+        if standard.empty:
+            raise ValueError("No AWS or mapped ASOS rows were available to build WEATHER.csv")
 
-    standard = pd.concat(frames, ignore_index=True, sort=False)
     for col in WEATHER_OUTPUT_COLUMNS:
         if col not in standard.columns:
             standard[col] = np.nan
 
-    standard = standard[WEATHER_OUTPUT_COLUMNS].copy()
-    for col in [c for c in standard.columns if c != "date"]:
+    standard = standard[[c for c in standard.columns if c in set(WEATHER_OUTPUT_COLUMNS)]].copy()
+    for col in [c for c in standard.columns if c not in {"date", "station"}]:
         standard[col] = pd.to_numeric(standard[col], errors="coerce")
 
-    standard["daily_rain"] = standard["daily_rain"].fillna(0)
-    standard = standard.sort_values(["station", "date"]).reset_index(drop=True)
-    interp_cols = [
-        col for col in WEATHER_OUTPUT_COLUMNS if col not in {"station", "date", "daily_rain"}
-    ]
-    standard[interp_cols] = standard.groupby("station")[interp_cols].transform(
-        lambda g: g.interpolate(method="linear", limit_direction="both").ffill().bfill()
-    )
-    standard[interp_cols] = standard[interp_cols].fillna(0)
+    standard = complete_weather_calendar(standard)
+    standard = impute_weather_values(standard)
+    standard = add_weather_features(standard)
+    standard = scale_weather_values(standard)
+    standard = standard[WEATHER_OUTPUT_COLUMNS].copy()
     standard["station"] = standard["station"].astype(int)
     standard["date"] = standard["date"].dt.strftime("%Y-%m-%d")
 
@@ -402,7 +524,7 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         aws_groups.setdefault(asos, []).append(aws)
 
     AUTH_KEY = os.environ.get('KMA_SERVICE_KEY')
-    fetch_aws = os.environ.get('KMA_FETCH_AWS', '').lower() in {'1', 'true', 'yes', 'y'}
+    fetch_aws = os.environ.get('KMA_FETCH_AWS', '1').lower() not in {'0', 'false', 'no', 'n'}
     aws_dfs = []
     if AUTH_KEY and fetch_aws:
         for asos, aws_list in aws_groups.items():
