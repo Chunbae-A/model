@@ -38,10 +38,14 @@ from .model_config import get_enabled_models, get_model_params, load_model_confi
 
 
 def _require_package(import_error: Exception, package_name: str, model_name: str) -> None:
+    detail = ""
+    if package_name == "lightgbm" and "libomp.dylib" in str(import_error):
+        detail = " On macOS, install the OpenMP runtime with `brew install libomp`."
+
     raise ImportError(
         f"'{model_name}' is enabled in config/model_config.yaml, but package '{package_name}' "
         "is not installed or cannot be imported. Install the dependency or remove the model "
-        "from enabled_models."
+        f"from enabled_models.{detail}"
     ) from import_error
 
 

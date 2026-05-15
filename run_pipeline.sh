@@ -9,6 +9,33 @@ else
 fi
 PYTHON_CMD=""
 
+ensure_macos_lightgbm_runtime() {
+  if [ "$(uname -s)" != "Darwin" ]; then
+    return
+  fi
+
+  if [ ! -f "$SCRIPT_DIR/requirements.txt" ] || ! grep -Eq '^lightgbm([<=>[:space:]]|$)' "$SCRIPT_DIR/requirements.txt"; then
+    return
+  fi
+
+  if [ -f "/opt/homebrew/opt/libomp/lib/libomp.dylib" ] || \
+     [ -f "/usr/local/opt/libomp/lib/libomp.dylib" ] || \
+     [ -f "/opt/local/lib/libomp/libomp.dylib" ]; then
+    return
+  fi
+
+  echo "[pipeline] macOS detected: LightGBM needs the OpenMP runtime (libomp)."
+  if command -v brew >/dev/null 2>&1; then
+    echo "[pipeline] installing libomp with Homebrew"
+    brew install libomp
+  else
+    echo "LightGBM cannot start because libomp.dylib is missing." >&2
+    echo "Install Homebrew, then run: brew install libomp" >&2
+    echo "Or remove 'lightgbm' from config/model_config.yaml enabled_models and stacking estimators." >&2
+    exit 1
+  fi
+}
+
 echo "[pipeline] working dir: $SCRIPT_DIR"
 
 if command -v python3 >/dev/null 2>&1; then
@@ -21,6 +48,8 @@ else
 fi
 
 echo "[pipeline] using: $($PYTHON_CMD --version 2>&1)"
+
+ensure_macos_lightgbm_runtime
 
 CREATED_VENV=0
 if [ ! -d "$VENV_DIR" ]; then
