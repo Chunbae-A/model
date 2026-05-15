@@ -15,9 +15,14 @@ SRC_DIR = ROOT / "src"
 DATA_DIR = ROOT / "data"
 sys.path.insert(0, str(ROOT))
 
-RAW_DAM = DATA_DIR / "대청수문_10년치_통합데이터.csv"
-RAW_WATER = DATA_DIR / "수질_10년치_통합데이터.csv"
-WEATHER = DATA_DIR / "WEATHER.csv"
+from src.preprocess_data import (
+    DAM_RAW_CANDIDATES,
+    WATER_RAW_CANDIDATES,
+    WEATHER_CANDIDATES,
+    ensure_local_source_csvs,
+    find_data_file,
+)
+
 FINAL = DATA_DIR / "Final.csv"
 MODEL_INPUT = DATA_DIR / "processed" / "model_input" / "algae_model_input.csv"
 
@@ -53,13 +58,23 @@ def ensure_inputs(paths: list[Path], hint: str) -> None:
         raise FileNotFoundError(f"Missing required input files:\n{pretty}\n{hint}")
 
 
+def ensure_source_inputs() -> None:
+    ensure_local_source_csvs()
+    find_data_file(DAM_RAW_CANDIDATES, label="dam operation")
+    find_data_file(WATER_RAW_CANDIDATES, label="water quality")
+    find_data_file(WEATHER_CANDIDATES, label="weather")
+
+
 def fetch_water_sources() -> None:
     log("fetching dam operation data with Selenium crawler")
     run_python("src/water_gate.py")
     log("fetching algae/water-quality data with Selenium crawler")
     run_python("src/water_quality.py")
     ensure_inputs(
-        [RAW_DAM, RAW_WATER],
+        [
+            find_data_file(DAM_RAW_CANDIDATES, label="dam operation"),
+            find_data_file(WATER_RAW_CANDIDATES, label="water quality"),
+        ],
         "Crawler finished, but expected raw CSV names were not found. Check data/ and water_data/ downloads.",
     )
 
@@ -72,20 +87,17 @@ def fetch_weather_sources(start: date, end: date) -> None:
     from src.weather_api import run as run_weather
 
     run_weather(start, end)
-    if not WEATHER.exists():
+    try:
+        find_data_file(WEATHER_CANDIDATES, label="weather")
+    except FileNotFoundError as exc:
         # Older weather_api.py writes combined_weather_water_10y.csv. Keep the
         # pipeline explicit: the clean builder expects WEATHER.csv as the
         # canonical weather feature table.
-        raise FileNotFoundError(
-            f"{WEATHER} was not created. Run weather preprocessing or provide the existing WEATHER.csv."
-        )
+        raise FileNotFoundError("WEATHER.csv was not created. Run weather preprocessing or provide it.") from exc
 
 
 def preprocess() -> None:
-    ensure_inputs(
-        [RAW_DAM, RAW_WATER, WEATHER],
-        "Use --fetch water/weather/all, or place the prepared source files under data/.",
-    )
+    ensure_source_inputs()
     log("building clean merged dataset and model input")
     run_python("src/preprocess_data.py")
     validate_final_dataset()
@@ -122,9 +134,9 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--fetch",
-        choices=["none", "water", "weather", "all"],
-        default="none",
-        help="Fetch fresh source data before preprocessing. Default uses existing data files.",
+        choices=["auto", "none", "water", "weather", "all"],
+        default="auto",
+        help="Fetch or rebuild missing source data before preprocessing. Default rebuilds local Excel CSVs and fetches missing weather.",
     )
     parser.add_argument("--start-date", default="2016-01-01", help="Weather fetch start date, YYYY-MM-DD.")
     parser.add_argument("--end-date", default="2025-12-31", help="Weather fetch end date, YYYY-MM-DD.")
@@ -145,6 +157,13 @@ def main() -> None:
 
     log(f"workspace: {ROOT}")
     log(f"fetch mode: {args.fetch}")
+
+    if args.fetch == "auto":
+        ensure_local_source_csvs()
+        try:
+            find_data_file(WEATHER_CANDIDATES, label="weather")
+        except FileNotFoundError:
+            fetch_weather_sources(start, end)
 
     if args.fetch in {"water", "all"}:
         fetch_water_sources()

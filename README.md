@@ -442,3 +442,90 @@ powershell -ExecutionPolicy Bypass -File .\run_pipeline.ps1
 ```
 
 `--fetch water`, `--fetch weather`, `--fetch all`을 선택할 수 있습니다. `--fetch water`는 `src/water_gate.py`와 `src/water_quality.py`를 순서대로 실행합니다. 기상 API는 `.env` 또는 환경변수 `KMA_SERVICE_KEY`가 있으면 `src/weather_api.py`에서 갱신합니다.
+
+---
+
+## Windows / macOS 실행 방법
+
+기본 실행은 `--fetch auto`로 동작합니다. 새로 클론한 뒤 `data/` 폴더가 비어 있어도, Git에 포함된 `water_data/*.xlsx` 파일에서 수문/수질 원천 CSV를 다시 만들고, `WEATHER.csv`가 없으면 날씨 데이터를 생성한 뒤 정해진 최종 컬럼으로 병합합니다.
+
+생성되는 주요 파일은 아래와 같습니다.
+
+```text
+data/Final.csv
+data/daechung_final_clean_dataset.csv
+data/combined_weather_water_10y.csv
+data/processed/model_input/algae_model_input.csv
+artifacts/
+output/
+```
+
+### Windows PowerShell
+
+```powershell
+git clone <repo-url>
+cd <repo-folder>\model
+powershell -ExecutionPolicy Bypass -File .\run_pipeline.ps1
+```
+
+전처리와 데이터 병합만 확인하려면:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run_pipeline.ps1 --skip-train
+```
+
+이미 만들어진 `Final.csv`로 학습만 다시 돌리려면:
+
+```powershell
+.\venv\Scripts\python.exe src\pipeline.py --skip-preprocess
+```
+
+### macOS / Linux
+
+```bash
+git clone <repo-url>
+cd <repo-folder>/model
+bash run_pipeline.sh
+```
+
+전처리와 데이터 병합만 확인하려면:
+
+```bash
+bash run_pipeline.sh --skip-train
+```
+
+이미 만들어진 `Final.csv`로 학습만 다시 돌리려면:
+
+```bash
+./venv/bin/python src/pipeline.py --skip-preprocess
+```
+
+### 데이터 갱신 옵션
+
+기본값은 `--fetch auto`입니다. 클론 직후에는 이 옵션만으로 로컬 엑셀 재생성, 날씨 생성, 최종 병합을 자동 처리합니다.
+
+```bash
+python src/pipeline.py --fetch auto
+python src/pipeline.py --fetch water
+python src/pipeline.py --fetch weather
+python src/pipeline.py --fetch all
+```
+
+`--fetch water`와 `--fetch all`은 Selenium으로 수문/수질 데이터를 다시 크롤링합니다. Chrome/ChromeDriver 환경이 필요합니다.
+
+날씨 상세 AWS API까지 강제로 가져오려면 환경변수를 추가합니다. 기본 실행에서는 안정성을 위해 AWS 상세 호출을 건너뛰고 표준 `WEATHER.csv`를 생성합니다.
+
+```bash
+export KMA_SERVICE_KEY="your-key"
+export KMA_FETCH_AWS=1
+python src/pipeline.py --fetch weather
+```
+
+PowerShell에서는 아래처럼 설정합니다.
+
+```powershell
+$env:KMA_SERVICE_KEY="your-key"
+$env:KMA_FETCH_AWS="1"
+python src\pipeline.py --fetch weather
+```
+

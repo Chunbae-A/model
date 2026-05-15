@@ -3,14 +3,16 @@ from __future__ import annotations
 from pathlib import Path
 import numpy as np
 
-# Paths (all data assumed under /data)
-MODEL_INPUT_PATH = Path("data/processed/model_input/algae_model_input.csv")
-MODEL_CONFIG_PATH = Path("config/model_config.yaml")
-OUTPUT_DIR = Path("artifacts/models")
-PREDICTION_DIR = Path("artifacts/predictions")
-METRIC_DIR = Path("artifacts/metrics")
-EXPLAIN_DIR = Path("artifacts/explain")
-SCENARIO_DIR = Path("artifacts/scenario")
+# Paths
+ROOT = Path(__file__).resolve().parents[1]
+DATA_DIR = ROOT / "data"
+MODEL_INPUT_PATH = DATA_DIR / "processed" / "model_input" / "algae_model_input.csv"
+MODEL_CONFIG_PATH = ROOT / "config" / "model_config.yaml"
+OUTPUT_DIR = ROOT / "artifacts" / "models"
+PREDICTION_DIR = ROOT / "artifacts" / "predictions"
+METRIC_DIR = ROOT / "artifacts" / "metrics"
+EXPLAIN_DIR = ROOT / "artifacts" / "explain"
+SCENARIO_DIR = ROOT / "artifacts" / "scenario"
 
 # Filenames
 REGRESSION_MODEL_FILE = "regression_model.pkl"

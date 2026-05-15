@@ -18,14 +18,17 @@ try:
 except Exception:
     pass
 
-# Ensure repo root is on path so we can import fetch_daejeon_10y
+# Ensure repo root is on path so this works both as a script and as src.weather_api.
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 try:
-    from fetch_10y import fetch_kma_range
+    from src.fetch_10y import fetch_kma_range
 except Exception:
-    def fetch_kma_range(*a, **k):
-        raise RuntimeError('fetch_kma_range not available; ensure fetch_10y.py exists')
+    try:
+        from fetch_10y import fetch_kma_range
+    except Exception:
+        def fetch_kma_range(*a, **k):
+            raise RuntimeError('fetch_kma_range not available; ensure fetch_10y.py exists')
 
 
 ASOS_STATIONS = {
@@ -343,6 +346,13 @@ def merge_with_water(weather_df: pd.DataFrame, water_csv: str, aws_matches: list
             copies.append(tmp)
         w = pd.concat(copies, ignore_index=True, sort=False)
 
+    weather_df = weather_df.copy()
+    w = w.copy()
+    weather_df['station'] = weather_df['station'].astype(str)
+    w['station'] = w['station'].astype(str)
+    weather_df['date'] = pd.to_datetime(weather_df['date'])
+    w['date'] = pd.to_datetime(w['date'])
+
     # avoid duplicate column name conflicts: rename overlapping water columns
     overlap = set(weather_df.columns).intersection(set(w.columns)) - {'station', 'date'}
     if overlap:
@@ -370,8 +380,9 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         feat = make_features(wdf)
 
         aws_matches = [aws for aws, asos in AWS_TO_ASOS.items() if asos == stn]
-        water_csv = os.path.join(str(ROOT), 'data', 'processed', 'model_input', 'algae_model_input.csv')
-        merged = merge_with_water(feat, water_csv, aws_matches) if aws_matches else feat
+        # Keep weather generation independent. Water-quality and dam data are
+        # joined exactly once in preprocess_data.py, where the final schema is enforced.
+        merged = feat
 
         out_csv = os.path.join(OUT_DIR, f"weather_{stn}_10y.csv")
         merged.to_csv(out_csv, index=False)
@@ -391,8 +402,9 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         aws_groups.setdefault(asos, []).append(aws)
 
     AUTH_KEY = os.environ.get('KMA_SERVICE_KEY')
+    fetch_aws = os.environ.get('KMA_FETCH_AWS', '').lower() in {'1', 'true', 'yes', 'y'}
     aws_dfs = []
-    if AUTH_KEY:
+    if AUTH_KEY and fetch_aws:
         for asos, aws_list in aws_groups.items():
             parts = []
             for aws in aws_list:
@@ -410,6 +422,8 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
                 grp = adf.groupby(['asos', 'date']).agg(agg_map).reset_index()
                 grp = grp.rename(columns={'asos': 'station'})
                 aws_dfs.append(grp)
+    elif AUTH_KEY:
+        print("KMA_SERVICE_KEY is set, but AWS detail fetch is skipped by default. Set KMA_FETCH_AWS=1 to enable it.")
 
     if aws_dfs:
         aws_comb = pd.concat(aws_dfs, ignore_index=True, sort=False)

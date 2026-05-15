@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import unicodedata
 
 import numpy as np
 import pandas as pd
@@ -12,6 +13,21 @@ DATA_DIR = ROOT / "data"
 DAM_RAW = DATA_DIR / "대청수문_10년치_통합데이터.csv"
 WATER_RAW = DATA_DIR / "수질_10년치_통합데이터.csv"
 WEATHER = DATA_DIR / "WEATHER.csv"
+DAM_RAW_CANDIDATES = [
+    DAM_RAW,
+    DATA_DIR / "daechung_dam_10y.csv",
+    DATA_DIR / "dam_10y.csv",
+]
+WATER_RAW_CANDIDATES = [
+    WATER_RAW,
+    DATA_DIR / "daechung_water_quality_10y.csv",
+    DATA_DIR / "water_quality_10y.csv",
+]
+WEATHER_CANDIDATES = [
+    WEATHER,
+    DATA_DIR / "weather.csv",
+]
+WATER_DATA_DIR = ROOT / "water_data"
 
 WATER_HYDRO_OUT = DATA_DIR / "daechung_water_hydro_10y_clean.csv"
 FINAL_OUT = DATA_DIR / "daechung_final_clean_dataset.csv"
@@ -31,6 +47,93 @@ LOC_TO_STATION = {
 }
 
 
+def normalize_filename(name: str) -> str:
+    return unicodedata.normalize("NFC", name).casefold()
+
+
+def find_data_file(candidates: list[Path], *, label: str) -> Path:
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    if DATA_DIR.exists():
+        by_name = {normalize_filename(path.name): path for path in DATA_DIR.iterdir() if path.is_file()}
+        for candidate in candidates:
+            matched = by_name.get(normalize_filename(candidate.name))
+            if matched:
+                return matched
+
+    candidate_list = "\n".join(f" - {path}" for path in candidates)
+    raise FileNotFoundError(
+        f"Missing {label} source file. Looked for:\n{candidate_list}\n"
+        "The data/ directory is gitignored, so a fresh clone needs source CSVs copied in "
+        "or regenerated with `python src/pipeline.py --fetch water/weather/all`."
+    )
+
+
+def _excel_files() -> list[Path]:
+    if not WATER_DATA_DIR.exists():
+        return []
+    return sorted(
+        [
+            *WATER_DATA_DIR.glob("*.xls"),
+            *WATER_DATA_DIR.glob("*.xlsx"),
+            *WATER_DATA_DIR.glob("*/*.xls"),
+            *WATER_DATA_DIR.glob("*/*.xlsx"),
+        ]
+    )
+
+
+def _classify_excel(file_path: Path) -> str | None:
+    try:
+        sample = pd.read_excel(file_path, header=None, nrows=4)
+    except Exception:
+        return None
+
+    text = " ".join(sample.astype("string").fillna("").to_numpy().ravel().tolist())
+    if "대청댐" in text or "수위(EL.m)" in text or file_path.name.startswith("excelDataList"):
+        return "dam"
+    if "조류모니터링" in text or "유해남조류" in text or "Chl-a" in text or "과거수질" in file_path.name:
+        return "water"
+    return None
+
+
+def build_source_csvs_from_excels(force: bool = False) -> None:
+    """Rebuild ignored raw data CSVs from tracked/downloaded Excel files."""
+    need_dam = force or not any(path.exists() for path in DAM_RAW_CANDIDATES)
+    need_water = force or not any(path.exists() for path in WATER_RAW_CANDIDATES)
+    if not need_dam and not need_water:
+        return
+
+    dam_frames: list[pd.DataFrame] = []
+    water_frames: list[pd.DataFrame] = []
+    for file_path in _excel_files():
+        kind = _classify_excel(file_path)
+        if kind == "dam" and need_dam:
+            dam_frames.append(pd.read_excel(file_path, header=None))
+        elif kind == "water" and need_water:
+            water_frames.append(pd.read_excel(file_path, header=None))
+
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    if need_dam:
+        if not dam_frames:
+            raise FileNotFoundError(f"No dam Excel files found under {WATER_DATA_DIR}")
+        dam_raw = pd.concat(dam_frames, ignore_index=True, sort=False)
+        dam_raw.to_csv(DAM_RAW, index=False, header=False, encoding="utf-8-sig")
+        print(f"[preprocess] rebuilt dam raw csv: {DAM_RAW} rows={len(dam_raw):,}")
+
+    if need_water:
+        if not water_frames:
+            raise FileNotFoundError(f"No water-quality Excel files found under {WATER_DATA_DIR}")
+        water_raw = pd.concat(water_frames, ignore_index=True, sort=False)
+        water_raw.to_csv(WATER_RAW, index=False, header=False, encoding="utf-8-sig")
+        print(f"[preprocess] rebuilt water raw csv: {WATER_RAW} rows={len(water_raw):,}")
+
+
+def ensure_local_source_csvs() -> None:
+    build_source_csvs_from_excels(force=False)
+
+
 def to_number(series: pd.Series) -> pd.Series:
     cleaned = (
         series.astype("string")
@@ -41,12 +144,18 @@ def to_number(series: pd.Series) -> pd.Series:
     return pd.to_numeric(cleaned, errors="coerce")
 
 
-def read_raw_csv(path: Path) -> pd.DataFrame:
-    return pd.read_csv(path, header=None, dtype=str, low_memory=False)
+def read_raw_csv(path: Path, *, min_columns: int, label: str) -> pd.DataFrame:
+    raw = pd.read_csv(path, header=None, dtype=str, low_memory=False, encoding="utf-8-sig")
+    if raw.shape[1] < min_columns:
+        raise ValueError(
+            f"{label} file has {raw.shape[1]} columns, but at least {min_columns} are required: {path}"
+        )
+    return raw
 
 
-def parse_dam(path: Path = DAM_RAW) -> pd.DataFrame:
-    raw = read_raw_csv(path)
+def parse_dam(path: Path | None = None) -> pd.DataFrame:
+    path = path or find_data_file(DAM_RAW_CANDIDATES, label="dam operation")
+    raw = read_raw_csv(path, min_columns=7, label="Dam operation")
     date_columns = [0, *range(7, 17)]
     frames: list[pd.DataFrame] = []
 
@@ -86,9 +195,15 @@ def parse_dam(path: Path = DAM_RAW) -> pd.DataFrame:
     return dam
 
 
-def parse_water(path: Path = WATER_RAW) -> pd.DataFrame:
-    raw = read_raw_csv(path)
+def parse_water(path: Path | None = None) -> pd.DataFrame:
+    path = path or find_data_file(WATER_RAW_CANDIDATES, label="water quality")
+    raw = read_raw_csv(path, min_columns=15, label="Water quality")
     rows = raw[raw[2].isin(LOC_MAP)].copy()
+
+    def value_at(primary_col: int, fallback_col: int) -> pd.Series:
+        primary = rows[primary_col] if primary_col in rows.columns else pd.Series(index=rows.index, dtype="string")
+        fallback = rows[fallback_col] if fallback_col in rows.columns else pd.Series(index=rows.index, dtype="string")
+        return primary.where(primary.notna(), fallback)
 
     water = pd.DataFrame(
         {
@@ -97,14 +212,14 @@ def parse_water(path: Path = WATER_RAW) -> pd.DataFrame:
             "water_temp": to_number(rows[4]),
             "pH": to_number(rows[5]),
             "DO": to_number(rows[6]),
-            "transparency": to_number(rows[18]),
-            "turbidity": to_number(rows[19]),
-            "Chl_a": to_number(rows[20]),
-            "cyano_cells": to_number(rows[21]),
-            "microcystis": to_number(rows[22]),
-            "anabaena": to_number(rows[23]),
-            "oscillatoria": to_number(rows[24]),
-            "aphanizomenon": to_number(rows[25]),
+            "transparency": to_number(value_at(7, 18)),
+            "turbidity": to_number(value_at(8, 19)),
+            "Chl_a": to_number(value_at(9, 20)),
+            "cyano_cells": to_number(value_at(10, 21)),
+            "microcystis": to_number(value_at(11, 22)),
+            "anabaena": to_number(value_at(12, 23)),
+            "oscillatoria": to_number(value_at(13, 24)),
+            "aphanizomenon": to_number(value_at(14, 25)),
         }
     )
     water = water.dropna(subset=["date", "loc_encoded"])
@@ -160,8 +275,9 @@ def merge_water_hydro(water: pd.DataFrame, dam: pd.DataFrame) -> pd.DataFrame:
     return merged
 
 
-def merge_weather(water_hydro: pd.DataFrame, weather_path: Path = WEATHER) -> pd.DataFrame:
-    weather = pd.read_csv(weather_path)
+def merge_weather(water_hydro: pd.DataFrame, weather_path: Path | None = None) -> pd.DataFrame:
+    weather_path = weather_path or find_data_file(WEATHER_CANDIDATES, label="weather")
+    weather = pd.read_csv(weather_path, encoding="utf-8-sig")
     weather["date"] = pd.to_datetime(weather["date"], errors="coerce")
     weather["station"] = pd.to_numeric(weather["station"], errors="coerce").astype("Int64")
 
@@ -239,7 +355,15 @@ def finalize_columns(df: pd.DataFrame) -> pd.DataFrame:
         "rain_lag_2d",
     ]
 
-    final = df[final_columns].copy()
+    missing_columns = [col for col in final_columns if col not in df.columns]
+    if missing_columns:
+        available = ", ".join(df.columns)
+        raise KeyError(
+            f"Missing columns while building Final.csv: {missing_columns}\n"
+            f"Available columns: {available}"
+        )
+
+    final = df.loc[:, final_columns].copy()
     final = final.dropna(subset=["next_log_cells", "nutrient_stagnation_index"])
     final = final.sort_values(["loc_encoded", "date"]).reset_index(drop=True)
 
@@ -254,6 +378,7 @@ def finalize_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    ensure_local_source_csvs()
     dam = parse_dam()
     water = parse_water()
     water_hydro = merge_water_hydro(water, dam)
