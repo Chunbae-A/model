@@ -14,6 +14,7 @@ SVG_OUTPUT_PATH = OUTPUT_DIR / "model_comparison.svg"
 MODEL_LABELS = {
     "hist_gradient_boosting": "HistGB",
     "random_forest": "Random Forest",
+    "huber_regressor": "Huber",
     "lightgbm": "LightGBM",
     "xgboost": "XGBoost",
     "catboost": "CatBoost",
@@ -24,6 +25,7 @@ MODEL_LABELS = {
 MODEL_COLORS = {
     "HistGB": "#6C8EBF",
     "Random Forest": "#82B366",
+    "Huber": "#E07A5F",
     "LightGBM": "#B85450",
     "XGBoost": "#9673A6",
     "CatBoost": "#D6B656",
