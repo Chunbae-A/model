@@ -13,7 +13,8 @@ from sklearn.ensemble import (
     StackingClassifier,
     StackingRegressor,
 )
-from sklearn.linear_model import LogisticRegression, RidgeCV
+from sklearn.impute import SimpleImputer
+from sklearn.linear_model import HuberRegressor, LogisticRegression, RidgeCV
 from sklearn.metrics import (
     accuracy_score,
     average_precision_score,
@@ -27,6 +28,8 @@ from sklearn.metrics import (
     recall_score,
     roc_auc_score,
 )
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import RobustScaler, StandardScaler
 
 from .config import (
     MIN_PRECISION_FOR_THRESHOLD,
@@ -62,6 +65,21 @@ def _build_single_regression_model(
 
     if model_name == "random_forest":
         return RandomForestRegressor(**params)
+
+    if model_name == "huber_regressor":
+        params.pop("random_state", None)
+        scaler_name = params.pop("scaler", "standard")
+        if scaler_name == "robust":
+            scaler = RobustScaler()
+        elif scaler_name == "standard":
+            scaler = StandardScaler()
+        else:
+            raise ValueError(f"Unsupported huber_regressor scaler: {scaler_name}")
+        return make_pipeline(
+            SimpleImputer(strategy="median"),
+            scaler,
+            HuberRegressor(**params),
+        )
 
     if model_name == "lightgbm":
         try:

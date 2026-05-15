@@ -3,6 +3,7 @@ enabled_models:
     - lightgbm
     - xgboost
     - random_forest
+    - huber_regressor
     - hist_gradient_boosting
     - catboost
     - stacking_ensemble
@@ -71,6 +72,14 @@ models:
       random_state: 42
       n_jobs: 1
 
+  huber_regressor:
+    regression:
+      epsilon: 2.5
+      alpha: 0.0
+      max_iter: 3000
+      tol: 0.00001
+      scaler: robust
+
   hist_gradient_boosting:
     regression:
       learning_rate: 0.03
@@ -105,6 +114,7 @@ models:
         - lightgbm
         - xgboost
         - random_forest
+        - huber_regressor
         - hist_gradient_boosting
         - catboost
       final_estimator: ridge
