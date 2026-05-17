@@ -37,8 +37,14 @@ if (-not (Test-Path Env:LOKY_MAX_CPU_COUNT)) { $env:LOKY_MAX_CPU_COUNT = '1' }
 if (-not (Test-Path Env:OMP_NUM_THREADS)) { $env:OMP_NUM_THREADS = '1' }
 if (-not (Test-Path Env:OPENBLAS_NUM_THREADS)) { $env:OPENBLAS_NUM_THREADS = '1' }
 if (-not (Test-Path Env:MKL_NUM_THREADS)) { $env:MKL_NUM_THREADS = '1' }
+if (-not (Test-Path Env:KMA_FETCH_AWS)) { $env:KMA_FETCH_AWS = '0' }
+
+$PipelineArgs = @args
+if ($PipelineArgs.Count -eq 0) {
+  $PipelineArgs = @('--fetch', 'all')
+}
 
 Write-Host "[pipeline] running unified pipeline"
-python (Join-Path $ScriptDir 'src\pipeline.py') @args
+python (Join-Path $ScriptDir 'src\pipeline.py') @PipelineArgs
 
 Write-Host "[pipeline] done. Artifacts saved under: artifacts/ and output/"

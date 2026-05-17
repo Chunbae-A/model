@@ -77,6 +77,11 @@ export LOKY_MAX_CPU_COUNT=${LOKY_MAX_CPU_COUNT:-1}
 export OMP_NUM_THREADS=${OMP_NUM_THREADS:-1}
 export OPENBLAS_NUM_THREADS=${OPENBLAS_NUM_THREADS:-1}
 export MKL_NUM_THREADS=${MKL_NUM_THREADS:-1}
+export KMA_FETCH_AWS=${KMA_FETCH_AWS:-0}
+
+if [ "$#" -eq 0 ]; then
+  set -- --fetch all
+fi
 
 echo "[pipeline] running unified pipeline"
 python "$SCRIPT_DIR/src/pipeline.py" "$@"
