@@ -20,6 +20,7 @@ from src.preprocess_data import (
     DAM_RAW_CANDIDATES,
     WATER_RAW_CANDIDATES,
     WEATHER_CANDIDATES,
+    data_file_exists,
     ensure_local_source_csvs,
     find_data_file,
 )
@@ -69,6 +70,30 @@ def ensure_source_inputs() -> None:
     find_data_file(DAM_RAW_CANDIDATES, label="dam operation")
     find_data_file(WATER_RAW_CANDIDATES, label="water quality")
     find_data_file(WEATHER_CANDIDATES, label="weather")
+
+
+def ensure_auto_mode_sources() -> None:
+    if ALGAE_FINAL_CANONICAL.exists():
+        return
+
+    ensure_local_source_csvs()
+    missing = []
+    if not data_file_exists(DAM_RAW_CANDIDATES):
+        missing.append("dam operation CSV")
+    if not data_file_exists(WATER_RAW_CANDIDATES):
+        missing.append("water-quality CSV")
+
+    if missing:
+        missing_text = ", ".join(missing)
+        raise FileNotFoundError(
+            "Auto mode could not find local source data: "
+            f"{missing_text}.\n"
+            "Fresh clones do not include gitignored data files. Fix this by doing one of these:\n"
+            f" - copy the canonical dataset to {ALGAE_FINAL_CANONICAL}\n"
+            f" - copy raw CSVs into {DATA_DIR}\n"
+            f" - copy downloaded Excel files into {ROOT / 'water_data'}\n"
+            " - or run `python src/pipeline.py --fetch water` / `--fetch all` to use the crawler."
+        )
 
 
 def fetch_water_sources() -> None:
@@ -165,11 +190,12 @@ def main() -> None:
     log(f"fetch mode: {args.fetch}")
 
     if args.fetch == "auto":
-        ensure_local_source_csvs()
-        try:
-            find_data_file(WEATHER_CANDIDATES, label="weather")
-        except FileNotFoundError:
-            fetch_weather_sources(start, end)
+        ensure_auto_mode_sources()
+        if not ALGAE_FINAL_CANONICAL.exists():
+            try:
+                find_data_file(WEATHER_CANDIDATES, label="weather")
+            except FileNotFoundError:
+                fetch_weather_sources(start, end)
 
     if args.fetch in {"water", "all"}:
         fetch_water_sources()

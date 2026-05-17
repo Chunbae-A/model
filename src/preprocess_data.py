@@ -81,6 +81,14 @@ def find_data_file(candidates: list[Path], *, label: str) -> Path:
     )
 
 
+def data_file_exists(candidates: list[Path]) -> bool:
+    try:
+        find_data_file(candidates, label="source")
+    except FileNotFoundError:
+        return False
+    return True
+
+
 def _excel_files() -> list[Path]:
     if not WATER_DATA_DIR.exists():
         return []
@@ -115,9 +123,15 @@ def build_source_csvs_from_excels(force: bool = False) -> None:
     if not need_dam and not need_water:
         return
 
+    excel_files = _excel_files()
+    if not excel_files:
+        if force:
+            raise FileNotFoundError(f"No Excel files found under {WATER_DATA_DIR}")
+        return
+
     dam_frames: list[pd.DataFrame] = []
     water_frames: list[pd.DataFrame] = []
-    for file_path in _excel_files():
+    for file_path in excel_files:
         kind = _classify_excel(file_path)
         if kind == "dam" and need_dam:
             dam_frames.append(pd.read_excel(file_path, header=None))
@@ -126,18 +140,20 @@ def build_source_csvs_from_excels(force: bool = False) -> None:
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     if need_dam:
-        if not dam_frames:
+        if dam_frames:
+            dam_raw = pd.concat(dam_frames, ignore_index=True, sort=False)
+            dam_raw.to_csv(DAM_RAW, index=False, header=False, encoding="utf-8-sig")
+            print(f"[preprocess] rebuilt dam raw csv: {DAM_RAW} rows={len(dam_raw):,}")
+        elif force:
             raise FileNotFoundError(f"No dam Excel files found under {WATER_DATA_DIR}")
-        dam_raw = pd.concat(dam_frames, ignore_index=True, sort=False)
-        dam_raw.to_csv(DAM_RAW, index=False, header=False, encoding="utf-8-sig")
-        print(f"[preprocess] rebuilt dam raw csv: {DAM_RAW} rows={len(dam_raw):,}")
 
     if need_water:
-        if not water_frames:
+        if water_frames:
+            water_raw = pd.concat(water_frames, ignore_index=True, sort=False)
+            water_raw.to_csv(WATER_RAW, index=False, header=False, encoding="utf-8-sig")
+            print(f"[preprocess] rebuilt water raw csv: {WATER_RAW} rows={len(water_raw):,}")
+        elif force:
             raise FileNotFoundError(f"No water-quality Excel files found under {WATER_DATA_DIR}")
-        water_raw = pd.concat(water_frames, ignore_index=True, sort=False)
-        water_raw.to_csv(WATER_RAW, index=False, header=False, encoding="utf-8-sig")
-        print(f"[preprocess] rebuilt water raw csv: {WATER_RAW} rows={len(water_raw):,}")
 
 
 def ensure_local_source_csvs() -> None:
