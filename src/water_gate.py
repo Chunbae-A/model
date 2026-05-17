@@ -31,6 +31,9 @@ def make_driver(download_dir: Path, headless: bool = False) -> webdriver.Chrome:
             "download.default_directory": str(download_dir),
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
+            "profile.default_content_setting_values.automatic_downloads": 1,
+            "profile.default_content_settings.popups": 0,
+            "safebrowsing.enabled": True,
         },
     )
     if headless:
