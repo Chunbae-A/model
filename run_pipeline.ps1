@@ -39,7 +39,7 @@ if (-not (Test-Path Env:OPENBLAS_NUM_THREADS)) { $env:OPENBLAS_NUM_THREADS = '1'
 if (-not (Test-Path Env:MKL_NUM_THREADS)) { $env:MKL_NUM_THREADS = '1' }
 if (-not (Test-Path Env:KMA_FETCH_AWS)) { $env:KMA_FETCH_AWS = '0' }
 
-$PipelineArgs = @args
+$PipelineArgs = @($args)
 if ($PipelineArgs.Count -eq 0) {
   $PipelineArgs = @('--fetch', 'all')
 }

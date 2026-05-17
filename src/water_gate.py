@@ -38,13 +38,19 @@ def make_driver(download_dir: Path, headless: bool = False) -> webdriver.Chrome:
     return webdriver.Chrome(options=options)
 
 
-def wait_for_downloads(download_dir: Path, timeout_seconds: int = 90) -> None:
+def list_excel_files(download_dir: Path) -> set[Path]:
+    return set(download_dir.glob("*.xlsx")) | set(download_dir.glob("*.xls"))
+
+
+def wait_for_new_download(download_dir: Path, before_files: set[Path], timeout_seconds: int = 90) -> Path:
     deadline = time.time() + timeout_seconds
     while time.time() < deadline:
-        if not list(download_dir.glob("*.crdownload")):
-            return
+        current_files = list_excel_files(download_dir)
+        new_files = current_files - before_files
+        if new_files and not list(download_dir.glob("*.crdownload")):
+            return max(new_files, key=lambda path: path.stat().st_mtime)
         time.sleep(1)
-    raise TimeoutError(f"Download did not finish within {timeout_seconds} seconds: {download_dir}")
+    raise TimeoutError(f"No new Excel download finished within {timeout_seconds} seconds: {download_dir}")
 
 
 def prepare_page(driver: webdriver.Chrome) -> None:
@@ -74,8 +80,10 @@ def download_dam_excels(start_year: int, end_year: int, headless: bool = False) 
                     driver.execute_script("arguments[0].value = arguments[1];", end_input, end_date)
                     driver.execute_script("fnObj.linkSearch('hydr');")
                     time.sleep(6)
+                    before_files = list_excel_files(DOWNLOAD_DIR)
                     driver.execute_script("fnObj.hydrExcelDown();")
-                    wait_for_downloads(DOWNLOAD_DIR)
+                    downloaded = wait_for_new_download(DOWNLOAD_DIR, before_files)
+                    print(f"[water_gate] downloaded {downloaded.name}")
                     break
                 except UnexpectedAlertPresentException as exc:
                     print(f"[water_gate] alert: {exc.alert_text}")
@@ -92,7 +100,13 @@ def download_dam_excels(start_year: int, end_year: int, headless: bool = False) 
     finally:
         driver.quit()
 
-    return sorted([*DOWNLOAD_DIR.glob("*.xlsx"), *DOWNLOAD_DIR.glob("*.xls")])
+    downloaded_files = sorted(DOWNLOAD_DIR.glob("*.xlsx")) + sorted(DOWNLOAD_DIR.glob("*.xls"))
+    expected_count = end_year - start_year + 1
+    if len(downloaded_files) < expected_count:
+        raise RuntimeError(
+            f"Expected at least {expected_count} dam Excel files, but found {len(downloaded_files)} in {DOWNLOAD_DIR}."
+        )
+    return downloaded_files
 
 
 def merge_excels(excel_files: list[Path], output_path: Path = OUTPUT_PATH) -> pd.DataFrame:
