@@ -528,7 +528,7 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         aws_groups.setdefault(asos, []).append(aws)
 
     AUTH_KEY = os.environ.get('KMA_SERVICE_KEY')
-    fetch_aws = os.environ.get('KMA_FETCH_AWS', '1').lower() not in {'0', 'false', 'no', 'n'}
+    fetch_aws = os.environ.get('KMA_FETCH_AWS', '0').lower() not in {'0', 'false', 'no', 'n'}
     aws_dfs = []
     if AUTH_KEY and fetch_aws:
         for asos, aws_list in aws_groups.items():
