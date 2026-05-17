@@ -550,7 +550,7 @@ def build_classification_leaderboard(metrics: pd.DataFrame) -> Path:
 
     parts = svg_header(
         1400,
-        980,
+        1420,
         "Model Leaderboard - Classification",
         "Higher is better. Recall is emphasized for avoiding missed alert events.",
     )
@@ -560,25 +560,25 @@ def build_classification_leaderboard(metrics: pd.DataFrame) -> Path:
         x=58,
         y=128,
         w=1284,
-        row_h=42,
+        row_h=44,
         title="Recall Ranking",
     )
     draw_horizontal_bars(
         parts,
         [(r.model_label, r.f1, r.color) for r in by_f1.itertuples()],
         x=58,
-        y=448,
-        w=610,
-        row_h=42,
+        y=552,
+        w=1284,
+        row_h=44,
         title="F1-score Ranking",
     )
     draw_horizontal_bars(
         parts,
         [(r.model_label, r.roc_auc, r.color) for r in by_auc.itertuples()],
-        x=732,
-        y=448,
-        w=610,
-        row_h=42,
+        x=58,
+        y=976,
+        w=1284,
+        row_h=44,
         title="ROC-AUC Ranking",
     )
     return save_svg(parts, OUTPUT_DIR / "reliability_classification_leaderboard.svg")

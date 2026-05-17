@@ -33,16 +33,14 @@ except Exception:
 
 ASOS_STATIONS = {
     "133": "daejeon",
-    "226": "boeun",
-    "131": "cheongju",
 }
 
 # AWS <-> ASOS mapping for merging water data
 AWS_TO_ASOS = {
-    "888": "131",  # 청남대 -> 청주
+    "888": "133",  # 청남대 -> 대전
     "648": "133",  # 장동 -> 대전
     "643": "133",  # 세천 -> 대전
-    "604": "226",  # 옥천 -> 보은
+    "604": "133",  # 옥천 -> 대전
 }
 
 WEATHER_OUTPUT_COLUMNS = [
@@ -515,6 +513,12 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
     for p in all_out:
         print(" -", p)
 
+    if not all_out:
+        raise RuntimeError(
+            "No ASOS weather files were created. Check network access, the KMA endpoint, "
+            "and the requested date range before rerunning `python src/pipeline.py --fetch weather`."
+        )
+
     # Concatenate and merge AWS data if key present
     dfs = [pd.read_csv(p, parse_dates=['date']) for p in all_out]
     combined = pd.concat(dfs, ignore_index=True, sort=False)
@@ -524,7 +528,7 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         aws_groups.setdefault(asos, []).append(aws)
 
     AUTH_KEY = os.environ.get('KMA_SERVICE_KEY')
-    fetch_aws = os.environ.get('KMA_FETCH_AWS', '1').lower() not in {'0', 'false', 'no', 'n'}
+    fetch_aws = os.environ.get('KMA_FETCH_AWS', '0').lower() not in {'0', 'false', 'no', 'n'}
     aws_dfs = []
     if AUTH_KEY and fetch_aws:
         for asos, aws_list in aws_groups.items():
@@ -613,10 +617,14 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         # 나머지(기온, 풍속) -> 전후날로 선형보간 per station
         interp_cols = [c for c in ['avg_temp','min_temp','max_temp','avg_wind','max_wind_gust'] if c in merged_all.columns]
         merged_all = merged_all.sort_values(['station','date']).reset_index(drop=True)
-        merged_all[interp_cols] = merged_all.groupby('station')[interp_cols].apply(lambda g: g.interpolate(method='linear', limit_direction='both'))
+        for col in interp_cols:
+            merged_all[col] = merged_all.groupby('station')[col].transform(
+                lambda s: s.interpolate(method='linear', limit_direction='both')
+            )
 
         # After interpolation, fill any remaining numeric NaNs with forward/backfill per station
-        merged_all[interp_cols] = merged_all.groupby('station')[interp_cols].apply(lambda g: g.fillna(method='ffill').fillna(method='bfill'))
+        for col in interp_cols:
+            merged_all[col] = merged_all.groupby('station')[col].transform(lambda s: s.ffill().bfill())
 
         # Derived features for AWS fields
         gb2 = merged_all.groupby('station')

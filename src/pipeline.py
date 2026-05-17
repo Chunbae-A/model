@@ -20,6 +20,7 @@ from src.preprocess_data import (
     DAM_RAW_CANDIDATES,
     WATER_RAW_CANDIDATES,
     WEATHER_CANDIDATES,
+    data_file_exists,
     ensure_local_source_csvs,
     find_data_file,
 )
@@ -69,6 +70,11 @@ def ensure_source_inputs() -> None:
     find_data_file(DAM_RAW_CANDIDATES, label="dam operation")
     find_data_file(WATER_RAW_CANDIDATES, label="water quality")
     find_data_file(WEATHER_CANDIDATES, label="weather")
+
+
+def local_raw_sources_available() -> bool:
+    ensure_local_source_csvs()
+    return data_file_exists(DAM_RAW_CANDIDATES) and data_file_exists(WATER_RAW_CANDIDATES)
 
 
 def fetch_water_sources() -> None:
@@ -165,11 +171,17 @@ def main() -> None:
     log(f"fetch mode: {args.fetch}")
 
     if args.fetch == "auto":
-        ensure_local_source_csvs()
-        try:
-            find_data_file(WEATHER_CANDIDATES, label="weather")
-        except FileNotFoundError:
-            fetch_weather_sources(start, end)
+        if ALGAE_FINAL_CANONICAL.exists():
+            log("canonical dataset found; use --fetch all to rebuild from crawlers/APIs instead")
+        else:
+            if not local_raw_sources_available():
+                log("local raw water data not found; fetching with Selenium crawlers")
+                fetch_water_sources()
+                os.environ["USE_CANONICAL_FINAL"] = "0"
+            try:
+                find_data_file(WEATHER_CANDIDATES, label="weather")
+            except FileNotFoundError:
+                fetch_weather_sources(start, end)
 
     if args.fetch in {"water", "all"}:
         fetch_water_sources()
