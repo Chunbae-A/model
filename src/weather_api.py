@@ -617,10 +617,14 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
         # 나머지(기온, 풍속) -> 전후날로 선형보간 per station
         interp_cols = [c for c in ['avg_temp','min_temp','max_temp','avg_wind','max_wind_gust'] if c in merged_all.columns]
         merged_all = merged_all.sort_values(['station','date']).reset_index(drop=True)
-        merged_all[interp_cols] = merged_all.groupby('station')[interp_cols].apply(lambda g: g.interpolate(method='linear', limit_direction='both'))
+        for col in interp_cols:
+            merged_all[col] = merged_all.groupby('station')[col].transform(
+                lambda s: s.interpolate(method='linear', limit_direction='both')
+            )
 
         # After interpolation, fill any remaining numeric NaNs with forward/backfill per station
-        merged_all[interp_cols] = merged_all.groupby('station')[interp_cols].apply(lambda g: g.fillna(method='ffill').fillna(method='bfill'))
+        for col in interp_cols:
+            merged_all[col] = merged_all.groupby('station')[col].transform(lambda s: s.ffill().bfill())
 
         # Derived features for AWS fields
         gb2 = merged_all.groupby('station')
