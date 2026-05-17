@@ -513,6 +513,12 @@ def run(start_dt: Optional[date] = None, end_dt: Optional[date] = None):
     for p in all_out:
         print(" -", p)
 
+    if not all_out:
+        raise RuntimeError(
+            "No ASOS weather files were created. Check network access, the KMA endpoint, "
+            "and the requested date range before rerunning `python src/pipeline.py --fetch weather`."
+        )
+
     # Concatenate and merge AWS data if key present
     dfs = [pd.read_csv(p, parse_dates=['date']) for p in all_out]
     combined = pd.concat(dfs, ignore_index=True, sort=False)

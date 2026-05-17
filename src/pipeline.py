@@ -72,28 +72,9 @@ def ensure_source_inputs() -> None:
     find_data_file(WEATHER_CANDIDATES, label="weather")
 
 
-def ensure_auto_mode_sources() -> None:
-    if ALGAE_FINAL_CANONICAL.exists():
-        return
-
+def local_raw_sources_available() -> bool:
     ensure_local_source_csvs()
-    missing = []
-    if not data_file_exists(DAM_RAW_CANDIDATES):
-        missing.append("dam operation CSV")
-    if not data_file_exists(WATER_RAW_CANDIDATES):
-        missing.append("water-quality CSV")
-
-    if missing:
-        missing_text = ", ".join(missing)
-        raise FileNotFoundError(
-            "Auto mode could not find local source data: "
-            f"{missing_text}.\n"
-            "Fresh clones do not include gitignored data files. Fix this by doing one of these:\n"
-            f" - copy the canonical dataset to {ALGAE_FINAL_CANONICAL}\n"
-            f" - copy raw CSVs into {DATA_DIR}\n"
-            f" - copy downloaded Excel files into {ROOT / 'water_data'}\n"
-            " - or run `python src/pipeline.py --fetch water` / `--fetch all` to use the crawler."
-        )
+    return data_file_exists(DAM_RAW_CANDIDATES) and data_file_exists(WATER_RAW_CANDIDATES)
 
 
 def fetch_water_sources() -> None:
@@ -190,8 +171,13 @@ def main() -> None:
     log(f"fetch mode: {args.fetch}")
 
     if args.fetch == "auto":
-        ensure_auto_mode_sources()
-        if not ALGAE_FINAL_CANONICAL.exists():
+        if ALGAE_FINAL_CANONICAL.exists():
+            log("canonical dataset found; use --fetch all to rebuild from crawlers/APIs instead")
+        else:
+            if not local_raw_sources_available():
+                log("local raw water data not found; fetching with Selenium crawlers")
+                fetch_water_sources()
+                os.environ["USE_CANONICAL_FINAL"] = "0"
             try:
                 find_data_file(WEATHER_CANDIDATES, label="weather")
             except FileNotFoundError:

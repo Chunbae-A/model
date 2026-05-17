@@ -18,7 +18,7 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Data and outputs (do not commit large files)
+# Data and outputs (generated from crawlers/APIs)
 data/
 water_data/
 model/water_data/
