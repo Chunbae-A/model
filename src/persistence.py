@@ -31,7 +31,12 @@ def _json_default(obj: Any) -> Any:
     return str(obj)
 
 
-def save_models(trained: dict[str, Any], best_models: dict[str, Any], output_dir: Path, preprocessing_pipeline: Any | None = None) -> None:
+def save_models(
+    trained: dict[str, Any],
+    best_models: dict[str, Any],
+    output_dir: Path,
+    preprocessing_pipeline: Any | None = None,
+) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     regression_dir = output_dir / "regression_candidates"
     classification_dir = output_dir / "classification_candidates"
@@ -109,7 +114,13 @@ def save_threshold_results(threshold_df: pd.DataFrame, metric_dir: Path) -> None
     threshold_df.to_csv(metric_dir / "classification_threshold_candidates.csv", index=False)
 
 
-def save_prediction_outputs(prediction_df: pd.DataFrame, original_df: pd.DataFrame, prediction_dir: Path, regression_target: str, classification_target: str) -> tuple[pd.DataFrame, pd.DataFrame]:
+def save_prediction_outputs(
+    prediction_df: pd.DataFrame,
+    original_df: pd.DataFrame,
+    prediction_dir: Path,
+    regression_target: str,
+    classification_target: str,
+) -> tuple[pd.DataFrame, pd.DataFrame]:
     prediction_dir.mkdir(parents=True, exist_ok=True)
     id_cols = [
         col
@@ -130,15 +141,16 @@ def save_prediction_outputs(prediction_df: pd.DataFrame, original_df: pd.DataFra
     if regression_target in original_df.columns:
         regression_df["y_true_target"] = original_df[regression_target].to_numpy()
         from .models import inverse_transform_cells
+
         regression_df["y_true_cells"] = inverse_transform_cells(original_df[regression_target].to_numpy())
-    # Prefer regression target prediction (log scale) if present, otherwise use predicted cells
+
     if "pred_regression_target" in prediction_df.columns:
         regression_df["y_pred_target"] = prediction_df["pred_regression_target"].to_numpy()
     elif "predicted_cells" in prediction_df.columns:
         regression_df["y_pred_target"] = prediction_df["predicted_cells"].to_numpy()
     else:
         regression_df["y_pred_target"] = None
-    # also provide original-scale prediction column if available
+
     if "predicted_cells" in prediction_df.columns:
         regression_df["y_pred_cells"] = prediction_df["predicted_cells"].to_numpy()
     regression_df.to_csv(prediction_dir / REGRESSION_PREDICTION_FILE, index=False)
@@ -146,11 +158,20 @@ def save_prediction_outputs(prediction_df: pd.DataFrame, original_df: pd.DataFra
     classification_df = prediction_df[id_cols].copy()
     if classification_target in original_df.columns:
         classification_df["y_true_alert"] = original_df[classification_target].to_numpy()
-    for extra_col in ["operational_alert_target", "predicted_alert_stage", "predicted_cell_exceeded", "operational_alert_candidate"]:
+    for extra_col in [
+        "operational_alert_target",
+        "predicted_alert_stage",
+        "predicted_cell_exceeded",
+        "operational_alert_candidate",
+    ]:
         if extra_col in prediction_df.columns:
             classification_df[extra_col] = prediction_df[extra_col].to_numpy()
-    classification_df["y_pred_alert"] = prediction_df["predicted_alert_label"] if "predicted_alert_label" in prediction_df.columns else None
-    classification_df["y_pred_probability"] = prediction_df["alert_probability"] if "alert_probability" in prediction_df.columns else None
+    classification_df["y_pred_alert"] = (
+        prediction_df["predicted_alert_label"] if "predicted_alert_label" in prediction_df.columns else None
+    )
+    classification_df["y_pred_probability"] = (
+        prediction_df["alert_probability"] if "alert_probability" in prediction_df.columns else None
+    )
     classification_df.to_csv(prediction_dir / CLASSIFICATION_PREDICTION_FILE, index=False)
     return regression_df, classification_df
 
@@ -169,7 +190,6 @@ def save_run_reports(trained: dict[str, Any], metrics_df: pd.DataFrame, output_r
     run_dir.mkdir(parents=True, exist_ok=True)
     models_dir.mkdir(parents=True, exist_ok=True)
 
-    # save a simple run metadata file
     metadata = {
         "run_id": run_id,
         "num_regression_candidates": len(trained.get("regression_models", {})),
@@ -178,7 +198,6 @@ def save_run_reports(trained: dict[str, Any], metrics_df: pd.DataFrame, output_r
     with open(run_dir / "run_metadata.json", "w", encoding="utf-8") as f:
         json.dump(metadata, f, ensure_ascii=False, indent=2, default=_json_default)
 
-    # write per-model text summaries from metrics_df
     if metrics_df is not None and not metrics_df.empty:
         for model_name in metrics_df["model_name"].unique():
             mdf = metrics_df[metrics_df["model_name"].eq(model_name)].copy()
@@ -188,7 +207,6 @@ def save_run_reports(trained: dict[str, Any], metrics_df: pd.DataFrame, output_r
                 for _, row in mdf.iterrows():
                     f.write("- " + json.dumps(row.dropna().to_dict(), ensure_ascii=False, default=_json_default) + "\n")
 
-        # determine best model per task and overall-best heuristic
         try:
             reg_df = metrics_df[metrics_df["task"].eq("regression")].copy()
             cls_df = metrics_df[metrics_df["task"].eq("classification")].copy()

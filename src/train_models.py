@@ -26,6 +26,7 @@ from src.persistence import (
     save_metrics,
     save_threshold_results,
     save_prediction_outputs,
+    save_run_reports,
 )
 from src.explain_scenario import (
     get_feature_importance_table,
@@ -153,9 +154,6 @@ def main():
     save_metrics(metrics_df, METRIC_DIR)
     save_threshold_results(threshold_df, METRIC_DIR)
 
-    # save per-run reports under `output/` so user can inspect run-by-run model txts
-    from pathlib import Path
-    from src.persistence import save_run_reports
     run_reports_dir = Path("output")
     try:
         run_dir = save_run_reports(trained, metrics_df, run_reports_dir)
@@ -169,13 +167,9 @@ def main():
     save_prediction_outputs(pred_df, valid_df, PREDICTION_DIR, REGRESSION_TARGET, FUTURE_ALERT_TARGET)
 
     logging.info("Generating explainability outputs")
-    importance_df = get_feature_importance_table(best_models["classification_model"], best_models["feature_columns"]) 
-    try:
-        shap_top = make_shap_top_reasons_table(best_models, valid_df, pred_df)
-    except Exception:
-        shap_top = make_shap_top_reasons_table(best_models, valid_df, pred_df)
+    importance_df = get_feature_importance_table(best_models["classification_model"], best_models["feature_columns"])
+    shap_top = make_shap_top_reasons_table(best_models, valid_df, pred_df)
 
-    # save explain outputs
     EXPLAIN_DIR.mkdir(parents=True, exist_ok=True)
     importance_df.to_csv(EXPLAIN_DIR / "feature_importance.csv", index=False)
     shap_top.to_csv(EXPLAIN_DIR / "shap_top_reasons.csv", index=False)
