@@ -33,16 +33,14 @@ except Exception:
 
 ASOS_STATIONS = {
     "133": "daejeon",
-    "226": "boeun",
-    "131": "cheongju",
 }
 
 # AWS <-> ASOS mapping for merging water data
 AWS_TO_ASOS = {
-    "888": "131",  # 청남대 -> 청주
+    "888": "133",  # 청남대 -> 대전
     "648": "133",  # 장동 -> 대전
     "643": "133",  # 세천 -> 대전
-    "604": "226",  # 옥천 -> 보은
+    "604": "133",  # 옥천 -> 대전
 }
 
 WEATHER_OUTPUT_COLUMNS = [
