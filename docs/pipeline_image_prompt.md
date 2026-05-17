@@ -1,76 +1,73 @@
-# Pipeline Image Prompt
+Use this prompt to create a report-ready image that explains the full code and data flow of the project.
+text
+Create a publication-quality research pipeline diagram for a Korean environmental AI project.
 
-Create a publication-quality research pipeline diagram for a Korean water-quality AI project.
-
-Topic: "Daecheong Dam Area-Specific Harmful Cyanobacteria Early Warning and Decision Support System".
+Title:
+"Daecheong Dam Area-Specific Harmful Cyanobacteria Early Warning and Decision Support Pipeline"
 
 Style:
-- Academic paper figure, clean vector-like infographic.
-- White background, restrained blue/teal/green palette with small orange warning accents.
-- Horizontal left-to-right pipeline with clear numbered blocks.
-- Use thin arrows, grouped modules, small icons, and compact labels.
-- Make it look like a figure from an environmental machine learning paper, not a marketing slide.
-- Use Korean labels with small English subtitles.
+Clean academic infographic, white background, vector-like layout, restrained blue, teal, green and gray palette with small orange warning accents. No emojis, no cartoon characters, no decorative blobs. Use thin arrows, compact labels, and a professional environmental data science style suitable for a technical report.
 
-Required pipeline blocks:
-1. Data Sources / 데이터 수집
-   - Weekly water-quality and algae sampling data: water temperature, pH, DO, turbidity, transparency, Chl-a, harmful cyanobacteria cell count, Microcystis, Anabaena, Oscillatoria, Aphanizomenon.
-   - Dam operation and hydrology data: water level, storage, storage rate, inflow, outflow.
-   - Weather data: air temperature, rainfall, wind speed, sunshine duration, solar radiation, cloud cover.
-   - Sampling locations: Munui, Hoenam, Chudong.
+Canvas:
+Wide 16:9 horizontal layout. Left-to-right flow. Korean main labels with short English subtitles.
 
-2. Time Alignment and Feature Engineering / 시간 정렬 및 피처 생성
-   - Align by sampling date and location.
-   - Aggregate weather and hydrology over 3-day, 7-day, and 14-day windows.
-   - Create sampling_gap_days for irregular sampling intervals.
-   - Create hydrological features: residence_proxy, inflow_7d_sum, outflow_7d_sum, nutrient_stagnation_index.
-   - Create weather features: air_temp_7d_mean, rain_3d_sum, rain_7d_sum, rain_14d_sum, wind_7d_mean, sunshine_7d_sum, solar_7d_sum.
-   - Create spatial/upstream features: loc_flow_order, Hoenam pressure, upstream same-date cell counts.
+Main pipeline blocks:
 
-3. Target Definition / 타깃 정의
-   - Main target: harmful cyanobacteria total cell count.
-   - Regression target: next_log_cells = log10(next harmful cyanobacteria cells + 1).
-   - Classification target: next_alert_binary = whether next cells exceed 1,000 cells/mL.
-   - Operational logic: previous_exceeded AND predicted_exceeded for two-consecutive-sampling alert candidate.
+1. Data Collection / 데이터 수집
+   - Selenium crawler for dam operation data: water level, storage, storage rate, inflow, outflow, dam rainfall.
+   - Selenium crawler for water quality and algae data: water temperature, pH, DO, turbidity, transparency, Chl-a, harmful cyanobacteria cells, Microcystis, Anabaena, Oscillatoria, Aphanizomenon.
+   - Weather API: temperature, rainfall, wind, sunshine, solar radiation, cloud cover.
+   - Show three Daecheong Dam areas: Munui, Chudong, Hoenam.
 
-4. Model Training / 모델 학습
+2. Raw Data Store / 원천 데이터 저장
+   - data/대청수문_10년치_통합데이터.csv
+   - data/수질_10년치_통합데이터.csv
+   - data/WEATHER.csv
+   - water_data/dam and water_data/quality Excel downloads.
+
+3. Preprocessing / 전처리
+   - Align by date and sampling location.
+   - Merge dam operation, water quality, algae, and weather tables.
+   - Validate duplicate date plus location keys, missing values, and numeric feature columns.
+   - Output: data/Final.csv and data/processed/model_input/algae_model_input.csv.
+
+4. Feature Engineering / 파생변수 생성
+   - Rolling weather windows: rain_3d_sum, rain_7d_sum, rain_14d_sum, air_temp_7d_mean, wind_7d_mean.
+   - Hydrology features: inflow_7d_sum, outflow_7d_sum, residence_proxy, nutrient_stagnation_index.
+   - Temporal features: sampling_gap_days, previous_observed_cells, previous_exceeded.
+   - Spatial/upstream features: loc_flow_order, upstream_cells_same_date, hoenam_pressure_for_downstream.
+   - Include formula box: next_log_cells = log10(next cells + 1).
+
+5. Model Training / 모델 학습
    - YAML-configured candidate models.
-   - Show six model boxes: LightGBM, XGBoost, RandomForest, HistGradientBoosting, CatBoost, Stacking Ensemble.
-   - Stacking Ensemble should receive arrows from the five base models and output a combined prediction.
-   - Use time-based validation, not random split.
-   - Show regression and classification as two parallel heads.
+   - Regression head: predict next_log_cells.
+   - Classification head: predict next_alert_binary.
+   - Show model boxes: LightGBM, XGBoost, Random Forest, Huber Regressor, HistGradientBoosting, CatBoost, Stacking Ensemble.
+   - Time-based validation split, not random split.
 
-5. Evaluation / 성능 평가
+6. Evaluation / 모델 평가
    - Regression metrics: RMSE, MAE, RMSE_cells, MAE_cells, RMSLE.
-   - Classification metrics: Recall, Precision, F1, ROC AUC, PR AUC.
-   - Emphasize Recall because missing a bloom warning is the most dangerous error.
-   - Compare against Persistence Baseline.
+   - Classification metrics: recall, precision, F1, ROC AUC, PR AUC.
+   - Compare against persistence baseline.
+   - Emphasize recall because missing a bloom warning is high-risk.
 
-6. Explainability / 원인 해석
-   - SHAP top factors.
-   - Example factors: water temperature increase, residence time increase, low outflow, rainfall and inflow, low wind, high sunshine, Hoenam cell increase.
+7. Explainability / 설명 가능성
+   - Feature importance and SHAP top reasons.
+   - Example factors: high water temperature, long residence time, low outflow, rainfall and inflow, low wind, high sunshine, upstream Hoenam cell increase.
 
-7. Scenario Decision Layer / 시나리오 의사결정
-   - Administrative alert logic: watch >= 1,000, warning >= 10,000, bloom >= 1,000,000 cells/mL.
-   - Scenario categories: watch alert candidate, warning alert candidate, bloom monitoring, approaching watch threshold, downgrade/release observation, stagnant stratification risk, rainfall nutrient inflow, high temperature and sunlight growth, Hoenam upstream propagation, general stable.
-   - Link scenarios to recommended monitoring/action categories.
+8. Scenario Decision Layer / 의사결정 시나리오
+   - Alert thresholds: watch >= 1,000 cells/mL, warning >= 10,000 cells/mL, bloom >= 1,000,000 cells/mL.
+   - Rule box: previous_exceeded AND predicted_exceeded = operational alert candidate.
+   - Scenario types: watch candidate, warning candidate, bloom monitoring, rainfall nutrient inflow, stagnant stratification risk, high temperature and sunlight growth, Hoenam upstream propagation, general stable.
 
-8. Final Output / 최종 산출물
-   - 7-day ahead harmful cyanobacteria cell prediction.
+9. Outputs / 산출물
+   - Predicted cells.
    - Alert probability.
    - Predicted alert stage.
    - Top SHAP reasons.
-   - LLM-ready scenario briefing payload.
+   - Scenario results.
    - SVG model comparison chart.
+   - Saved models and metrics under artifacts/.
 
 Layout details:
-- Put "Data Sources" on the far left as three stacked cylinders/cards.
-- Put "Feature Engineering" as a central processing block with small sub-feature chips.
-- Split into two model heads: Regression and Classification.
-- Merge outputs into "Legal Alert Logic + Scenario Engine".
-- Final rightmost panel: dashboard/report outputs for water managers.
-- Add a small map-like strip showing the three Daecheong Dam areas: Munui, Hoenam, Chudong.
-- Include a small formula box: log10(cells + 1).
-- Include a small rule box: previous exceeded + predicted exceeded = alert candidate.
-- Avoid decorative blobs, 3D, or cartoon style.
-- Keep text legible and professional.
+Place "Data Collection" on the far left as three stacked source cards. Put "Preprocessing" and "Feature Engineering" in the center as connected processing blocks. Split into two parallel model heads, Regression and Classification, then merge into the Scenario Decision Layer. Put final report/dashboard outputs on the far right. Add a small map-like strip for Munui, Chudong, Hoenam near the data source area. Keep all text legible and avoid clutter.
