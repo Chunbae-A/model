@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980">
+<rect width="1400" height="980" fill="#f5f7fb"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#64748b}.ink{fill:#111827}.panel{fill:#ffffff;stroke:#d7dde8}</style>
+<text x="52" y="58" font-size="30" font-weight="800" fill="#111827">Model Leaderboard - Regression</text>
+<text x="52" y="86" font-size="15" fill="#64748b">RMSE is lower-is-better; R-squared is higher-is-better.</text>
+<rect x="58" y="128" width="610" height="412" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="82" y="166" font-size="20" font-weight="800" fill="#1f2937">RMSE(log) Ranking</text>
+<text x="82" y="218" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="248" y="200" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="200" width="237.2" height="24" rx="5" fill="#3AAFA9"/>
+<text x="576" y="217" font-size="12" font-weight="700" fill="#475569">0.660</text>
+<text x="82" y="260" font-size="13" fill="#334155">LightGBM</text>
+<rect x="248" y="242" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="242" width="243.3" height="24" rx="5" fill="#B85450"/>
+<text x="576" y="259" font-size="12" font-weight="700" fill="#475569">0.677</text>
+<text x="82" y="302" font-size="13" fill="#334155">HistGB</text>
+<rect x="248" y="284" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="284" width="244.5" height="24" rx="5" fill="#6C8EBF"/>
+<text x="576" y="301" font-size="12" font-weight="700" fill="#475569">0.680</text>
+<text x="82" y="344" font-size="13" fill="#334155">CatBoost</text>
+<rect x="248" y="326" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="326" width="245.1" height="24" rx="5" fill="#D6B656"/>
+<text x="576" y="343" font-size="12" font-weight="700" fill="#475569">0.682</text>
+<text x="82" y="386" font-size="13" fill="#334155">Random Forest</text>
+<rect x="248" y="368" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="368" width="246.0" height="24" rx="5" fill="#82B366"/>
+<text x="576" y="385" font-size="12" font-weight="700" fill="#475569">0.684</text>
+<text x="82" y="428" font-size="13" fill="#334155">Huber</text>
+<rect x="248" y="410" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="410" width="249.5" height="24" rx="5" fill="#E07A5F"/>
+<text x="576" y="427" font-size="12" font-weight="700" fill="#475569">0.694</text>
+<text x="82" y="470" font-size="13" fill="#334155">XGBoost</text>
+<rect x="248" y="452" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="452" width="250.0" height="24" rx="5" fill="#9673A6"/>
+<text x="576" y="469" font-size="12" font-weight="700" fill="#475569">0.696</text>
+<text x="82" y="512" font-size="13" fill="#334155">Persistence</text>
+<rect x="248" y="494" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="494" width="287.0" height="24" rx="5" fill="#9E9E9E"/>
+<text x="576" y="511" font-size="12" font-weight="700" fill="#475569">0.799</text>
+<rect x="732" y="128" width="610" height="412" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="756" y="166" font-size="20" font-weight="800" fill="#1f2937">RMSE(cells) Ranking</text>
+<text x="756" y="218" font-size="13" fill="#334155">LightGBM</text>
+<rect x="922" y="200" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="200" width="240.8" height="24" rx="5" fill="#B85450"/>
+<text x="1250" y="217" font-size="12" font-weight="700" fill="#475569">12,320</text>
+<text x="756" y="260" font-size="13" fill="#334155">HistGB</text>
+<rect x="922" y="242" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="242" width="250.6" height="24" rx="5" fill="#6C8EBF"/>
+<text x="1250" y="259" font-size="12" font-weight="700" fill="#475569">12,824</text>
+<text x="756" y="302" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="922" y="284" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="284" width="260.2" height="24" rx="5" fill="#3AAFA9"/>
+<text x="1250" y="301" font-size="12" font-weight="700" fill="#475569">13,315</text>
+<text x="756" y="344" font-size="13" fill="#334155">XGBoost</text>
+<rect x="922" y="326" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="326" width="274.3" height="24" rx="5" fill="#9673A6"/>
+<text x="1250" y="343" font-size="12" font-weight="700" fill="#475569">14,035</text>
+<text x="756" y="386" font-size="13" fill="#334155">CatBoost</text>
+<rect x="922" y="368" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="368" width="275.7" height="24" rx="5" fill="#D6B656"/>
+<text x="1250" y="385" font-size="12" font-weight="700" fill="#475569">14,109</text>
+<text x="756" y="428" font-size="13" fill="#334155">Random Forest</text>
+<rect x="922" y="410" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="410" width="279.1" height="24" rx="5" fill="#82B366"/>
+<text x="1250" y="427" font-size="12" font-weight="700" fill="#475569">14,284</text>
+<text x="756" y="470" font-size="13" fill="#334155">Persistence</text>
+<rect x="922" y="452" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="452" width="285.4" height="24" rx="5" fill="#9E9E9E"/>
+<text x="1250" y="469" font-size="12" font-weight="700" fill="#475569">14,604</text>
+<text x="756" y="512" font-size="13" fill="#334155">Huber</text>
+<rect x="922" y="494" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="922" y="494" width="287.0" height="24" rx="5" fill="#E07A5F"/>
+<text x="1250" y="511" font-size="12" font-weight="700" fill="#475569">14,688</text>
+<rect x="58" y="540" width="1284" height="412" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="82" y="578" font-size="20" font-weight="800" fill="#1f2937">R-squared Ranking</text>
+<text x="82" y="630" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="248" y="612" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="612" width="338.8" height="24" rx="5" fill="#3AAFA9"/>
+<text x="1250" y="629" font-size="12" font-weight="700" fill="#475569">0.844</text>
+<text x="82" y="672" font-size="13" fill="#334155">LightGBM</text>
+<rect x="248" y="654" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="654" width="309.1" height="24" rx="5" fill="#B85450"/>
+<text x="1250" y="671" font-size="12" font-weight="700" fill="#475569">0.836</text>
+<text x="82" y="714" font-size="13" fill="#334155">HistGB</text>
+<rect x="248" y="696" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="696" width="303.2" height="24" rx="5" fill="#6C8EBF"/>
+<text x="1250" y="713" font-size="12" font-weight="700" fill="#475569">0.834</text>
+<text x="82" y="756" font-size="13" fill="#334155">CatBoost</text>
+<rect x="248" y="738" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="738" width="300.4" height="24" rx="5" fill="#D6B656"/>
+<text x="1250" y="755" font-size="12" font-weight="700" fill="#475569">0.833</text>
+<text x="82" y="798" font-size="13" fill="#334155">Random Forest</text>
+<rect x="248" y="780" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="780" width="295.7" height="24" rx="5" fill="#82B366"/>
+<text x="1250" y="797" font-size="12" font-weight="700" fill="#475569">0.832</text>
+<text x="82" y="840" font-size="13" fill="#334155">Huber</text>
+<rect x="248" y="822" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="822" width="278.1" height="24" rx="5" fill="#E07A5F"/>
+<text x="1250" y="839" font-size="12" font-weight="700" fill="#475569">0.827</text>
+<text x="82" y="882" font-size="13" fill="#334155">XGBoost</text>
+<rect x="248" y="864" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="864" width="275.4" height="24" rx="5" fill="#9673A6"/>
+<text x="1250" y="881" font-size="12" font-weight="700" fill="#475569">0.827</text>
+<text x="82" y="924" font-size="13" fill="#334155">Persistence</text>
+<rect x="248" y="906" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="906" width="73.3" height="24" rx="5" fill="#9E9E9E"/>
+<text x="1250" y="923" font-size="12" font-weight="700" fill="#475569">0.771</text>
+</svg>

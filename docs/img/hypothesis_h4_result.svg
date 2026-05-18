@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860">
+<rect width="1500" height="860" fill="#f5f7fb"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}</style>
+<text x="54" y="58" font-size="30" font-weight="800" fill="#111827">H4. Hydraulic stagnation</text>
+<text x="54" y="88" font-size="15" fill="#64748b">Low outflow, longer residence time, low wind, and warm-water stability.</text>
+<rect x="56" y="120" width="1388" height="660" rx="14" fill="#ffffff" stroke="#d7dde8"/>
+<rect x="56" y="120" width="12" height="660" rx="6" fill="#A23B3B"/>
+<rect x="96" y="150" width="150" height="38" rx="19" fill="#A23B3B" fill-opacity="0.14"/>
+<text x="171" y="175" text-anchor="middle" font-size="14" font-weight="900" fill="#A23B3B">Not supported</text>
+<text x="96" y="215" font-size="15" fill="#334155">
+<tspan x="96" dy="0">This scenario is a supporting signal: risk direction rises, but</tspan>
+<tspan x="96" dy="21">statistical evidence is weaker than H1-H3.</tspan>
+</text>
+<text x="96" y="300" font-size="18" font-weight="900" fill="#111827">Stagnation-condition composition</text>
+<text x="112" y="358" font-size="13" font-weight="800" fill="#334155">Low outflow</text>
+<rect x="282" y="340" width="500" height="26" rx="6" fill="#eef2f7"/>
+<rect x="282" y="340" width="476.2" height="26" rx="6" fill="#A23B3B" fill-opacity="0.86"/>
+<text x="800" y="358" font-size="13" font-weight="900" fill="#111827">95.2%</text>
+<text x="112" y="416" font-size="13" font-weight="800" fill="#334155">High residence time</text>
+<rect x="282" y="398" width="500" height="26" rx="6" fill="#eef2f7"/>
+<rect x="282" y="398" width="478.6" height="26" rx="6" fill="#A23B3B" fill-opacity="0.86"/>
+<text x="800" y="416" font-size="13" font-weight="900" fill="#111827">95.7%</text>
+<text x="112" y="474" font-size="13" font-weight="800" fill="#334155">Low wind</text>
+<rect x="282" y="456" width="500" height="26" rx="6" fill="#eef2f7"/>
+<rect x="282" y="456" width="500.0" height="26" rx="6" fill="#A23B3B" fill-opacity="0.86"/>
+<text x="800" y="474" font-size="13" font-weight="900" fill="#111827">100.0%</text>
+<text x="112" y="532" font-size="13" font-weight="800" fill="#334155">Warm water</text>
+<rect x="282" y="514" width="500" height="26" rx="6" fill="#eef2f7"/>
+<rect x="282" y="514" width="137.8" height="26" rx="6" fill="#A23B3B" fill-opacity="0.86"/>
+<text x="800" y="532" font-size="13" font-weight="900" fill="#111827">27.6%</text>
+<text x="96" y="610" font-size="18" font-weight="900" fill="#111827">Interpretation</text>
+<text x="96" y="642" font-size="15" fill="#334155">
+<tspan x="96" dy="0">The hydraulic-stagnation factors are present, but the alert-rate gap is small. Therefore</tspan>
+<tspan x="96" dy="21">H4 is better used as a secondary risk signal combined with high temperature or species</tspan>
+<tspan x="96" dy="21">dominance.</tspan>
+</text>
+<rect x="870" y="292" width="450" height="190" rx="10" fill="#f8fafc" stroke="#d7dde8"/>
+<text x="894" y="330" font-size="17" font-weight="900" fill="#111827">Alert-risk rate</text>
+<rect x="922" y="395.4" width="88" height="42.6" rx="7" fill="#A23B3B"/>
+<text x="966" y="385.4" text-anchor="middle" font-size="14" font-weight="900" fill="#111827">15.2%</text>
+<text x="966" y="462" text-anchor="middle" font-size="12" fill="#475569">Stagnation</text>
+<rect x="1086" y="366.0" width="88" height="72.0" rx="7" fill="#94a3b8"/>
+<text x="1130" y="356.0" text-anchor="middle" font-size="14" font-weight="900" fill="#111827">25.7%</text>
+<text x="1130" y="462" text-anchor="middle" font-size="12" fill="#475569">Ordinary</text>
+<rect x="870" y="520" width="235" height="126" rx="10" fill="#f8fafc" stroke="#d7dde8"/>
+<text x="888" y="552" font-size="13" font-weight="800" fill="#64748b">Risk Ratio</text>
+<text x="888" y="596" font-size="28" font-weight="900" fill="#A23B3B">0.59x</text>
+<text x="888" y="622" font-size="12" fill="#64748b">
+<tspan x="888" dy="0">small positive direction</tspan>
+</text>
+<rect x="1130" y="520" width="235" height="126" rx="10" fill="#f8fafc" stroke="#d7dde8"/>
+<text x="1148" y="552" font-size="13" font-weight="800" fill="#64748b">p-value</text>
+<text x="1148" y="596" font-size="28" font-weight="900" fill="#A23B3B">1.0000</text>
+<text x="1148" y="622" font-size="12" fill="#64748b">
+<tspan x="1148" dy="0">not significant at 0.05</tspan>
+</text>
+</svg>

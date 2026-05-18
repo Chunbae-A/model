@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760">
+<rect width="1400" height="760" fill="#f5f7fb"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#64748b}.ink{fill:#111827}.panel{fill:#ffffff;stroke:#d7dde8}</style>
+<text x="52" y="58" font-size="30" font-weight="800" fill="#111827">Error by Monitoring Location</text>
+<text x="52" y="86" font-size="15" fill="#64748b">Mean absolute error by validation-site group.</text>
+<rect x="62" y="136" width="610" height="250" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="86" y="174" font-size="20" font-weight="800" fill="#1f2937">MAE(log) by Location</text>
+<text x="86" y="226" font-size="13" fill="#334155">Chudong</text>
+<rect x="252" y="208" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="252" y="208" width="234.4" height="24" rx="5" fill="#3AAFA9"/>
+<text x="580" y="225" font-size="12" font-weight="700" fill="#475569">0.447</text>
+<text x="86" y="284" font-size="13" fill="#334155">Hoenam</text>
+<rect x="252" y="266" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="252" y="266" width="287.0" height="24" rx="5" fill="#3AAFA9"/>
+<text x="580" y="283" font-size="12" font-weight="700" fill="#475569">0.547</text>
+<text x="86" y="342" font-size="13" fill="#334155">Munui</text>
+<rect x="252" y="324" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="252" y="324" width="230.0" height="24" rx="5" fill="#3AAFA9"/>
+<text x="580" y="341" font-size="12" font-weight="700" fill="#475569">0.438</text>
+<rect x="728" y="136" width="610" height="250" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="752" y="174" font-size="20" font-weight="800" fill="#1f2937">MAE(cells) by Location</text>
+<text x="752" y="226" font-size="13" fill="#334155">Chudong</text>
+<rect x="918" y="208" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="918" y="208" width="184.1" height="24" rx="5" fill="#9673A6"/>
+<text x="1246" y="225" font-size="12" font-weight="700" fill="#475569">3,837</text>
+<text x="752" y="284" font-size="13" fill="#334155">Hoenam</text>
+<rect x="918" y="266" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="918" y="266" width="287.0" height="24" rx="5" fill="#9673A6"/>
+<text x="1246" y="283" font-size="12" font-weight="700" fill="#475569">5,982</text>
+<text x="752" y="342" font-size="13" fill="#334155">Munui</text>
+<rect x="918" y="324" width="310" height="24" rx="5" fill="#eef2f7"/>
+<rect x="918" y="324" width="163.1" height="24" rx="5" fill="#9673A6"/>
+<text x="1246" y="341" font-size="12" font-weight="700" fill="#475569">3,399</text>
+<rect x="62" y="520" width="1276" height="126" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="90" y="560" font-size="18" font-weight="800" fill="#1f2937">Sample Counts</text>
+<text x="90" y="598" font-size="14" fill="#334155">Chudong: n=105</text>
+<text x="310" y="598" font-size="14" fill="#334155">Hoenam: n=103</text>
+<text x="530" y="598" font-size="14" fill="#334155">Munui: n=107</text>
+</svg>

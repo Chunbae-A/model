@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1420" viewBox="0 0 1400 1420">
+<rect width="1400" height="1420" fill="#f5f7fb"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#64748b}.ink{fill:#111827}.panel{fill:#ffffff;stroke:#d7dde8}</style>
+<text x="52" y="58" font-size="30" font-weight="800" fill="#111827">Model Leaderboard - Classification</text>
+<text x="52" y="86" font-size="15" fill="#64748b">Higher is better. Recall is emphasized for avoiding missed alert events.</text>
+<rect x="58" y="128" width="1284" height="384" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="82" y="166" font-size="20" font-weight="800" fill="#1f2937">Recall Ranking</text>
+<text x="82" y="218" font-size="13" fill="#334155">Random Forest</text>
+<rect x="248" y="200" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="200" width="868.2" height="24" rx="5" fill="#82B366"/>
+<text x="1250" y="217" font-size="12" font-weight="700" fill="#475569">1.000</text>
+<text x="82" y="262" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="248" y="244" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="244" width="868.2" height="24" rx="5" fill="#3AAFA9"/>
+<text x="1250" y="261" font-size="12" font-weight="700" fill="#475569">1.000</text>
+<text x="82" y="306" font-size="13" fill="#334155">CatBoost</text>
+<rect x="248" y="288" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="288" width="783.7" height="24" rx="5" fill="#D6B656"/>
+<text x="1250" y="305" font-size="12" font-weight="700" fill="#475569">0.985</text>
+<text x="82" y="350" font-size="13" fill="#334155">XGBoost</text>
+<rect x="248" y="332" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="332" width="699.2" height="24" rx="5" fill="#9673A6"/>
+<text x="1250" y="349" font-size="12" font-weight="700" fill="#475569">0.971</text>
+<text x="82" y="394" font-size="13" fill="#334155">HistGB</text>
+<rect x="248" y="376" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="376" width="572.5" height="24" rx="5" fill="#6C8EBF"/>
+<text x="1250" y="393" font-size="12" font-weight="700" fill="#475569">0.949</text>
+<text x="82" y="438" font-size="13" fill="#334155">LightGBM</text>
+<rect x="248" y="420" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="420" width="530.2" height="24" rx="5" fill="#B85450"/>
+<text x="1250" y="437" font-size="12" font-weight="700" fill="#475569">0.942</text>
+<text x="82" y="482" font-size="13" fill="#334155">Persistence</text>
+<rect x="248" y="464" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="464" width="530.2" height="24" rx="5" fill="#9E9E9E"/>
+<text x="1250" y="481" font-size="12" font-weight="700" fill="#475569">0.942</text>
+<rect x="58" y="552" width="1284" height="384" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="82" y="590" font-size="20" font-weight="800" fill="#1f2937">F1-score Ranking</text>
+<text x="82" y="642" font-size="13" fill="#334155">XGBoost</text>
+<rect x="248" y="624" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="624" width="618.4" height="24" rx="5" fill="#9673A6"/>
+<text x="1250" y="641" font-size="12" font-weight="700" fill="#475569">0.957</text>
+<text x="82" y="686" font-size="13" fill="#334155">HistGB</text>
+<rect x="248" y="668" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="668" width="612.9" height="24" rx="5" fill="#6C8EBF"/>
+<text x="1250" y="685" font-size="12" font-weight="700" fill="#475569">0.956</text>
+<text x="82" y="730" font-size="13" fill="#334155">LightGBM</text>
+<rect x="248" y="712" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="712" width="590.6" height="24" rx="5" fill="#B85450"/>
+<text x="1250" y="729" font-size="12" font-weight="700" fill="#475569">0.952</text>
+<text x="82" y="774" font-size="13" fill="#334155">Random Forest</text>
+<rect x="248" y="756" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="756" width="586.9" height="24" rx="5" fill="#82B366"/>
+<text x="1250" y="773" font-size="12" font-weight="700" fill="#475569">0.951</text>
+<text x="82" y="818" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="248" y="800" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="800" width="586.9" height="24" rx="5" fill="#3AAFA9"/>
+<text x="1250" y="817" font-size="12" font-weight="700" fill="#475569">0.951</text>
+<text x="82" y="862" font-size="13" fill="#334155">CatBoost</text>
+<rect x="248" y="844" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="844" width="563.6" height="24" rx="5" fill="#D6B656"/>
+<text x="1250" y="861" font-size="12" font-weight="700" fill="#475569">0.947</text>
+<text x="82" y="906" font-size="13" fill="#334155">Persistence</text>
+<rect x="248" y="888" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="888" width="530.2" height="24" rx="5" fill="#9E9E9E"/>
+<text x="1250" y="905" font-size="12" font-weight="700" fill="#475569">0.942</text>
+<rect x="58" y="976" width="1284" height="384" rx="8" fill="#ffffff" stroke="#d7dde8"/>
+<text x="82" y="1014" font-size="20" font-weight="800" fill="#1f2937">ROC-AUC Ranking</text>
+<text x="82" y="1066" font-size="13" fill="#334155">Stacking Ensemble</text>
+<rect x="248" y="1048" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1048" width="840.9" height="24" rx="5" fill="#3AAFA9"/>
+<text x="1250" y="1065" font-size="12" font-weight="700" fill="#475569">0.995</text>
+<text x="82" y="1110" font-size="13" fill="#334155">Random Forest</text>
+<rect x="248" y="1092" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1092" width="840.7" height="24" rx="5" fill="#82B366"/>
+<text x="1250" y="1109" font-size="12" font-weight="700" fill="#475569">0.995</text>
+<text x="82" y="1154" font-size="13" fill="#334155">CatBoost</text>
+<rect x="248" y="1136" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1136" width="835.2" height="24" rx="5" fill="#D6B656"/>
+<text x="1250" y="1153" font-size="12" font-weight="700" fill="#475569">0.994</text>
+<text x="82" y="1198" font-size="13" fill="#334155">XGBoost</text>
+<rect x="248" y="1180" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1180" width="830.3" height="24" rx="5" fill="#9673A6"/>
+<text x="1250" y="1197" font-size="12" font-weight="700" fill="#475569">0.993</text>
+<text x="82" y="1242" font-size="13" fill="#334155">LightGBM</text>
+<rect x="248" y="1224" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1224" width="830.0" height="24" rx="5" fill="#B85450"/>
+<text x="1250" y="1241" font-size="12" font-weight="700" fill="#475569">0.993</text>
+<text x="82" y="1286" font-size="13" fill="#334155">HistGB</text>
+<rect x="248" y="1268" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1268" width="826.5" height="24" rx="5" fill="#6C8EBF"/>
+<text x="1250" y="1285" font-size="12" font-weight="700" fill="#475569">0.993</text>
+<text x="82" y="1330" font-size="13" fill="#334155">Persistence</text>
+<rect x="248" y="1312" width="984" height="24" rx="5" fill="#eef2f7"/>
+<rect x="248" y="1312" width="569.2" height="24" rx="5" fill="#9E9E9E"/>
+<text x="1250" y="1329" font-size="12" font-weight="700" fill="#475569">0.948</text>
+</svg>
